@@ -1,0 +1,21 @@
+9 4 7 2
+FEUPAllStars 7119 3 6 7 4
+PowerString 9267 3 1 1 1
+n00bz 10247 9 4 7 2
+_underscore 4659 4 9 7 8
+Alpacas 7431 9 1 5 2
+SegFault 10621 7 4 9 2
+GrrrlGang 5405 9 4 1 2
+ZeroTrail 10439 9 5 4 7
+AnonymousStruct 6398 9 5 4 3
+FooBarQux 11575 4 9 5 2
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,6 @@
+Oleo_bracket 2 10.44
+Cowl 1 30.56
+Rear_cowl 1 39.94
+Canopy_frame 1 25.37
+Strobe_light 1 29.74
+Tube12" 1 24.20
