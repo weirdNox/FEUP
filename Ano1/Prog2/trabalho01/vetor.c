@@ -239,17 +239,18 @@ void vetor__qsortPartition(vetor *vec, int low, int high)
     vetor__unsafeSwap(vec, pivotIdx, high);
     char *pivot = vec->elementos[high].str;
 
-    int left = low, right = high-1;
+    int left = low-1, right = high;
     for(;;)
     {
-        while(left < high && strcmp(vec->elementos[left].str, pivot) <= 0)
+        do
         {
             ++left;
-        }
-        while(right > low && strcmp(vec->elementos[right].str, pivot) > 0)
+        } while(left < high && strcmp(vec->elementos[left].str, pivot) < 0);
+
+        do
         {
             --right;
-        }
+        } while(right > low && strcmp(vec->elementos[right].str, pivot) > 0);
 
         if(left < right)
         {
@@ -331,8 +332,7 @@ void vetor__qsortBetterPartition(vetor *vec, int low, int high)
     int pivotIdx = vetor__qsortMedian(vec, low, high);
     char *pivot = vec->elementos[pivotIdx].str;
 
-    int left = low, iter = low;
-    int right = low + size - 1;
+    int left = low, iter = low, right = high;
     while(iter <= right)
     {
         int comp = strcmp(vec->elementos[iter].str, pivot);
@@ -394,10 +394,16 @@ vetor* le_ficheiro(char* nome)
         return 0;
     }
 
-    char buffer[1<<11];
+    char buffer[1<<13];
     while(fgets(buffer, sizeof(buffer)/sizeof(buffer[0]), file))
     {
-        buffer[strlen(buffer)-1] = 0; // NOTE(Gonçalo): Remover \n
+        for(int i = strlen(buffer)-1;
+            i >= 0 && (buffer[i] == '\n' || buffer[i] == '\r');
+            --i)
+        {
+            buffer[i] = 0;
+        }
+
         if(vetor_insere(result, buffer, -1) == -1)
         {
             vetor_apaga(result);
