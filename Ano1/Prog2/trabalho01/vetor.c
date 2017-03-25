@@ -19,7 +19,7 @@ vetor* vetor_novo()
 	/* aloca memoria para a estrutura vetor */
 	vec = (vetor*)malloc(sizeof(vetor));
 	if(vec == NULL)
-	return NULL;
+        return NULL;
 
 	vec->tamanho = 0;
 	vec->capacidade = 0;
@@ -33,7 +33,7 @@ void vetor_apaga(vetor* vec)
 	int i;
 
 	if(vec == NULL)
-	return;
+        return;
 
 	/* liberta memoria de cada string */
 	for (i = 0; i < vec->tamanho; i++)
@@ -53,7 +53,7 @@ int vetor_atribui(vetor* vec, int pos, const char* valor)
 	unsigned int len_valor;
 
 	if (vec == NULL || pos < 0 || pos >= vec->tamanho)
-	return -1;
+        return -1;
 
 	len_valor = strlen(valor);
 
@@ -62,7 +62,7 @@ int vetor_atribui(vetor* vec, int pos, const char* valor)
 	{
 		vec->elementos[pos].str = (char*)realloc(vec->elementos[pos].str, (len_valor+1)*sizeof(char));
 		if(vec->elementos[pos].str == NULL)
-		return -1;
+            return -1;
 	}
 
 	/* copia valor */
@@ -74,7 +74,7 @@ int vetor_atribui(vetor* vec, int pos, const char* valor)
 int vetor_tamanho(vetor* vec)
 {
 	if(vec == NULL)
-	return -1;
+        return -1;
 
 	return vec->tamanho;
 }
@@ -82,7 +82,7 @@ int vetor_tamanho(vetor* vec)
 const char* vetor_elemento(vetor* vec, int indice)
 {
 	if (vec == NULL || indice < 0 || indice >= vec->tamanho)
-	return NULL;
+        return NULL;
 
 	return vec->elementos[indice].str;
 }
@@ -98,13 +98,13 @@ int vetor_insere(vetor* vec, const char* valor, int pos)
 	if(vec->tamanho == vec->capacidade)
 	{
 		if(vec->capacidade == 0)
-		vec->capacidade = 1;
+            vec->capacidade = 1;
 		else
-		vec->capacidade *= 2;
+            vec->capacidade *= 2;
 
 		vec->elementos = (v_elemento*)realloc(vec->elementos, vec->capacidade * sizeof(v_elemento));
 		if(vec->elementos == NULL)
-		return -1;
+            return -1;
 	}
 
 	/* se pos=-1 insere no fim do vetor */
@@ -120,7 +120,7 @@ int vetor_insere(vetor* vec, const char* valor, int pos)
 	/* aloca espaco para a nova string na posicao pos */
 	vec->elementos[pos].str = (char*)calloc(strlen(valor)+1, sizeof(char));
 	if(vec->elementos[pos].str == NULL)
-	return -1;
+        return -1;
 
 	/* copia valor */
 	strcpy(vec->elementos[pos].str, valor);
@@ -135,7 +135,7 @@ int vetor_remove(vetor* vec, int pos)
 	int i;
 
 	if(vec == NULL || pos < 0 || pos >= vec->tamanho)
-	return -1;
+        return -1;
 
 	/* liberta string na posicao a remover */
 	free(vec->elementos[pos].str);
@@ -156,13 +156,13 @@ int vetor_pesquisa(vetor* vec, const char* valor)
 	int i;
 
 	if(vec == NULL)
-	return -1;
+        return -1;
 
 	/* pesquisa sequencial */
 	for (i = 0; i < vec->tamanho; i++)
 	{
 		if (strcmp(vec->elementos[i].str, valor) == 0)
-		return i;
+            return i;
 	}
 
 	return -1;
@@ -174,7 +174,7 @@ int vetor_ordena_ins(vetor* vec)
 	char *tmp;
 
 	if(vec == NULL)
-	return -1;
+        return -1;
 
 	/* ordenacao por insercao */
 	for (i = 1; i < vec->tamanho; i++)
@@ -192,8 +192,13 @@ int vetor_ordena_ins(vetor* vec)
 
 /* funções a implementar */
 
-// NOTE(Gonçalo): Esta função _NÃO_ verifica se o idxA e o idxB estão dentro dos limites
-void vetor__unsafeSwap(vetor *vec, int idxA, int idxB)
+// NOTE(Gonçalo): Todas as funções com isto são internas à biblioteca e, por isso, é possível
+// assumir algumas coisas sobre os argumentos das mesmas
+// Para além disso, as funções têm 2 '_' em vez de 1
+#define INTERNAL static
+
+// NOTE(Gonçalo): Assume-se que idxA e idxB estão dentro dos limites do vetor
+INTERNAL void vetor__unsafeSwap(vetor *vec, int idxA, int idxB)
 {
     v_elemento tempA = vec->elementos[idxA];
     vec->elementos[idxA] = vec->elementos[idxB];
@@ -227,7 +232,14 @@ int vetor_ordena_sel(vetor* vec)
     return 0;
 }
 
-void vetor__qsortPartition(vetor *vec, int low, int high)
+// NOTE(Gonçalo):
+// Função auxiliar do QuickSort não otimizado
+// Vai usar um pivot aleatório e no final o vetor ficará do tipo:
+// [elementos < pivot, pivot, elementos > pivot]
+// Depois faz isso recursivamente nos elementos menores e nos maiores até ordenar.
+// Assume-se que low e high estão dentro dos limites do vetor e que são o início e o fim
+// (inclusivé) da partição a ordenar
+INTERNAL void vetor__qsortPartition(vetor *vec, int low, int high)
 {
     int size = high - low + 1;
     if(size < 2)
@@ -279,7 +291,9 @@ int vetor_ordena_qsort(vetor* vec)
     return 0;
 }
 
-int vetor__qsortMedian(vetor *vec, int low, int high)
+// NOTE(Gonçalo): Retorna o índice da mediana entre o elemento low, high e o central.
+// low e high estão dentro dos limites do vetor
+INTERNAL int vetor__qsortMedian(vetor *vec, int low, int high)
 {
     int middle = (low+high)/2;
 
@@ -302,18 +316,29 @@ int vetor__qsortMedian(vetor *vec, int low, int high)
 }
 
 /* NOTE(Gonçalo):
-    Otimizações em vigor:
-     - Quando tamanho menor que um threshold, usar Insertion Sort
-     - Escolher pivot como mediana dos extremos e o valor médio
-     - Usar um algoritmo de partição em 3 partes (Dutch National Flag problem). Temos
-       os elementos menor que o pivot, iguais e maiores
+   Função auxiliar do QuickSort otimizado.
+   Otimizações em vigor:
+   - Quando tamanho menor que um threshold, usar Insertion Sort
+   - Escolher pivot como mediana dos extremos e o valor médio
+   - Usar um algoritmo de partição em 3 partes (Dutch National Flag problem). Temos
+     os elementos menor que o pivot, iguais e maiores
+
+   Atenção que esta otimização de 3 partições é adaptada ao caso de haver muitos elementos
+   repetidos e, por isso, num caso em que seja tudo único, vai correr mais devagar.
+   No entanto, no caso do 'plantas.txt' fornecido, vai correr muito melhor porque há
+   muitos elementos repetidos.
+
+   low e high estão dentro dos limites
 */
-void vetor__qsortBetterPartition(vetor *vec, int low, int high)
+INTERNAL void vetor__qsortBetterPartition(vetor *vec, int low, int high)
 {
     int size = high - low + 1;
+
+    // NOTE(Gonçalo): Este threshold  foi escolhido porque nos slides havia  um estudo que
+    // mostrava  que o  ponto em  que o  Insert Sort  deixa de  ser mais  eficiente que  o
+    // QuickSort é entre 100 e 200. Por tentativa e erro, foi escolhido 150.
     if(size < 150)
     {
-        // NOTE(Gonçalo): Sort por inserção
         for(int i = low+1; i <= high; ++i)
         {
             char *temp = vec->elementos[i].str;

@@ -18,7 +18,7 @@ vetorg* vetorg_novo()
 	/* aloca memoria para a estrutura vetorg */
 	vec = (vetorg*)malloc(sizeof(vetorg));
 	if(vec == NULL)
-	return NULL;
+        return NULL;
 
 	vec->tamanho = 0;
 	vec->capacidade = 0;
@@ -32,7 +32,7 @@ void vetorg_apaga(vetorg* vec)
 	int i;
 
 	if(vec == NULL)
-	return;
+        return;
 
 	/* liberta memoria de cada string */
 	for (i = 0; i < vec->tamanho; i++)
@@ -50,7 +50,7 @@ void vetorg_apaga(vetorg* vec)
 int vetorg_tamanho(vetorg* vec)
 {
 	if(vec == NULL)
-	return -1;
+        return -1;
 
 	return vec->tamanho;
 }
@@ -110,15 +110,24 @@ int vetorg_insere(vetorg* vec, int votos, float classifica, int ano, const char*
 	return pos;
 }
 
-// NOTE(Gonçalo): Esta função _NÃO_ verifica se o idxA e o idxB estão dentro dos limites
-void vetorg__unsafeSwap(vetorg *vec, int idxA, int idxB)
+/* funções a implementar */
+
+// NOTE(Gonçalo): Todas as funções com isto são internas à biblioteca e, por isso, é possível
+// assumir algumas coisas sobre os argumentos das mesmas
+// Para além disso, as funções têm 2 '_' em vez de 1
+#define INTERNAL static
+
+// NOTE(Gonçalo): Assume-se que idxA e idxB estão dentro dos limites do vetor
+INTERNAL void vetorg__unsafeSwap(vetorg *vec, int idxA, int idxB)
 {
     vg_elemento tempA = vec->elementos[idxA];
     vec->elementos[idxA] = vec->elementos[idxB];
     vec->elementos[idxB] = tempA;
 }
 
-int vetorg__qsortMedian(vetorg *vec, comp order, int low, int high)
+// NOTE(Gonçalo): Retorna o índice da mediana entre o elemento low, high e o central.
+// low e high estão dentro dos limites do vetor
+INTERNAL int vetorg__qsortMedian(vetorg *vec, comp order, int low, int high)
 {
     int middle = (low+high)/2;
 
@@ -141,15 +150,22 @@ int vetorg__qsortMedian(vetorg *vec, comp order, int low, int high)
 }
 
 /* NOTE(Gonçalo):
-    Otimizações em vigor:
-     - Quando tamanho menor que um threshold, usar Insertion Sort
-     - Escolher pivot como mediana dos extremos e o valor médio
-     - Usar um algoritmo de partição em 3 partes (Dutch National Flag problem). Temos
-       os elementos menor que o pivot, iguais e maiores
+   Função auxiliar do QuickSort otimizado.
+   Otimizações em vigor:
+   - Quando tamanho menor que um threshold, usar Insertion Sort
+   - Escolher pivot como mediana dos extremos e o valor médio
+   - Usar um algoritmo de partição em 3 partes (Dutch National Flag problem). Temos
+     os elementos menor que o pivot, iguais e maiores
+
+   low e high estão dentro dos limites
 */
-void vetorg__qsortBetterPartition(vetorg *vec, comp order, int low, int high)
+INTERNAL void vetorg__qsortBetterPartition(vetorg *vec, comp order, int low, int high)
 {
     int size = high - low + 1;
+
+    // NOTE(Gonçalo): Este threshold  foi escolhido porque nos slides havia  um estudo que
+    // mostrava  que o  ponto em  que o  Insert Sort  deixa de  ser mais  eficiente que  o
+    // QuickSort é entre 100 e 200. Por tentativa e erro, foi escolhido 150.
     if(size < 150)
     {
         // NOTE(Gonçalo): Sort por inserção
