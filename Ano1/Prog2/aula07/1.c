@@ -26,7 +26,6 @@ int main()
         fprintf(stderr, "Altura da BST errada\n");
         return -1;
     }
-
     bst_imprime(bst);
 
 
@@ -48,6 +47,7 @@ int main()
         fprintf(stderr, "Altura da AVL errada\n");
         return -1;
     }
+    avl_imprime(avl);
 
     if(avl_remove(avl, "N") == -1)
     {
@@ -55,7 +55,7 @@ int main()
         return -1;
     }
 
-    // Há 1 rotação para a direita da árvore com raiz "O", pois ficou com um balanço de -2
+    // Há 1 rotação para a direita da sub-árvore com raiz "O", pois ficou com um balanço de -2
     // depois de remover o seu filho da direita "V"
     if(avl_remove(avl, "V") == -1)
     {
