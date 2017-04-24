@@ -281,3 +281,77 @@ int grafo_aresta_remove(grafo *g, int origem, int destino)
 
     return 0;
 }
+
+
+// NOTE(Gonçalo): Extra
+#ifdef GRAFO_PESQUISA
+#define arrayCount(arr) (sizeof(arr)/sizeof(arr[0]))
+
+typedef struct
+{
+    int nPercurso;
+    vert *percurso[250];
+} Percurso;
+
+Percurso grafo_ligados(grafo *g, int origem, int destino)
+{
+    Percurso percursoVazio = {};
+    if(!g || origem <= 0 || destino <= 0)
+    {
+        return percursoVazio;
+    }
+
+    vert *orig = encontra_vertice(g, origem);
+    vert *dest = encontra_vertice(g, destino);
+    if(!orig || !dest)
+    {
+        return percursoVazio;
+    }
+
+    int nVisitados = 0;
+    vert *visitados[1<<10];
+
+    int filaHead = 1;
+    int filaTail = 0;
+    Percurso filaVert[100] = {{.nPercurso = 1, .percurso = {orig}}};
+
+    while(filaHead != filaTail)
+    {
+        Percurso *teste = filaVert + filaTail;
+        filaTail = (filaTail+1)%arrayCount(filaVert);
+
+        vert *atual = teste->percurso[teste->nPercurso-1];
+        visitados[nVisitados++] = atual;
+
+        if(atual == dest)
+        {
+            return *teste;
+        }
+
+        ++teste->nPercurso;
+        for(adj *a = atual->adjacencias; a; a = a->proximo)
+        {
+            vert *next = a->destino;
+            int existe = 0;
+            for(int i = 0; i < nVisitados; ++i)
+            {
+                if(next == visitados[i])
+                {
+                    existe = 1;
+                    break;
+                }
+            }
+            if(existe)
+            {
+                continue;
+            }
+
+            teste->percurso[teste->nPercurso-1] = next;
+            filaVert[filaHead] = *teste;
+            filaHead = (filaHead+1)%arrayCount(filaVert);
+        }
+    }
+
+    return percursoVazio;
+}
+#endif
