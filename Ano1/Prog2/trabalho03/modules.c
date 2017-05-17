@@ -5,13 +5,18 @@
 #include <stdlib.h>
 #include <string.h>
 
-Heap *rightHeap;
+// NOTE(nox): Median
 Heap *leftHeap;
+Heap *rightHeap;
+
+// NOTE(nox): Each heap will keep half (+/- 1)  of the transactions, the left one is a max
+// heap and it  will keep the lower end of  the number list, and the right  one a min heap
+// and it will keep the upper end.
 
 void median_initModule(int maxTransactions)
 {
-    leftHeap = newHeap(maxTransactions/2+3, heapCompareGreater);
-    rightHeap = newHeap(maxTransactions/2+3, heapCompareLess);
+    leftHeap = newHeap(maxTransactions/2+1, heapCompareGreater);
+    rightHeap = newHeap(maxTransactions/2+1, heapCompareLess);
     if(!leftHeap || !rightHeap)
     {
         free(leftHeap); leftHeap = 0;
@@ -26,48 +31,84 @@ int median_newObservation(int numActions, float *updatedMedian)
         return -1;
     }
 
+    // NOTE(nox): When  inserting, we will check  which one has  more or if they  have the
+    // same number of items - the possible balance result is -1, 0 and 1.
     int balance = rightHeap->size - leftHeap->size;
     switch(balance)
     {
         case -1:
         {
+            // NOTE(nox): Left heap has one more item and the current median is its top
             if(numActions < *updatedMedian)
             {
-                heapInsert(rightHeap, heapPop(leftHeap));
-                heapInsert(leftHeap, numActions);
+                // NOTE(nox): If less than the median, move  top of left heap to the right
+                // and put the new item on the left (new item < top of left)
+                // Also, we don't need to check if  the pop returns an error because it is
+                // certain that it has at least one item
+                if(!heapInsert(rightHeap, heapPop(leftHeap)) ||
+                   !heapInsert(leftHeap, numActions))
+                {
+                    return -1;
+                }
             }
             else
             {
-                heapInsert(rightHeap, numActions);
+                // NOTE(nox): If it is greater or equal, put it on the right
+                // (new item >= top of left)
+                if(!heapInsert(rightHeap, numActions))
+                {
+                    return -1;
+                }
             }
+
+            // NOTE(nox): The two heaps will be balanced in the end, so the new median is
+            // the average
             *updatedMedian = (float)(leftHeap->elements[0] + rightHeap->elements[0]) / 2.0f;
         } break;
 
         case 0:
         {
+            // NOTE(nox): Heaps are balanced, we can just  insert the new item on the left
+            // if it is  less than the median or  on the right if it is  greater or equal.
+            // The resulting  median is the  top of  the heap where  we put the  new item,
+            // because it now has 1 more item than the other.
             if(numActions < *updatedMedian)
             {
-                heapInsert(leftHeap, numActions);
+                if(!heapInsert(leftHeap, numActions))
+                {
+                    return -1;
+                }
                 *updatedMedian = leftHeap->elements[0];
             }
             else
             {
-                heapInsert(rightHeap, numActions);
+                if(!heapInsert(rightHeap, numActions))
+                {
+                    return -1;
+                }
                 *updatedMedian = rightHeap->elements[0];
             }
         } break;
 
         case 1:
         {
-            if(numActions < *updatedMedian)
+            // NOTE(nox): Analogous to case -1.
+            if(numActions > *updatedMedian)
             {
-                heapInsert(leftHeap, numActions);
+                if(!heapInsert(leftHeap, heapPop(rightHeap)) ||
+                   !heapInsert(rightHeap, numActions))
+                {
+                    return -1;
+                }
             }
             else
             {
-                heapInsert(leftHeap, heapPop(rightHeap));
-                heapInsert(rightHeap, numActions);
+                if(!heapInsert(leftHeap, numActions))
+                {
+                    return -1;
+                }
             }
+
             *updatedMedian = (float)(leftHeap->elements[0] + rightHeap->elements[0]) / 2.0f;
         } break;
 
@@ -87,22 +128,29 @@ void median_closeModule()
 }
 
 
-HashTable *table;
+// NOTE(nox): Mode
+HashTable table;
 int mostTransactions;
+
 void mode_initModule(int maxTransactions)
 {
-    table = newHashTable();
+    // NOTE(nox): We want to keep a maximum load factor of 60%
+    long int size = (long int)(maxTransactions / 0.60f);
+    initHashTable(&table, size);
     mostTransactions = 0;
 }
 
 int mode_newObservation(const char *companyName, char *updatedMode)
 {
-    if(!table || !companyName || !updatedMode)
+    if(!table.size || !companyName || !updatedMode)
     {
         return -1;
     }
 
-    HashElement *company = hashTableFetch(table, (char*)companyName);
+    // NOTE(nox): This  observation is very  simple to do, just  get the company  from the
+    // table, add 1 to  transactions and check if it is more  than most transactions until
+    // now. If yes, update stats and done.
+    HashElement *company = hashTableFetch(&table, (char*)companyName);
     if(!company)
     {
         return -1;
@@ -119,5 +167,5 @@ int mode_newObservation(const char *companyName, char *updatedMode)
 
 void mode_closeModule()
 {
-    freeHashTable(table); table = 0;
+    freeHashTable(&table);
 }

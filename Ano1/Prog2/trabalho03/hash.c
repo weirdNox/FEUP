@@ -8,38 +8,66 @@ unsigned long sdbm(unsigned char *str)
     int c;
 
     while ((c = *str++))
+    {
         hash = c + (hash << 6) + (hash << 16) - hash;
+    }
 
     return hash;
 }
 
-HashTable *newHashTable()
+int initHashTable(HashTable *table, long int size)
 {
-    HashTable *result = calloc(1, sizeof(*result));
-    return result;
-}
-
-HashElement *hashTableFetch(HashTable *table, char *name)
-{
-    if(!table || !name)
+    if(!table || size <= 0 || table->buckets)
     {
         return 0;
     }
 
-    int hash = sdbm((unsigned char *)name) % NUM_BUCKETS;
-    HashElement **resultPtr = table->buckets + hash;
+    table->buckets = calloc(size, sizeof(*table->buckets));
+    if(table->buckets)
+    {
+        table->size = size;
+        return 1;
+    }
+
+    table->size = 0;
+    return 0;
+}
+
+void freeHashTable(HashTable *table)
+{
+    if(!table || !table->buckets)
+    {
+        return;
+    }
+
+    for(int i = 0; i < table->size; ++i)
+    {
+        free(table->buckets[i]);
+    }
+    free(table->buckets);
+
+    table->size = 0;
+    table->buckets = 0;
+}
+
+HashElement *hashTableFetch(HashTable *table, char *name)
+{
+    if(!table || !table->buckets || !name)
+    {
+        return 0;
+    }
+
+    int hash = sdbm((unsigned char *)name) % table->size;
 
     for(;;)
     {
-        HashElement *result = *resultPtr;
+        HashElement *result = table->buckets[hash];
 
         if(!result)
         {
-            result = (*resultPtr) = calloc(1, sizeof(HashElement));
+            result = table->buckets[hash] = calloc(1, sizeof(HashElement));
             if(result)
             {
-                result->next = 0;
-                result->numberOfTransactions = 0;
                 strcpy(result->companyName, name);
             }
 
@@ -50,28 +78,8 @@ HashElement *hashTableFetch(HashTable *table, char *name)
             break;
         }
 
-        resultPtr = &result->next;
+        hash = (hash + 1) % table->size;
     }
 
-    return *resultPtr;
-}
-
-void freeHashTable(HashTable *table)
-{
-    if(!table)
-    {
-        return;
-    }
-
-    for(int i = 0; i < NUM_BUCKETS; ++i)
-    {
-        HashElement *el = table->buckets[i];
-        while(el)
-        {
-            HashElement *temp = el->next;
-            free(el);
-            el = temp;
-        }
-    }
-    free(table);
+    return table->buckets[hash];
 }

@@ -19,7 +19,7 @@ HEAP_COMPARE_FUNCTION(heapCompareGreater)
 
 Heap *newHeap(int capacity, HeapCompareFunction compareFunction)
 {
-    if(capacity < 1)
+    if(capacity <= 0)
     {
         return 0;
     }
