@@ -1,36 +1,31 @@
 #include "hash.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
 
-unsigned long sdbm(unsigned char *str)
+int initHashTable(HashTable *table, long int maxFilled)
 {
-    unsigned long hash = 0;
-    int c;
-
-    while ((c = *str++))
-    {
-        hash = c + (hash << 6) + (hash << 16) - hash;
-    }
-
-    return hash;
-}
-
-int initHashTable(HashTable *table, long int size)
-{
-    if(!table || size <= 0 || table->buckets)
+    if(!table || maxFilled <= 0 || table->buckets)
     {
         return 0;
     }
 
-    table->buckets = calloc(size, sizeof(*table->buckets));
-    if(table->buckets)
+    table->usedEntries = 0;
+    table->availableSpace = maxFilled;
+    table->entriesMemory = calloc(table->availableSpace, sizeof(*table->entriesMemory));
+
+    // NOTE(nox): We want to keep a maximum load factor of 60%
+    table->numBuckets = maxFilled / 0.6f;
+    table->buckets = calloc(table->numBuckets, sizeof(*table->buckets));
+    if(!table->entriesMemory || !table->buckets)
     {
-        table->size = size;
-        return 1;
+        free(table->buckets);
+        free(table->entriesMemory);
+        *table = (HashTable){};
+        return 0;
     }
 
-    table->size = 0;
-    return 0;
+    return 1;
 }
 
 void freeHashTable(HashTable *table)
@@ -40,14 +35,10 @@ void freeHashTable(HashTable *table)
         return;
     }
 
-    for(int i = 0; i < table->size; ++i)
-    {
-        free(table->buckets[i]);
-    }
+    free(table->entriesMemory);
     free(table->buckets);
 
-    table->size = 0;
-    table->buckets = 0;
+    *table = (HashTable){};
 }
 
 HashElement *hashTableFetch(HashTable *table, char *name)
@@ -57,17 +48,25 @@ HashElement *hashTableFetch(HashTable *table, char *name)
         return 0;
     }
 
-    int hash = sdbm((unsigned char *)name) % table->size;
+    // NOTE(nox): DJB2
+    unsigned char *str = (unsigned char *)name;
+    uint32_t hash = 5381;
+    while(*str)
+    {
+        hash = ((hash << 5) + hash) + *(str++); /* hash * 33 + c */
+    }
+    hash %= table->numBuckets;
 
+    HashElement *result;
     for(;;)
     {
-        HashElement *result = table->buckets[hash];
+        result = table->buckets[hash];
 
         if(!result)
         {
-            result = table->buckets[hash] = calloc(1, sizeof(HashElement));
-            if(result)
+            if(table->usedEntries < table->availableSpace)
             {
+                result = table->buckets[hash] = table->entriesMemory + table->usedEntries++;
                 strcpy(result->companyName, name);
             }
 
@@ -78,8 +77,8 @@ HashElement *hashTableFetch(HashTable *table, char *name)
             break;
         }
 
-        hash = (hash + 1) % table->size;
+        hash = (hash + 1) % table->numBuckets;
     }
 
-    return table->buckets[hash];
+    return result;
 }

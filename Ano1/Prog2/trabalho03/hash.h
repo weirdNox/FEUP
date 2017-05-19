@@ -2,15 +2,18 @@
 
 typedef struct HashElement
 {
-    char companyName[20];
     int numberOfTransactions;
+    char companyName[20];
 } HashElement;
 
 // Open addressed Hash Table
 typedef struct
 {
     HashElement **buckets;
-    long int size;
+    long int numBuckets;
+    long int availableSpace;
+    long int usedEntries;
+    HashElement *entriesMemory;
 } HashTable;
 
 // Initializes Hash Table passed by pointer

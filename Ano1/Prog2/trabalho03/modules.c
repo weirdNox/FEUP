@@ -130,19 +130,17 @@ void median_closeModule()
 
 // NOTE(nox): Mode
 HashTable table;
-int mostTransactions;
+HashElement *best;
 
 void mode_initModule(int maxTransactions)
 {
-    // NOTE(nox): We want to keep a maximum load factor of 60%
-    long int size = (long int)(maxTransactions / 0.60f);
-    initHashTable(&table, size);
-    mostTransactions = 0;
+    initHashTable(&table, maxTransactions);
+    best = 0;
 }
 
 int mode_newObservation(const char *companyName, char *updatedMode)
 {
-    if(!table.size || !companyName || !updatedMode)
+    if(!updatedMode)
     {
         return -1;
     }
@@ -156,9 +154,11 @@ int mode_newObservation(const char *companyName, char *updatedMode)
         return -1;
     }
 
-    if(++company->numberOfTransactions > mostTransactions)
+    ++company->numberOfTransactions;
+    if(!best || (company != best &&
+                 company->numberOfTransactions > best->numberOfTransactions))
     {
-        mostTransactions = company->numberOfTransactions;
+        best = company;
         strcpy(updatedMode, company->companyName);
     }
 
