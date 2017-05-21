@@ -10,10 +10,10 @@ typedef struct HashElement
 typedef struct
 {
     HashElement **buckets;
+    HashElement *entriesMemory;
     long int numBuckets;
     long int availableSpace;
     long int usedEntries;
-    HashElement *entriesMemory;
 } HashTable;
 
 // Initializes Hash Table passed by pointer

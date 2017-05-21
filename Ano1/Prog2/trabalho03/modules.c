@@ -6,8 +6,8 @@
 #include <string.h>
 
 // NOTE(nox): Median
-Heap *leftHeap;
-Heap *rightHeap;
+MaxHeap *leftHeap;
+MinHeap *rightHeap;
 
 // NOTE(nox): Each heap will keep half (+/- 1)  of the transactions, the left one is a max
 // heap and it  will keep the lower end of  the number list, and the right  one a min heap
@@ -15,8 +15,8 @@ Heap *rightHeap;
 
 void median_initModule(int maxTransactions)
 {
-    leftHeap = newHeap(maxTransactions/2+1, heapCompareGreater);
-    rightHeap = newHeap(maxTransactions/2+1, heapCompareLess);
+    leftHeap = newHeap(maxTransactions/2+3);
+    rightHeap = newHeap(maxTransactions/2+3);
     if(!leftHeap || !rightHeap)
     {
         free(leftHeap); leftHeap = 0;
@@ -31,94 +31,91 @@ int median_newObservation(int numActions, float *updatedMedian)
         return -1;
     }
 
-    // NOTE(nox): When  inserting, we will check  which one has  more or if they  have the
-    // same number of items - the possible balance result is -1, 0 and 1.
-    int balance = rightHeap->size - leftHeap->size;
-    switch(balance)
+    int balance;
+
+    // NOTE(nox): Insert number where it belongs
+    if(numActions < *updatedMedian)
     {
-        case -1:
-        {
-            // NOTE(nox): Left heap has one more item and the current median is its top
-            if(numActions < *updatedMedian)
-            {
-                // NOTE(nox): If less than the median, move  top of left heap to the right
-                // and put the new item on the left (new item < top of left)
-                // Also, we don't need to check if  the pop returns an error because it is
-                // certain that it has at least one item
-                if(!heapInsert(rightHeap, heapPop(leftHeap)) ||
-                   !heapInsert(leftHeap, numActions))
-                {
-                    return -1;
-                }
-            }
-            else
-            {
-                // NOTE(nox): If it is greater or equal, put it on the right
-                // (new item >= top of left)
-                if(!heapInsert(rightHeap, numActions))
-                {
-                    return -1;
-                }
-            }
-
-            // NOTE(nox): The two heaps will be balanced in the end, so the new median is
-            // the average
-            *updatedMedian = (float)(leftHeap->elements[0] + rightHeap->elements[0]) / 2.0f;
-        } break;
-
-        case 0:
-        {
-            // NOTE(nox): Heaps are balanced, we can just  insert the new item on the left
-            // if it is  less than the median or  on the right if it is  greater or equal.
-            // The resulting  median is the  top of  the heap where  we put the  new item,
-            // because it now has 1 more item than the other.
-            if(numActions < *updatedMedian)
-            {
-                if(!heapInsert(leftHeap, numActions))
-                {
-                    return -1;
-                }
-                *updatedMedian = leftHeap->elements[0];
-            }
-            else
-            {
-                if(!heapInsert(rightHeap, numActions))
-                {
-                    return -1;
-                }
-                *updatedMedian = rightHeap->elements[0];
-            }
-        } break;
-
-        case 1:
-        {
-            // NOTE(nox): Analogous to case -1.
-            if(numActions > *updatedMedian)
-            {
-                if(!heapInsert(leftHeap, heapPop(rightHeap)) ||
-                   !heapInsert(rightHeap, numActions))
-                {
-                    return -1;
-                }
-            }
-            else
-            {
-                if(!heapInsert(leftHeap, numActions))
-                {
-                    return -1;
-                }
-            }
-
-            *updatedMedian = (float)(leftHeap->elements[0] + rightHeap->elements[0]) / 2.0f;
-        } break;
-
-        default:
+        if(!maxHeapInsert(leftHeap, numActions))
         {
             return -1;
-        } break;
-    }
+        }
 
-    return 1;
+        // NOTE(nox): After inserting in the left heap, there are three possible outcomes:
+        //  1) Balance =  0
+        //  2) Balance = -1
+        //  3) Balance < -1
+        // If it is  possibility 3), we have  to rebalance, removing 1 from  the left heap
+        // and putting it in  the right one, so balance becomes 0. So,  the median from 1)
+        // and 3) will be the average of the middle items.
+        // If it is possibility 2), we don't have to rebalance, and the median will be the
+        // top of the left heap.
+        balance = rightHeap->size - leftHeap->size;
+        if(balance < -1)
+        {
+            if(!minHeapInsert(rightHeap, maxHeapPop(leftHeap)))
+            {
+                return -1;
+            }
+        }
+        else if(balance == -1)
+        {
+            // NOTE(nox): Possibility 2)
+            *updatedMedian = leftHeap->elements[HEAP_ROOT];
+            return 1;
+        }
+
+        // NOTE(nox): Possibility 1) and 3)
+        *updatedMedian = (float)(leftHeap->elements[HEAP_ROOT] +
+                                 rightHeap->elements[HEAP_ROOT]) / 2.0f;
+        return 1;
+    }
+    else if(numActions > *updatedMedian)
+    {
+        if(!minHeapInsert(rightHeap, numActions))
+        {
+            return -1;
+        }
+
+        balance = rightHeap->size - leftHeap->size;
+        if(balance > 1)
+        {
+            if(!maxHeapInsert(leftHeap, minHeapPop(rightHeap)))
+            {
+                return -1;
+            }
+        }
+        else if(balance == 1)
+        {
+            *updatedMedian = rightHeap->elements[HEAP_ROOT];
+            return 1;
+        }
+
+        *updatedMedian = (float)(leftHeap->elements[HEAP_ROOT] +
+                                 rightHeap->elements[HEAP_ROOT]) / 2.0f;
+        return 1;
+    }
+    else
+    {
+        // NOTE(nox): If it is the same as the current median, put it in the heap with
+        // less items
+        if(leftHeap->size > rightHeap->size)
+        {
+            if(!minHeapInsert(rightHeap, numActions))
+            {
+                return -1;
+            }
+        }
+        else
+        {
+            if(!maxHeapInsert(leftHeap, numActions))
+            {
+                return -1;
+            }
+        }
+
+        return 1;
+    }
 }
 
 void median_closeModule()

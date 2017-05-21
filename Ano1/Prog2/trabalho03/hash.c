@@ -51,9 +51,10 @@ HashElement *hashTableFetch(HashTable *table, char *name)
     // NOTE(nox): DJB2
     unsigned char *str = (unsigned char *)name;
     uint32_t hash = 5381;
-    while(*str)
+    uint8_t c;
+    while((c = *(str++)))
     {
-        hash = ((hash << 5) + hash) + *(str++); /* hash * 33 + c */
+        hash = hash * 33 + c;
     }
     hash %= table->numBuckets;
 

@@ -2,22 +2,11 @@
 
 #include <stdlib.h>
 
-#define HEAP_ROOT (0)
-#define HEAP_PARENT(x) ((x-1)/2)
-#define HEAP_LEFT_CHILD(x) ((x*2)+1)
-#define HEAP_RIGHT_CHILD(x) ((x*2)+2)
+#define HEAP_PARENT(x) ((x)/2)
+#define HEAP_LEFT_CHILD(x) ((x)*2)
+#define HEAP_RIGHT_CHILD(x) ((x)*2+1)
 
-HEAP_COMPARE_FUNCTION(heapCompareLess)
-{
-    return a < b;
-}
-
-HEAP_COMPARE_FUNCTION(heapCompareGreater)
-{
-    return a > b;
-}
-
-Heap *newHeap(int capacity, HeapCompareFunction compareFunction)
+Heap *newHeap(int capacity)
 {
     if(capacity <= 0)
     {
@@ -29,8 +18,7 @@ Heap *newHeap(int capacity, HeapCompareFunction compareFunction)
     {
         heap->size = 0;
         heap->capacity = capacity;
-        heap->compareFunction = compareFunction;
-        heap->elements = malloc(capacity*sizeof(int));
+        heap->elements = malloc((capacity+1)*sizeof(int));
         if(!heap->elements)
         {
             free(heap);
@@ -53,18 +41,18 @@ void freeHeap(Heap *heap)
     return;
 }
 
-int heapInsert(Heap *heap, int n)
+int minHeapInsert(Heap *heap, int n)
 {
     if(!heap || n < 0 || heap->size == heap->capacity)
     {
         return 0;
     }
 
-    int position = heap->size++;
+    int position = ++heap->size;
     while(position != HEAP_ROOT)
     {
         int parentPos = HEAP_PARENT(position);
-        if(heap->compareFunction(n, heap->elements[parentPos]))
+        if(n < heap->elements[parentPos])
         {
             heap->elements[position] = heap->elements[parentPos];
             position = parentPos;
@@ -79,7 +67,7 @@ int heapInsert(Heap *heap, int n)
     return 1;
 }
 
-int heapPop(Heap *heap)
+int minHeapPop(Heap *heap)
 {
     if(!heap || heap->size <= 0)
     {
@@ -87,20 +75,26 @@ int heapPop(Heap *heap)
     }
 
     int returnValue = heap->elements[HEAP_ROOT];
-    int n = heap->elements[--heap->size];
+    int n = heap->elements[heap->size--];
 
-    int position = 0;
-    while(HEAP_LEFT_CHILD(position) < heap->size)
+    int position = HEAP_ROOT;
+    int leftPos;
+    while((leftPos = HEAP_LEFT_CHILD(position)) <= heap->size)
     {
-        int nextCandidate = HEAP_LEFT_CHILD(position);
-        if(HEAP_RIGHT_CHILD(position) < heap->size &&
-           heap->compareFunction(heap->elements[HEAP_RIGHT_CHILD(position)],
-                                 heap->elements[HEAP_LEFT_CHILD(position)]))
+        int rightPos = HEAP_RIGHT_CHILD(position);
+
+        int nextCandidate;
+        if(rightPos <= heap->size &&
+           heap->elements[rightPos] < heap->elements[leftPos])
         {
-            nextCandidate = HEAP_RIGHT_CHILD(position);
+            nextCandidate = rightPos;
+        }
+        else
+        {
+            nextCandidate = leftPos;
         }
 
-        if(heap->compareFunction(heap->elements[nextCandidate], n))
+        if(heap->elements[nextCandidate] < n)
         {
             heap->elements[position] = heap->elements[nextCandidate];
             position = nextCandidate;
@@ -110,7 +104,75 @@ int heapPop(Heap *heap)
             break;
         }
     }
-    heap->elements[position] = n;
 
+    heap->elements[position] = n;
+    return returnValue;
+}
+
+int maxHeapInsert(Heap *heap, int n)
+{
+    if(!heap || n < 0 || heap->size == heap->capacity)
+    {
+        return 0;
+    }
+
+    int position = ++heap->size;
+    while(position != HEAP_ROOT)
+    {
+        int parentPos = HEAP_PARENT(position);
+        if(n > heap->elements[parentPos])
+        {
+            heap->elements[position] = heap->elements[parentPos];
+            position = parentPos;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    heap->elements[position] = n;
+    return 1;
+}
+
+int maxHeapPop(Heap *heap)
+{
+    if(!heap || heap->size <= 0)
+    {
+        return -1;
+    }
+
+    int returnValue = heap->elements[HEAP_ROOT];
+    int n = heap->elements[heap->size--];
+
+    int position = HEAP_ROOT;
+    int leftPos;
+    while((leftPos = HEAP_LEFT_CHILD(position)) <= heap->size)
+    {
+        int rightPos = HEAP_RIGHT_CHILD(position);
+
+        int nextCandidate;
+        if(rightPos <= heap->size &&
+           heap->elements[rightPos] > heap->elements[leftPos])
+        {
+            nextCandidate = rightPos;
+        }
+        else
+        {
+            nextCandidate = leftPos;
+        }
+
+        if(heap->elements[nextCandidate] > n)
+        {
+            heap->elements[position] = heap->elements[nextCandidate];
+            position = nextCandidate;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    heap->elements[position] = n;
     return returnValue;
 }
