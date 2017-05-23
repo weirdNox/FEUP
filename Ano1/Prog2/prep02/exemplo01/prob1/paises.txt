@@ -1,0 +1,227 @@
+africa do sul
+austria
+india
+afeganistao
+albania
+alemanha
+andorra
+angola
+anguila
+antarctida
+antigua e barbuda
+antilhas holandesas
+arabia saudita
+argelia
+argentina
+armenia
+aruba
+australia
+azerbaijao
+belgica
+bosnia e herzegovina
+bahamas
+bangladesh
+barem
+barbados
+belize
+benim
+bermudas
+bielorrussia
+birmania
+bolivia
+botsuana
+brasil
+brunei
+bulgaria
+burundi
+burquina faso
+butao
+cabo verde
+camaroes
+camboja
+canada
+catar
+cazaquistao
+chade
+chile
+china
+chipre
+colombia
+comores
+congo-brazzaville
+congo-kinshasa
+coreia do norte
+coreia do sul
+costa rica
+costa do marfim
+croacia
+cuba
+dinamarca
+dominica
+egipto
+emiratos arabes unidos
+equador
+eritreia
+eslovaquia
+eslovenia
+espanha
+estonia
+estados unidos
+etiopia
+ilhas faroe
+ilhas fidji
+filipinas
+finlandia
+franca
+gambia
+gabao
+gana
+georgia
+georgia do sul e sandwich do sul
+gibraltar
+grecia
+granada
+gronelandia
+guadalupe
+guam
+guatemala
+guiana
+guiana francesa
+guine
+guine equatorial
+guine-bissau
+haiti
+honduras
+hong kong
+hungria
+iemen
+ilhas cook
+ilhas falkland
+ilhas heard e mcdonald
+ilhas marshall
+ilhas menores distantes dos estados unidos
+ilhas salomao
+ilhas turcas e caicos
+ilhas virgens americanas
+ilhas virgens britanicas
+ilhas dos cocos
+indonesia
+irao
+iraque
+irlanda
+islandia
+israel
+italia
+jamaica
+japao
+djibouti
+jordania
+kuwait
+libano
+libia
+laos
+lesoto
+letonia
+liberia
+lichtenstein
+lituania
+luxemburgo
+mexico
+monaco
+macau
+macedonia
+madagascar
+malasia
+malawi
+maldivas
+mali
+malta
+marianas do norte
+marrocos
+martinica
+mauricia
+mauritania
+mayotte
+micronesia
+mocambique
+moldavia
+mongolia
+monserrate
+niger
+namibia
+nauru
+nepal
+nicaragua
+nigeria
+niue
+noruega
+nova caledonia
+nova zelandia
+oma
+paises baixos
+palau
+panama
+papua-nova guine
+paquistao
+paraguai
+peru
+polonia
+polinesia francesa
+portugal
+quenia
+quirguizistao
+quiribati
+russia
+reino unido
+republica centro-africana
+republica checa
+republica dominicana
+reuniao
+romenia
+ruanda
+sao cristovao e neves
+sao marinho
+sao pedro e miquelon
+sao tome e principe
+sao vicente e granadinas
+siria
+salvador
+samoa
+samoa americana
+santa helena
+santa lucia
+sara ocidental
+seychelles
+senegal
+serra leoa
+singapura
+somalia
+sri lanka
+suecia
+suica
+suazilandia
+sudao
+suriname
+tailandia
+taiwan
+tajiquistao
+tanzania
+timor leste
+togo
+tokelau
+tonga
+trindade e tobago
+tunisia
+turquemenistao
+turquia
+tuvalu
+ucrania
+uganda
+uruguai
+usbequistao
+vanuatu
+vaticano
+venezuela
+vietname
+zambia
+zimbabwe
