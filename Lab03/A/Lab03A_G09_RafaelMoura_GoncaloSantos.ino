@@ -131,49 +131,7 @@ void loop()
 ///////                                     ///////
 ///////////////////////////////////////////////////
 
-
-
-// Global Variables, define additional global vars below
-byte state1 = 0;
-byte state2 = 0;
-
-// Loop where you should write your state machine code, etc
 void loop_10ms(void)
 {
-  // Don't forget to comment or delete example code
-  // Don't read nor write directly hardware pins
 
-  // Example System of State machines with 2 independent state machines
-
-  // Example StateMachine1 - StateVar => state1
-    if ((state1 == 0) && (sens_out)) {
-    state1 = 1;
-    start_timer(timer[0]);
-  } else if ((state1 == 1) && timer[0].q) {
-    state1 = 0;
-  } // end of calculation of next state for state1
-
-  // Example StateMachine2 - StateVar => state2
-  if ((state2 == 0) && (sens_in)) {
-    state2 = 1;
-    start_timer(timer[1]);
-  } else if ((state2 == 1) && timer[1].q) {
-    state2 = 0;
-  } // end of calculation of next state for state2
-
-
-  // Calculate Outputs
-  sign_red   = (state1 == 0);
-  sign_green = (state1 == 1);
-  barr_in    = (state2 == 0);
-  barr_out   = (state2 == 1);
-
-  // Debug – print states and variables, change as you wish!
-  Serial.println( "St1:"   + ((String) state1)    + "St2:"    + ((String) state2) +
-                  " Sens:" + ((String) sens_in  ) + ((String) sens_out ) +
-                  " Sign:" + ((String) sign_green) + ((String) sign_red) +
-                  " Barr:" + ((String) barr_in)   + ((String) barr_out));
-
-} // End of loop_10ms
-
-
+}
