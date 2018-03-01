@@ -224,12 +224,71 @@ void loop()
 ///////                                     ///////
 ///////////////////////////////////////////////////
 
+#define PARK_CAPACITY 4
+int OccupiedSpaces = 0;
 byte BarrierState = 0;
 byte TrafficLightState = 0;
+byte ExitState = 0;
 
 void loop_10ms(void)
 {
-    // NOTE(nox): Use functions set_motor_up, set_motor_down, set_motor_stop
+    // NOTE(nox): Entrance barrier
+    if(BarrierState == 0 && sens_in && OccupiedSpaces < PARK_CAPACITY)
+    {
+        BarrierState = 1;
+        ++OccupiedSpaces;
+    }
+    else if(BarrierState == 1 && sens_vert)
+    {
+        BarrierState = 2;
+    }
+    else if(BarrierState == 1 && !sens_in)
+    {
+        BarrierState = 3;
+    }
+    else if(BarrierState == 2 && !sens_in)
+    {
+        BarrierState = 3;
+    }
+    else if(BarrierState == 3 && sens_in && OccupiedSpaces < PARK_CAPACITY)
+    {
+        BarrierState = 1;
+        ++OccupiedSpaces;
+    }
+    else if(BarrierState == 3 && sens_horiz)
+    {
+        BarrierState = 0;
+    }
+
+    // NOTE(nox): Exit
+    if(ExitState == 0 && sens_out)
+    {
+        ExitState = 1;
+        OccupiedSpaces = max(0, OccupiedSpaces-1);
+    }
+    else if(ExitState == 1 && !sens_out)
+    {
+        ExitState = 0;
+    }
+
+    // NOTE(nox): Traffic light
+    if(TrafficLightState == 0 && OccupiedSpaces >= PARK_CAPACITY)
+    {
+        TrafficLightState = 1;
+    }
+    else if(TrafficLightState == 1 && OccupiedSpaces < PARK_CAPACITY)
+    {
+        TrafficLightState = 0;
+    }
+
+
+    // NOTE(nox): Output
+    motor_up = (BarrierState == 1);
+    motor_down = (BarrierState == 3);
+    sign_green = (TrafficLightState == 0);
+    sign_red = (TrafficLightState == 1);
+
+
     // NOTE(nox): Output debug information
     Serial.print(sens_horiz);
     Serial.print(sens_vert);
