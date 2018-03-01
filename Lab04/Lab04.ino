@@ -35,7 +35,7 @@ byte sign_green;
 byte led_sens_horiz;
 byte led_sens_vert;
 
-byte motor_enable, motor_up, motor_down;
+byte motor_up, motor_down;
 
 // Input PINs =====> Rectify with your own pins if needed
 const int pin_sens_in   = 7;
@@ -93,17 +93,12 @@ void write_outputs(void)
     digitalWrite(pin_led_sens_vert, led_sens_vert);
     digitalWrite(pin_led_sens_horiz, led_sens_horiz);
 
-    if (motor_enable) {
-        if (motor_up) {
-            set_motor_req_speed(0, -motor_nominal_speed);
-            set_motor_speed(0, -motor_nominal_speed);
-        } else if (motor_down) {
-            set_motor_req_speed(0, motor_nominal_speed);
-            set_motor_speed(0, motor_nominal_speed);
-        } else {
-            set_motor_req_speed(0, 0);
-            set_motor_speed(0, 0);
-        }
+    if (motor_up) {
+        set_motor_req_speed(0, -motor_nominal_speed);
+        set_motor_speed(0, -motor_nominal_speed);
+    } else if (motor_down) {
+        set_motor_req_speed(0, motor_nominal_speed);
+        set_motor_speed(0, motor_nominal_speed);
     } else {
         set_motor_req_speed(0, 0);
         set_motor_speed(0, 0);
@@ -114,21 +109,18 @@ void set_motor_up(void)
 {
     motor_up = 1;
     motor_down = 0;
-    motor_enable = 1;
 }
 
 void set_motor_down(void)
 {
     motor_up = 0;
     motor_down = 1;
-    motor_enable = 1;
 }
 
 void set_motor_stop(void)
 {
     motor_up = 0;
     motor_down = 0;
-    motor_enable = 0;
 }
 
 
@@ -171,6 +163,7 @@ void setup()
 
     Serial.println("Init done");
 
+    Serial.println("Calibrating");
     byte init_state = 0;
     while(1) {
         refresh_timers();
@@ -181,8 +174,10 @@ void setup()
             set_motor_pos(0, -1205);
             timer[1].p = 20; // 1 second
             start_timer(timer[1]);
+            Serial.print(".");
         } else if ((init_state == 1) && timer[1].q) {
             init_state = 2;
+            Serial.print(".");
         }
 
         if (init_state == 0) set_motor_up();
@@ -194,6 +189,7 @@ void setup()
 
         write_outputs();
     }
+    Serial.println("Calibration Done");
 }
 
 
@@ -213,33 +209,41 @@ void loop()
         //motor_up = motor_up && !SW_top;
         //motor_down = motor_down && !SW_bot;
 
-        motor_enable = motor_enable && !SW_bot  && !SW_top;
+        motor_up = motor_up && !SW_bot  && !SW_top;
+        motor_down = motor_down && !SW_bot  && !SW_top;
 
         write_outputs();
     }
-
-    // Output debug every 0.1 s
-    if (timer[0].q) {
-        start_timer(timer[0]);
-
-        Serial.print(motor_enable);
-        Serial.print(motor_up);
-        Serial.print(motor_down);
-
-        Serial.print("  ");
-
-        Serial.print("  ");
-        Serial.print(motor_angle);
-
-        Serial.println();
-    }
-
 }
+
+///////////////////////////////////////////////////
+///////                                     ///////
+///////   Write Your Code below this line   ///////
+///////                                     ///////
+///////  Comment or delete example code!!!  ///////
+///////                                     ///////
+///////////////////////////////////////////////////
 
 byte BarrierState = 0;
 byte TrafficLightState = 0;
 
 void loop_10ms(void)
 {
-    // NOTE(nox): Usar as funções set_motor_up, set_motor_down, set_motor_stop
+    // NOTE(nox): Use functions set_motor_up, set_motor_down, set_motor_stop
+    // NOTE(nox): Output debug information
+    Serial.print(sens_horiz);
+    Serial.print(sens_vert);
+    Serial.print("  ");
+
+    Serial.print(sens_in);
+    Serial.print(sens_out);
+    Serial.print("  ");
+
+    Serial.print(motor_up);
+    Serial.print(motor_down);
+
+    Serial.print("  ");
+    Serial.print(motor_angle);
+
+    Serial.println();
 }
