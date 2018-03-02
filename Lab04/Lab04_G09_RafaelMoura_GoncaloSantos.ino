@@ -152,8 +152,9 @@ void setup()
     two_byj48_init();
 
     // Setup Timers Here!
-    timer[0].p = 1; // 0.1 seconds
-    start_timer(timer[0]);
+    timer[0].p = 30; // Monitoring timer: 3secs
+    timer[2].p = 5; // Light toggle timer: 0.5secs (1Hz)
+    start_timer(timer[1]);
 
 
     digitalWrite(pin_green, LOW);
@@ -233,31 +234,36 @@ byte ExitState = 0;
 void loop_10ms(void)
 {
     // NOTE(nox): Entrance barrier
-    if(BarrierState == 0 && sens_in && OccupiedSpaces < PARK_CAPACITY)
-    {
-        BarrierState = 1;
-        ++OccupiedSpaces;
-    }
-    else if(BarrierState == 1 && sens_vert)
+    if(BarrierState == 0 && ExitState != 2 && sens_in && OccupiedSpaces < PARK_CAPACITY)
     {
         BarrierState = 2;
+        ++OccupiedSpaces;
     }
-    else if(BarrierState == 1 && !sens_in)
+    if(BarrierState == 1 && ExitState != 2 && sens_in && OccupiedSpaces < PARK_CAPACITY)
+    {
+        BarrierState = 2;
+        ++OccupiedSpaces;
+    }
+    else if(BarrierState == 2 && sens_vert)
     {
         BarrierState = 3;
     }
     else if(BarrierState == 2 && !sens_in)
     {
-        BarrierState = 3;
+        BarrierState = 4;
     }
-    else if(BarrierState == 3 && sens_in && OccupiedSpaces < PARK_CAPACITY)
+    else if(BarrierState == 3 && !sens_in)
     {
-        BarrierState = 1;
+        BarrierState = 4;
+    }
+    else if(BarrierState == 4 && ExitState != 2 && sens_in && OccupiedSpaces < PARK_CAPACITY)
+    {
+        BarrierState = 2;
         ++OccupiedSpaces;
     }
-    else if(BarrierState == 3 && sens_horiz)
+    else if(BarrierState == 4 && sens_horiz)
     {
-        BarrierState = 0;
+        BarrierState = 1;
     }
 
     // NOTE(nox): Exit
@@ -265,29 +271,43 @@ void loop_10ms(void)
     {
         ExitState = 1;
         OccupiedSpaces = max(0, OccupiedSpaces-1);
+        start_timer(timer[0]);
     }
     else if(ExitState == 1 && !sens_out)
     {
         ExitState = 0;
     }
+    else if(ExitState == 1 && (timer[0].q && sens_out && OccupiedSpaces > 0))
+    {
+        ExitState = 2;
+    }
+    else if(ExitState == 2 && !sens_out)
+    {
+        ExitState = 0;
+    }
 
     // NOTE(nox): Traffic light
-    if(TrafficLightState == 0 && OccupiedSpaces >= PARK_CAPACITY)
+    if(TrafficLightState == 0 && ((ExitState != 2 && OccupiedSpaces >= PARK_CAPACITY) ||
+                                  (ExitState == 2 && timer[2].q)))
     {
         TrafficLightState = 1;
+        start_timer(timer[2]);
     }
-    else if(TrafficLightState == 1 && OccupiedSpaces < PARK_CAPACITY)
+    else if(TrafficLightState == 1 && ((ExitState != 2 && OccupiedSpaces < PARK_CAPACITY) ||
+                                       (ExitState == 2 && timer[2].q)))
     {
         TrafficLightState = 0;
+        start_timer(timer[2]);
     }
 
 
     // NOTE(nox): Output
-    motor_up = (BarrierState == 1);
-    motor_down = (BarrierState == 3);
+    led_sens_horiz = (BarrierState == 1);
+    led_sens_vert = (BarrierState == 3);
+    motor_up = (BarrierState == 2);
+    motor_down = (BarrierState == 4);
     sign_green = (TrafficLightState == 0);
     sign_red = (TrafficLightState == 1);
-
 
     // NOTE(nox): Output debug information
     Serial.print(sens_horiz);
