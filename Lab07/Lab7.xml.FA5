@@ -1,0 +1,1370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FEUPAutom>
+  <FAProject>
+    <FMain>
+      <Props1 ActiveTab="0" MessagesHeight="93"/>
+      <Props2 ModBusIP="localhost" ModBusPort="5502" ModBusNRead="48" ModBusNWrite="48" ModBusOffs_I="5392" ModBusOffs_O="0" ModBusFunc="0" ModBus="0" Period="25" WinMsg="0"/>
+      <Props3 ProjectAuthor="" ProjectComments="" ProjectGrafcet="1" ProjectGen_C_Code="0"/>
+      <Geometry top="0" left="0" height="1002" width="944"/>
+      <ST_Code count="551">
+        <line1>~</line1>
+        <line2>~////////////////////////////////////////////////////////////</line2>
+        <line3>~// FEUPAutom - 5.4.0.68 - </line3>
+        <line4>~// Code Automatically Generated:23-03-2018 16:25:54</line4>
+        <line5>~////////////////////////////////////////////////////////////</line5>
+        <line6>~</line6>
+        <line7>~//######################################//</line7>
+        <line8>~//################ Page 3 ##############//</line8>
+        <line9>~//######################################//</line9>
+        <line10>~</line10>
+        <line11>~////////////////////////////////////////////////////////////</line11>
+        <line12>~///////////// If boot =&gt; Set Initial Steps /////////////////</line12>
+        <line13>~//####################### Page 3 ########################//</line13>
+        <line14>~////////////////////////////////////////////////////////////</line14>
+        <line15>~</line15>
+        <line16>~  If (sw0=0) Then</line16>
+        <line17>~  End_If;</line17>
+        <line18>~if (sw0&gt;0) then  // ** Prevent evolution in initial cycle</line18>
+        <line19>~</line19>
+        <line20>~////////////////////////////////////////////////////////////</line20>
+        <line21>~///////////////// Calc Fired Transitions ///////////////////</line21>
+        <line22>~//####################### Page 3 ########################//</line22>
+        <line23>~////////////////////////////////////////////////////////////</line23>
+        <line24>~</line24>
+        <line25>~end_if; //** Prevent evolution in initial cycle</line25>
+        <line26>~</line26>
+        <line27>~////////////////////////////////////////////////////////////</line27>
+        <line28>~///////////////// ReSet Steps Above fired Tr ///////////////</line28>
+        <line29>~//####################### Page 3 ########################//</line29>
+        <line30>~////////////////////////////////////////////////////////////</line30>
+        <line31>~</line31>
+        <line32>~</line32>
+        <line33>~////////////////////////////////////////////////////////////</line33>
+        <line34>~///////////////// Set Steps below fired Tr /////////////////</line34>
+        <line35>~//####################### Page 3 ########################//</line35>
+        <line36>~////////////////////////////////////////////////////////////</line36>
+        <line37>~</line37>
+        <line38>~</line38>
+        <line39>~////////////////////////////////////////////////////////////</line39>
+        <line40>~////////// Unset all Outputs (once for all pages) //////////</line40>
+        <line41>~//####################### Page 3 ########################//</line41>
+        <line42>~////////////////////////////////////////////////////////////</line42>
+        <line43>~</line43>
+        <line44>~  Iluminar:=False;</line44>
+        <line45>~  Esquerda:=False;</line45>
+        <line46>~  Direita:=False;</line46>
+        <line47>~  Bomba:=False;</line47>
+        <line48>~  Motor_pa:=False;</line48>
+        <line49>~  V7:=False;</line49>
+        <line50>~  V6:=False;</line50>
+        <line51>~  V5:=False;</line51>
+        <line52>~  V4:=False;</line52>
+        <line53>~  V3:=False;</line53>
+        <line54>~  V2:=False;</line54>
+        <line55>~  V1:=False;</line55>
+        <line56>~  Q12:=False;</line56>
+        <line57>~  Q13:=False;</line57>
+        <line58>~  Q14:=False;</line58>
+        <line59>~  Q15:=False;</line59>
+        <line60>~  Q16:=False;</line60>
+        <line61>~  Q17:=False;</line61>
+        <line62>~  Q18:=False;</line62>
+        <line63>~  Q19:=False;</line63>
+        <line64>~  Q20:=False;</line64>
+        <line65>~  Q21:=False;</line65>
+        <line66>~  Q22:=False;</line66>
+        <line67>~  Q23:=False;</line67>
+        <line68>~  Q24:=False;</line68>
+        <line69>~  Q25:=False;</line69>
+        <line70>~  Q26:=False;</line70>
+        <line71>~  Q27:=False;</line71>
+        <line72>~  Q28:=False;</line72>
+        <line73>~  Q29:=False;</line73>
+        <line74>~  Q30:=False;</line74>
+        <line75>~  Q31:=False;</line75>
+        <line76>~  Q32:=False;</line76>
+        <line77>~  Q33:=False;</line77>
+        <line78>~  Q34:=False;</line78>
+        <line79>~  Q35:=False;</line79>
+        <line80>~  Q36:=False;</line80>
+        <line81>~  Q37:=False;</line81>
+        <line82>~  Q38:=False;</line82>
+        <line83>~  Q39:=False;</line83>
+        <line84>~  Q40:=False;</line84>
+        <line85>~  Q41:=False;</line85>
+        <line86>~  Q42:=False;</line86>
+        <line87>~  Q43:=False;</line87>
+        <line88>~  Q44:=False;</line88>
+        <line89>~  Q45:=False;</line89>
+        <line90>~  Q46:=False;</line90>
+        <line91>~  Q47:=False;</line91>
+        <line92>~</line92>
+        <line93>~////////////////////////////////////////////////////////////</line93>
+        <line94>~///// If step active increment MW timer of step @ %s16 /////</line94>
+        <line95>~//####################### Page 3 ########################//</line95>
+        <line96>~////////////////////////////////////////////////////////////</line96>
+        <line97>~</line97>
+        <line98>~</line98>
+        <line99>~////////////////////////////////////////////////////////////</line99>
+        <line100>~//////// If step active, execute its action code ///////////</line100>
+        <line101>~//####################### Page 3 ########################//</line101>
+        <line102>~////////////////////////////////////////////////////////////</line102>
+        <line103>~</line103>
+        <line104>~</line104>
+        <line105>~//######################################//</line105>
+        <line106>~//################ Page 2 ##############//</line106>
+        <line107>~//######################################//</line107>
+        <line108>~</line108>
+        <line109>~////////////////////////////////////////////////////////////</line109>
+        <line110>~///////////// If boot =&gt; Set Initial Steps /////////////////</line110>
+        <line111>~//####################### Page 2 ########################//</line111>
+        <line112>~////////////////////////////////////////////////////////////</line112>
+        <line113>~</line113>
+        <line114>~  If (sw0=0) Then</line114>
+        <line115>~  End_If;</line115>
+        <line116>~if (sw0&gt;0) then  // ** Prevent evolution in initial cycle</line116>
+        <line117>~</line117>
+        <line118>~////////////////////////////////////////////////////////////</line118>
+        <line119>~///////////////// Calc Fired Transitions ///////////////////</line119>
+        <line120>~//####################### Page 2 ########################//</line120>
+        <line121>~////////////////////////////////////////////////////////////</line121>
+        <line122>~</line122>
+        <line123>~end_if; //** Prevent evolution in initial cycle</line123>
+        <line124>~</line124>
+        <line125>~////////////////////////////////////////////////////////////</line125>
+        <line126>~///////////////// ReSet Steps Above fired Tr ///////////////</line126>
+        <line127>~//####################### Page 2 ########################//</line127>
+        <line128>~////////////////////////////////////////////////////////////</line128>
+        <line129>~</line129>
+        <line130>~</line130>
+        <line131>~////////////////////////////////////////////////////////////</line131>
+        <line132>~///////////////// Set Steps below fired Tr /////////////////</line132>
+        <line133>~//####################### Page 2 ########################//</line133>
+        <line134>~////////////////////////////////////////////////////////////</line134>
+        <line135>~</line135>
+        <line136>~</line136>
+        <line137>~////////////////////////////////////////////////////////////</line137>
+        <line138>~///// If step active increment MW timer of step @ %s16 /////</line138>
+        <line139>~//####################### Page 2 ########################//</line139>
+        <line140>~////////////////////////////////////////////////////////////</line140>
+        <line141>~</line141>
+        <line142>~</line142>
+        <line143>~////////////////////////////////////////////////////////////</line143>
+        <line144>~//////// If step active, execute its action code ///////////</line144>
+        <line145>~//####################### Page 2 ########################//</line145>
+        <line146>~////////////////////////////////////////////////////////////</line146>
+        <line147>~</line147>
+        <line148>~</line148>
+        <line149>~//######################################//</line149>
+        <line150>~//################ Page 1 ##############//</line150>
+        <line151>~//######################################//</line151>
+        <line152>~</line152>
+        <line153>~////////////////////////////////////////////////////////////</line153>
+        <line154>~///////////// If boot =&gt; Set Initial Steps /////////////////</line154>
+        <line155>~//####################### Page 1 ########################//</line155>
+        <line156>~////////////////////////////////////////////////////////////</line156>
+        <line157>~</line157>
+        <line158>~  If (sw0=0) Then</line158>
+        <line159>~  End_If;</line159>
+        <line160>~if (sw0&gt;0) then  // ** Prevent evolution in initial cycle</line160>
+        <line161>~</line161>
+        <line162>~////////////////////////////////////////////////////////////</line162>
+        <line163>~///////////////// Calc Fired Transitions ///////////////////</line163>
+        <line164>~//####################### Page 1 ########################//</line164>
+        <line165>~////////////////////////////////////////////////////////////</line165>
+        <line166>~</line166>
+        <line167>~end_if; //** Prevent evolution in initial cycle</line167>
+        <line168>~</line168>
+        <line169>~////////////////////////////////////////////////////////////</line169>
+        <line170>~///////////////// ReSet Steps Above fired Tr ///////////////</line170>
+        <line171>~//####################### Page 1 ########################//</line171>
+        <line172>~////////////////////////////////////////////////////////////</line172>
+        <line173>~</line173>
+        <line174>~</line174>
+        <line175>~////////////////////////////////////////////////////////////</line175>
+        <line176>~///////////////// Set Steps below fired Tr /////////////////</line176>
+        <line177>~//####################### Page 1 ########################//</line177>
+        <line178>~////////////////////////////////////////////////////////////</line178>
+        <line179>~</line179>
+        <line180>~</line180>
+        <line181>~////////////////////////////////////////////////////////////</line181>
+        <line182>~///// If step active increment MW timer of step @ %s16 /////</line182>
+        <line183>~//####################### Page 1 ########################//</line183>
+        <line184>~////////////////////////////////////////////////////////////</line184>
+        <line185>~</line185>
+        <line186>~</line186>
+        <line187>~////////////////////////////////////////////////////////////</line187>
+        <line188>~//////// If step active, execute its action code ///////////</line188>
+        <line189>~//####################### Page 1 ########################//</line189>
+        <line190>~////////////////////////////////////////////////////////////</line190>
+        <line191>~</line191>
+        <line192>~</line192>
+        <line193>~//######################################//</line193>
+        <line194>~//################ Page 0 ##############//</line194>
+        <line195>~//######################################//</line195>
+        <line196>~</line196>
+        <line197>~////////////////////////////////////////////////////////////</line197>
+        <line198>~///////////// If boot =&gt; Set Initial Steps /////////////////</line198>
+        <line199>~//####################### Page 0 ########################//</line199>
+        <line200>~////////////////////////////////////////////////////////////</line200>
+        <line201>~</line201>
+        <line202>~  If (sw0=0) Then</line202>
+        <line203>~  // ObjIdx=0 =&gt; INI_Step "X1"</line203>
+        <line204>~    X1 := True;</line204>
+        <line205>~  End_If;</line205>
+        <line206>~if (sw0&gt;0) then  // ** Prevent evolution in initial cycle</line206>
+        <line207>~</line207>
+        <line208>~////////////////////////////////////////////////////////////</line208>
+        <line209>~///////////////// Calc Fired Transitions ///////////////////</line209>
+        <line210>~//####################### Page 0 ########################//</line210>
+        <line211>~////////////////////////////////////////////////////////////</line211>
+        <line212>~</line212>
+        <line213>~// ObjIdx=1 =&gt; Transition "t0"</line213>
+        <line214>~  // Steps Above: id=0 =&gt; X1 ;</line214>
+        <line215>~  // Steps Below: id=2 =&gt; X4 ;id=3 =&gt; X5 ;</line215>
+        <line216>~  t0 :=  X1 AND  (Inicia);</line216>
+        <line217>~// ObjIdx=6 =&gt; Transition "t1"</line217>
+        <line218>~  // Steps Above: id=2 =&gt; X4 ;</line218>
+        <line219>~  // Steps Below: id=4 =&gt; X6 ;</line219>
+        <line220>~  t1 :=  X4 AND  (M_min);</line220>
+        <line221>~// ObjIdx=7 =&gt; Transition "t2"</line221>
+        <line222>~  // Steps Above: id=3 =&gt; X5 ;</line222>
+        <line223>~  // Steps Below: id=5 =&gt; X7 ;</line223>
+        <line224>~  t2 :=  X5 AND  (X5_T &gt; 50);</line224>
+        <line225>~// ObjIdx=8 =&gt; Transition "t3"</line225>
+        <line226>~  // Steps Above: id=4 =&gt; X6 ;id=5 =&gt; X7 ;</line226>
+        <line227>~  // Steps Below: id=9 =&gt; X11 ;</line227>
+        <line228>~  t3 :=  X6 AND  X7 AND  (True);</line228>
+        <line229>~// ObjIdx=16 =&gt; Transition "t4"</line229>
+        <line230>~  // Steps Above: id=10 =&gt; X12 ;</line230>
+        <line231>~  // Steps Below: id=13 =&gt; X15 ;</line231>
+        <line232>~  t4 :=  X12 AND  (Prato1);</line232>
+        <line233>~// ObjIdx=17 =&gt; Transition "t5"</line233>
+        <line234>~  // Steps Above: id=11 =&gt; X13 ;</line234>
+        <line235>~  // Steps Below: id=14 =&gt; X16 ;</line235>
+        <line236>~  t5 :=  X13 AND  (Prato2);</line236>
+        <line237>~// ObjIdx=18 =&gt; Transition "t6"</line237>
+        <line238>~  // Steps Above: id=12 =&gt; X14 ;</line238>
+        <line239>~  // Steps Below: id=15 =&gt; X17 ;</line239>
+        <line240>~  t6 :=  X14 AND  (M_max);</line240>
+        <line241>~// ObjIdx=19 =&gt; Transition "t7"</line241>
+        <line242>~  // Steps Above: id=9 =&gt; X11 ;</line242>
+        <line243>~  // Steps Below: id=10 =&gt; X12 ;id=11 =&gt; X13 ;id=12 =&gt; X14 ;</line243>
+        <line244>~  t7 :=  X11 AND  (Ciclo);</line244>
+        <line245>~// ObjIdx=20 =&gt; Transition "t8"</line245>
+        <line246>~  // Steps Above: id=13 =&gt; X15 ;id=14 =&gt; X16 ;id=15 =&gt; X17 ;</line246>
+        <line247>~  // Steps Below: id=21 =&gt; X18 ;</line247>
+        <line248>~  t8 :=  X15 AND  X16 AND  X17 AND  (True);</line248>
+        <line249>~// ObjIdx=24 =&gt; Transition "t9"</line249>
+        <line250>~  // Steps Above: id=23 =&gt; X20 ;</line250>
+        <line251>~  // Steps Below: id=9 =&gt; X11 ;</line251>
+        <line252>~  t9 :=  X20 AND  (M_min);</line252>
+        <line253>~// ObjIdx=25 =&gt; Transition "t10"</line253>
+        <line254>~  // Steps Above: id=22 =&gt; X19 ;</line254>
+        <line255>~  // Steps Below: id=23 =&gt; X20 ;</line255>
+        <line256>~  t10 :=  X19 AND  (X19_T &gt; 30);</line256>
+        <line257>~// ObjIdx=26 =&gt; Transition "t11"</line257>
+        <line258>~  // Steps Above: id=21 =&gt; X18 ;</line258>
+        <line259>~  // Steps Below: id=22 =&gt; X19 ;</line259>
+        <line260>~  t11 :=  X18 AND  (X18_T &gt; 70);</line260>
+        <line261>~end_if; //** Prevent evolution in initial cycle</line261>
+        <line262>~</line262>
+        <line263>~////////////////////////////////////////////////////////////</line263>
+        <line264>~///////////////// ReSet Steps Above fired Tr ///////////////</line264>
+        <line265>~//####################### Page 0 ########################//</line265>
+        <line266>~////////////////////////////////////////////////////////////</line266>
+        <line267>~</line267>
+        <line268>~// ObjIdx=1 =&gt; Transition "t0"</line268>
+        <line269>~  // Steps Above: id=0 =&gt; X1 ;</line269>
+        <line270>~  // Steps Below: id=2 =&gt; X4 ;id=3 =&gt; X5 ;</line270>
+        <line271>~  If (t0) Then</line271>
+        <line272>~     X1:=False; </line272>
+        <line273>~  End_If;</line273>
+        <line274>~// ObjIdx=6 =&gt; Transition "t1"</line274>
+        <line275>~  // Steps Above: id=2 =&gt; X4 ;</line275>
+        <line276>~  // Steps Below: id=4 =&gt; X6 ;</line276>
+        <line277>~  If (t1) Then</line277>
+        <line278>~     X4:=False; </line278>
+        <line279>~  End_If;</line279>
+        <line280>~// ObjIdx=7 =&gt; Transition "t2"</line280>
+        <line281>~  // Steps Above: id=3 =&gt; X5 ;</line281>
+        <line282>~  // Steps Below: id=5 =&gt; X7 ;</line282>
+        <line283>~  If (t2) Then</line283>
+        <line284>~     X5:=False; </line284>
+        <line285>~  End_If;</line285>
+        <line286>~// ObjIdx=8 =&gt; Transition "t3"</line286>
+        <line287>~  // Steps Above: id=4 =&gt; X6 ;id=5 =&gt; X7 ;</line287>
+        <line288>~  // Steps Below: id=9 =&gt; X11 ;</line288>
+        <line289>~  If (t3) Then</line289>
+        <line290>~     X6:=False;  X7:=False; </line290>
+        <line291>~  End_If;</line291>
+        <line292>~// ObjIdx=16 =&gt; Transition "t4"</line292>
+        <line293>~  // Steps Above: id=10 =&gt; X12 ;</line293>
+        <line294>~  // Steps Below: id=13 =&gt; X15 ;</line294>
+        <line295>~  If (t4) Then</line295>
+        <line296>~     X12:=False; </line296>
+        <line297>~  End_If;</line297>
+        <line298>~// ObjIdx=17 =&gt; Transition "t5"</line298>
+        <line299>~  // Steps Above: id=11 =&gt; X13 ;</line299>
+        <line300>~  // Steps Below: id=14 =&gt; X16 ;</line300>
+        <line301>~  If (t5) Then</line301>
+        <line302>~     X13:=False; </line302>
+        <line303>~  End_If;</line303>
+        <line304>~// ObjIdx=18 =&gt; Transition "t6"</line304>
+        <line305>~  // Steps Above: id=12 =&gt; X14 ;</line305>
+        <line306>~  // Steps Below: id=15 =&gt; X17 ;</line306>
+        <line307>~  If (t6) Then</line307>
+        <line308>~     X14:=False; </line308>
+        <line309>~  End_If;</line309>
+        <line310>~// ObjIdx=19 =&gt; Transition "t7"</line310>
+        <line311>~  // Steps Above: id=9 =&gt; X11 ;</line311>
+        <line312>~  // Steps Below: id=10 =&gt; X12 ;id=11 =&gt; X13 ;id=12 =&gt; X14 ;</line312>
+        <line313>~  If (t7) Then</line313>
+        <line314>~     X11:=False; </line314>
+        <line315>~  End_If;</line315>
+        <line316>~// ObjIdx=20 =&gt; Transition "t8"</line316>
+        <line317>~  // Steps Above: id=13 =&gt; X15 ;id=14 =&gt; X16 ;id=15 =&gt; X17 ;</line317>
+        <line318>~  // Steps Below: id=21 =&gt; X18 ;</line318>
+        <line319>~  If (t8) Then</line319>
+        <line320>~     X15:=False;  X16:=False;  X17:=False; </line320>
+        <line321>~  End_If;</line321>
+        <line322>~// ObjIdx=24 =&gt; Transition "t9"</line322>
+        <line323>~  // Steps Above: id=23 =&gt; X20 ;</line323>
+        <line324>~  // Steps Below: id=9 =&gt; X11 ;</line324>
+        <line325>~  If (t9) Then</line325>
+        <line326>~     X20:=False; </line326>
+        <line327>~  End_If;</line327>
+        <line328>~// ObjIdx=25 =&gt; Transition "t10"</line328>
+        <line329>~  // Steps Above: id=22 =&gt; X19 ;</line329>
+        <line330>~  // Steps Below: id=23 =&gt; X20 ;</line330>
+        <line331>~  If (t10) Then</line331>
+        <line332>~     X19:=False; </line332>
+        <line333>~  End_If;</line333>
+        <line334>~// ObjIdx=26 =&gt; Transition "t11"</line334>
+        <line335>~  // Steps Above: id=21 =&gt; X18 ;</line335>
+        <line336>~  // Steps Below: id=22 =&gt; X19 ;</line336>
+        <line337>~  If (t11) Then</line337>
+        <line338>~     X18:=False; </line338>
+        <line339>~  End_If;</line339>
+        <line340>~</line340>
+        <line341>~////////////////////////////////////////////////////////////</line341>
+        <line342>~///////////////// Set Steps below fired Tr /////////////////</line342>
+        <line343>~//####################### Page 0 ########################//</line343>
+        <line344>~////////////////////////////////////////////////////////////</line344>
+        <line345>~</line345>
+        <line346>~// ObjIdx=1 =&gt; Transition "t0"</line346>
+        <line347>~  // Steps Above: id=0 =&gt; X1 ;</line347>
+        <line348>~  // Steps Below: id=2 =&gt; X4 ;id=3 =&gt; X5 ;</line348>
+        <line349>~  If (t0) Then </line349>
+        <line350>~    X4 := True;  X5 := True; </line350>
+        <line351>~    X4_T := 0; X5_T := 0; </line351>
+        <line352>~  End_If;</line352>
+        <line353>~// ObjIdx=6 =&gt; Transition "t1"</line353>
+        <line354>~  // Steps Above: id=2 =&gt; X4 ;</line354>
+        <line355>~  // Steps Below: id=4 =&gt; X6 ;</line355>
+        <line356>~  If (t1) Then </line356>
+        <line357>~    X6 := True; </line357>
+        <line358>~    X6_T := 0; </line358>
+        <line359>~  End_If;</line359>
+        <line360>~// ObjIdx=7 =&gt; Transition "t2"</line360>
+        <line361>~  // Steps Above: id=3 =&gt; X5 ;</line361>
+        <line362>~  // Steps Below: id=5 =&gt; X7 ;</line362>
+        <line363>~  If (t2) Then </line363>
+        <line364>~    X7 := True; </line364>
+        <line365>~    X7_T := 0; </line365>
+        <line366>~  End_If;</line366>
+        <line367>~// ObjIdx=8 =&gt; Transition "t3"</line367>
+        <line368>~  // Steps Above: id=4 =&gt; X6 ;id=5 =&gt; X7 ;</line368>
+        <line369>~  // Steps Below: id=9 =&gt; X11 ;</line369>
+        <line370>~  If (t3) Then </line370>
+        <line371>~    X11 := True; </line371>
+        <line372>~    X11_T := 0; </line372>
+        <line373>~  End_If;</line373>
+        <line374>~// ObjIdx=16 =&gt; Transition "t4"</line374>
+        <line375>~  // Steps Above: id=10 =&gt; X12 ;</line375>
+        <line376>~  // Steps Below: id=13 =&gt; X15 ;</line376>
+        <line377>~  If (t4) Then </line377>
+        <line378>~    X15 := True; </line378>
+        <line379>~    X15_T := 0; </line379>
+        <line380>~  End_If;</line380>
+        <line381>~// ObjIdx=17 =&gt; Transition "t5"</line381>
+        <line382>~  // Steps Above: id=11 =&gt; X13 ;</line382>
+        <line383>~  // Steps Below: id=14 =&gt; X16 ;</line383>
+        <line384>~  If (t5) Then </line384>
+        <line385>~    X16 := True; </line385>
+        <line386>~    X16_T := 0; </line386>
+        <line387>~  End_If;</line387>
+        <line388>~// ObjIdx=18 =&gt; Transition "t6"</line388>
+        <line389>~  // Steps Above: id=12 =&gt; X14 ;</line389>
+        <line390>~  // Steps Below: id=15 =&gt; X17 ;</line390>
+        <line391>~  If (t6) Then </line391>
+        <line392>~    X17 := True; </line392>
+        <line393>~    X17_T := 0; </line393>
+        <line394>~  End_If;</line394>
+        <line395>~// ObjIdx=19 =&gt; Transition "t7"</line395>
+        <line396>~  // Steps Above: id=9 =&gt; X11 ;</line396>
+        <line397>~  // Steps Below: id=10 =&gt; X12 ;id=11 =&gt; X13 ;id=12 =&gt; X14 ;</line397>
+        <line398>~  If (t7) Then </line398>
+        <line399>~    X12 := True;  X13 := True;  X14 := True; </line399>
+        <line400>~    X12_T := 0; X13_T := 0; X14_T := 0; </line400>
+        <line401>~  End_If;</line401>
+        <line402>~// ObjIdx=20 =&gt; Transition "t8"</line402>
+        <line403>~  // Steps Above: id=13 =&gt; X15 ;id=14 =&gt; X16 ;id=15 =&gt; X17 ;</line403>
+        <line404>~  // Steps Below: id=21 =&gt; X18 ;</line404>
+        <line405>~  If (t8) Then </line405>
+        <line406>~    X18 := True; </line406>
+        <line407>~    X18_T := 0; </line407>
+        <line408>~  End_If;</line408>
+        <line409>~// ObjIdx=24 =&gt; Transition "t9"</line409>
+        <line410>~  // Steps Above: id=23 =&gt; X20 ;</line410>
+        <line411>~  // Steps Below: id=9 =&gt; X11 ;</line411>
+        <line412>~  If (t9) Then </line412>
+        <line413>~    X11 := True; </line413>
+        <line414>~    X11_T := 0; </line414>
+        <line415>~  End_If;</line415>
+        <line416>~// ObjIdx=25 =&gt; Transition "t10"</line416>
+        <line417>~  // Steps Above: id=22 =&gt; X19 ;</line417>
+        <line418>~  // Steps Below: id=23 =&gt; X20 ;</line418>
+        <line419>~  If (t10) Then </line419>
+        <line420>~    X20 := True; </line420>
+        <line421>~    X20_T := 0; </line421>
+        <line422>~  End_If;</line422>
+        <line423>~// ObjIdx=26 =&gt; Transition "t11"</line423>
+        <line424>~  // Steps Above: id=21 =&gt; X18 ;</line424>
+        <line425>~  // Steps Below: id=22 =&gt; X19 ;</line425>
+        <line426>~  If (t11) Then </line426>
+        <line427>~    X19 := True; </line427>
+        <line428>~    X19_T := 0; </line428>
+        <line429>~  End_If;</line429>
+        <line430>~</line430>
+        <line431>~////////////////////////////////////////////////////////////</line431>
+        <line432>~///// If step active increment MW timer of step @ %s16 /////</line432>
+        <line433>~//####################### Page 0 ########################//</line433>
+        <line434>~////////////////////////////////////////////////////////////</line434>
+        <line435>~</line435>
+        <line436>~  // ObjIdx=0 =&gt; Step "X1"</line436>
+        <line437>~  If (s16) and (X1) Then </line437>
+        <line438>~    X1_T := X1_T+1;</line438>
+        <line439>~  end_if;</line439>
+        <line440>~  // ObjIdx=2 =&gt; Step "X4"</line440>
+        <line441>~  If (s16) and (X4) Then </line441>
+        <line442>~    X4_T := X4_T+1;</line442>
+        <line443>~  end_if;</line443>
+        <line444>~  // ObjIdx=3 =&gt; Step "X5"</line444>
+        <line445>~  If (s16) and (X5) Then </line445>
+        <line446>~    X5_T := X5_T+1;</line446>
+        <line447>~  end_if;</line447>
+        <line448>~  // ObjIdx=4 =&gt; Step "X6"</line448>
+        <line449>~  If (s16) and (X6) Then </line449>
+        <line450>~    X6_T := X6_T+1;</line450>
+        <line451>~  end_if;</line451>
+        <line452>~  // ObjIdx=5 =&gt; Step "X7"</line452>
+        <line453>~  If (s16) and (X7) Then </line453>
+        <line454>~    X7_T := X7_T+1;</line454>
+        <line455>~  end_if;</line455>
+        <line456>~  // ObjIdx=9 =&gt; Step "X11"</line456>
+        <line457>~  If (s16) and (X11) Then </line457>
+        <line458>~    X11_T := X11_T+1;</line458>
+        <line459>~  end_if;</line459>
+        <line460>~  // ObjIdx=10 =&gt; Step "X12"</line460>
+        <line461>~  If (s16) and (X12) Then </line461>
+        <line462>~    X12_T := X12_T+1;</line462>
+        <line463>~  end_if;</line463>
+        <line464>~  // ObjIdx=11 =&gt; Step "X13"</line464>
+        <line465>~  If (s16) and (X13) Then </line465>
+        <line466>~    X13_T := X13_T+1;</line466>
+        <line467>~  end_if;</line467>
+        <line468>~  // ObjIdx=12 =&gt; Step "X14"</line468>
+        <line469>~  If (s16) and (X14) Then </line469>
+        <line470>~    X14_T := X14_T+1;</line470>
+        <line471>~  end_if;</line471>
+        <line472>~  // ObjIdx=13 =&gt; Step "X15"</line472>
+        <line473>~  If (s16) and (X15) Then </line473>
+        <line474>~    X15_T := X15_T+1;</line474>
+        <line475>~  end_if;</line475>
+        <line476>~  // ObjIdx=14 =&gt; Step "X16"</line476>
+        <line477>~  If (s16) and (X16) Then </line477>
+        <line478>~    X16_T := X16_T+1;</line478>
+        <line479>~  end_if;</line479>
+        <line480>~  // ObjIdx=15 =&gt; Step "X17"</line480>
+        <line481>~  If (s16) and (X17) Then </line481>
+        <line482>~    X17_T := X17_T+1;</line482>
+        <line483>~  end_if;</line483>
+        <line484>~  // ObjIdx=21 =&gt; Step "X18"</line484>
+        <line485>~  If (s16) and (X18) Then </line485>
+        <line486>~    X18_T := X18_T+1;</line486>
+        <line487>~  end_if;</line487>
+        <line488>~  // ObjIdx=22 =&gt; Step "X19"</line488>
+        <line489>~  If (s16) and (X19) Then </line489>
+        <line490>~    X19_T := X19_T+1;</line490>
+        <line491>~  end_if;</line491>
+        <line492>~  // ObjIdx=23 =&gt; Step "X20"</line492>
+        <line493>~  If (s16) and (X20) Then </line493>
+        <line494>~    X20_T := X20_T+1;</line494>
+        <line495>~  end_if;</line495>
+        <line496>~</line496>
+        <line497>~////////////////////////////////////////////////////////////</line497>
+        <line498>~//////// If step active, execute its action code ///////////</line498>
+        <line499>~//####################### Page 0 ########################//</line499>
+        <line500>~////////////////////////////////////////////////////////////</line500>
+        <line501>~</line501>
+        <line502>~  // ObjIdx=2 =&gt; Step "X4" (code...)</line502>
+        <line503>~  If X4 Then </line503>
+        <line504>~    V6 := True;</line504>
+        <line505>~    </line505>
+        <line506>~  End_If;</line506>
+        <line507>~  // ObjIdx=3 =&gt; Step "X5" (code...)</line507>
+        <line508>~  If X5 Then </line508>
+        <line509>~    Direita := True;</line509>
+        <line510>~    </line510>
+        <line511>~  End_If;</line511>
+        <line512>~  // ObjIdx=10 =&gt; Step "X12" (code...)</line512>
+        <line513>~  If X12 Then </line513>
+        <line514>~    V1 := True;</line514>
+        <line515>~    </line515>
+        <line516>~  End_If;</line516>
+        <line517>~  // ObjIdx=11 =&gt; Step "X13" (code...)</line517>
+        <line518>~  If X13 Then </line518>
+        <line519>~    V3 := True;</line519>
+        <line520>~    </line520>
+        <line521>~  End_If;</line521>
+        <line522>~  // ObjIdx=12 =&gt; Step "X14" (code...)</line522>
+        <line523>~  If X14 Then </line523>
+        <line524>~    V5 := True;</line524>
+        <line525>~    </line525>
+        <line526>~    Bomba := True;</line526>
+        <line527>~    </line527>
+        <line528>~  End_If;</line528>
+        <line529>~  // ObjIdx=21 =&gt; Step "X18" (code...)</line529>
+        <line530>~  If X18 Then </line530>
+        <line531>~    Motor_pa := True;</line531>
+        <line532>~    </line532>
+        <line533>~    Esquerda := True;</line533>
+        <line534>~    </line534>
+        <line535>~    V4 := True;</line535>
+        <line536>~    </line536>
+        <line537>~    V2 := True;</line537>
+        <line538>~    </line538>
+        <line539>~  End_If;</line539>
+        <line540>~  // ObjIdx=22 =&gt; Step "X19" (code...)</line540>
+        <line541>~  If X19 Then </line541>
+        <line542>~    Motor_pa := True;</line542>
+        <line543>~    </line543>
+        <line544>~  End_If;</line544>
+        <line545>~  // ObjIdx=23 =&gt; Step "X20" (code...)</line545>
+        <line546>~  If X20 Then </line546>
+        <line547>~    V7 := True;</line547>
+        <line548>~    </line548>
+        <line549>~  End_If;</line549>
+        <line550>~</line550>
+        <line551>~(*************** End of ST Code ****************)</line551>
+      </ST_Code>
+    </FMain>
+    <FVariables>
+      <Props Visible="0" NextVar="-1" Filter="2"/>
+      <Geometry top="105" left="288" height="456" width="269"/>
+      <Vars_Names count="641">
+        <var1>UserName</var1>
+        <var2>X1</var2>
+        <var3>t0</var3>
+        <var4>X4</var4>
+        <var5>X5</var5>
+        <var6>X6</var6>
+        <var7>X7</var7>
+        <var8>t1</var8>
+        <var9>t2</var9>
+        <var10>t3</var10>
+        <var11>X11</var11>
+        <var12>X12</var12>
+        <var13>X13</var13>
+        <var14>X14</var14>
+        <var15>X15</var15>
+        <var16>X16</var16>
+        <var17>X17</var17>
+        <var18>t4</var18>
+        <var19>t5</var19>
+        <var20>t6</var20>
+        <var21>t7</var21>
+        <var22>t8</var22>
+        <var23>X18</var23>
+        <var24>X19</var24>
+        <var25>X20</var25>
+        <var26>t9</var26>
+        <var27>t10</var27>
+        <var28>t11</var28>
+        <var29>M27</var29>
+        <var30>M28</var30>
+        <var31>M29</var31>
+        <var32>M30</var32>
+        <var33>M31</var33>
+        <var34>M32</var34>
+        <var35>M33</var35>
+        <var36>M34</var36>
+        <var37>M35</var37>
+        <var38>M36</var38>
+        <var39>M37</var39>
+        <var40>M38</var40>
+        <var41>M39</var41>
+        <var42>M40</var42>
+        <var43>M41</var43>
+        <var44>M42</var44>
+        <var45>M43</var45>
+        <var46>M44</var46>
+        <var47>M45</var47>
+        <var48>M46</var48>
+        <var49>M47</var49>
+        <var50>M48</var50>
+        <var51>M49</var51>
+        <var52>M50</var52>
+        <var53>M51</var53>
+        <var54>M52</var54>
+        <var55>M53</var55>
+        <var56>M54</var56>
+        <var57>M55</var57>
+        <var58>M56</var58>
+        <var59>M57</var59>
+        <var60>M58</var60>
+        <var61>M59</var61>
+        <var62>M60</var62>
+        <var63>M61</var63>
+        <var64>M62</var64>
+        <var65>M63</var65>
+        <var66>M64</var66>
+        <var67>M65</var67>
+        <var68>M66</var68>
+        <var69>M67</var69>
+        <var70>M68</var70>
+        <var71>M69</var71>
+        <var72>M70</var72>
+        <var73>M71</var73>
+        <var74>M72</var74>
+        <var75>M73</var75>
+        <var76>M74</var76>
+        <var77>M75</var77>
+        <var78>M76</var78>
+        <var79>M77</var79>
+        <var80>M78</var80>
+        <var81>M79</var81>
+        <var82>M80</var82>
+        <var83>M81</var83>
+        <var84>M82</var84>
+        <var85>M83</var85>
+        <var86>M84</var86>
+        <var87>M85</var87>
+        <var88>M86</var88>
+        <var89>M87</var89>
+        <var90>M88</var90>
+        <var91>M89</var91>
+        <var92>M90</var92>
+        <var93>M91</var93>
+        <var94>M92</var94>
+        <var95>M93</var95>
+        <var96>M94</var96>
+        <var97>M95</var97>
+        <var98>M96</var98>
+        <var99>M97</var99>
+        <var100>M98</var100>
+        <var101>M99</var101>
+        <var102>M100</var102>
+        <var103>M101</var103>
+        <var104>M102</var104>
+        <var105>M103</var105>
+        <var106>M104</var106>
+        <var107>M105</var107>
+        <var108>M106</var108>
+        <var109>M107</var109>
+        <var110>M108</var110>
+        <var111>M109</var111>
+        <var112>M110</var112>
+        <var113>M111</var113>
+        <var114>M112</var114>
+        <var115>M113</var115>
+        <var116>M114</var116>
+        <var117>M115</var117>
+        <var118>M116</var118>
+        <var119>M117</var119>
+        <var120>M118</var120>
+        <var121>M119</var121>
+        <var122>M120</var122>
+        <var123>M121</var123>
+        <var124>M122</var124>
+        <var125>M123</var125>
+        <var126>M124</var126>
+        <var127>M125</var127>
+        <var128>M126</var128>
+        <var129>M127</var129>
+        <var130>M_max</var130>
+        <var131>M_min</var131>
+        <var132>Prato2</var132>
+        <var133>Prato1</var133>
+        <var134>Inicia</var134>
+        <var135>Paragem</var135>
+        <var136>Ciclo</var136>
+        <var137>I7</var137>
+        <var138>I8</var138>
+        <var139>I9</var139>
+        <var140>I10</var140>
+        <var141>I11</var141>
+        <var142>I12</var142>
+        <var143>I13</var143>
+        <var144>I14</var144>
+        <var145>I15</var145>
+        <var146>I16</var146>
+        <var147>I17</var147>
+        <var148>I18</var148>
+        <var149>I19</var149>
+        <var150>I20</var150>
+        <var151>I21</var151>
+        <var152>I22</var152>
+        <var153>I23</var153>
+        <var154>I24</var154>
+        <var155>I25</var155>
+        <var156>I26</var156>
+        <var157>I27</var157>
+        <var158>I28</var158>
+        <var159>I29</var159>
+        <var160>I30</var160>
+        <var161>I31</var161>
+        <var162>I32</var162>
+        <var163>I33</var163>
+        <var164>I34</var164>
+        <var165>I35</var165>
+        <var166>I36</var166>
+        <var167>I37</var167>
+        <var168>I38</var168>
+        <var169>I39</var169>
+        <var170>I40</var170>
+        <var171>I41</var171>
+        <var172>I42</var172>
+        <var173>I43</var173>
+        <var174>I44</var174>
+        <var175>I45</var175>
+        <var176>I46</var176>
+        <var177>I47</var177>
+        <var178>Iluminar</var178>
+        <var179>Esquerda</var179>
+        <var180>Direita</var180>
+        <var181>Bomba</var181>
+        <var182>Motor_pa</var182>
+        <var183>V7</var183>
+        <var184>V6</var184>
+        <var185>V5</var185>
+        <var186>V4</var186>
+        <var187>V3</var187>
+        <var188>V2</var188>
+        <var189>V1</var189>
+        <var190>Q12</var190>
+        <var191>Q13</var191>
+        <var192>Q14</var192>
+        <var193>Q15</var193>
+        <var194>Q16</var194>
+        <var195>Q17</var195>
+        <var196>Q18</var196>
+        <var197>Q19</var197>
+        <var198>Q20</var198>
+        <var199>Q21</var199>
+        <var200>Q22</var200>
+        <var201>Q23</var201>
+        <var202>Q24</var202>
+        <var203>Q25</var203>
+        <var204>Q26</var204>
+        <var205>Q27</var205>
+        <var206>Q28</var206>
+        <var207>Q29</var207>
+        <var208>Q30</var208>
+        <var209>Q31</var209>
+        <var210>Q32</var210>
+        <var211>Q33</var211>
+        <var212>Q34</var212>
+        <var213>Q35</var213>
+        <var214>Q36</var214>
+        <var215>Q37</var215>
+        <var216>Q38</var216>
+        <var217>Q39</var217>
+        <var218>Q40</var218>
+        <var219>Q41</var219>
+        <var220>Q42</var220>
+        <var221>Q43</var221>
+        <var222>Q44</var222>
+        <var223>Q45</var223>
+        <var224>Q46</var224>
+        <var225>Q47</var225>
+        <var226>S0</var226>
+        <var227>S1</var227>
+        <var228>S2</var228>
+        <var229>S3</var229>
+        <var230>S4</var230>
+        <var231>S5</var231>
+        <var232>S6</var232>
+        <var233>S7</var233>
+        <var234>S8</var234>
+        <var235>S9</var235>
+        <var236>S10</var236>
+        <var237>S11</var237>
+        <var238>S12</var238>
+        <var239>S13</var239>
+        <var240>S14</var240>
+        <var241>S15</var241>
+        <var242>S16</var242>
+        <var243>S17</var243>
+        <var244>S18</var244>
+        <var245>S19</var245>
+        <var246>S20</var246>
+        <var247>S21</var247>
+        <var248>S22</var248>
+        <var249>S23</var249>
+        <var250>S24</var250>
+        <var251>S25</var251>
+        <var252>S26</var252>
+        <var253>S27</var253>
+        <var254>S28</var254>
+        <var255>S29</var255>
+        <var256>S30</var256>
+        <var257>S31</var257>
+        <var258>S32</var258>
+        <var259>S33</var259>
+        <var260>S34</var260>
+        <var261>S35</var261>
+        <var262>S36</var262>
+        <var263>S37</var263>
+        <var264>S38</var264>
+        <var265>S39</var265>
+        <var266>S40</var266>
+        <var267>S41</var267>
+        <var268>S42</var268>
+        <var269>S43</var269>
+        <var270>S44</var270>
+        <var271>S45</var271>
+        <var272>S46</var272>
+        <var273>S47</var273>
+        <var274>S48</var274>
+        <var275>S49</var275>
+        <var276>S50</var276>
+        <var277>S51</var277>
+        <var278>S52</var278>
+        <var279>S53</var279>
+        <var280>S54</var280>
+        <var281>S55</var281>
+        <var282>S56</var282>
+        <var283>S57</var283>
+        <var284>S58</var284>
+        <var285>S59</var285>
+        <var286>S60</var286>
+        <var287>S61</var287>
+        <var288>S62</var288>
+        <var289>S63</var289>
+        <var290>S64</var290>
+        <var291>S65</var291>
+        <var292>S66</var292>
+        <var293>S67</var293>
+        <var294>S68</var294>
+        <var295>S69</var295>
+        <var296>S70</var296>
+        <var297>S71</var297>
+        <var298>S72</var298>
+        <var299>S73</var299>
+        <var300>S74</var300>
+        <var301>S75</var301>
+        <var302>S76</var302>
+        <var303>S77</var303>
+        <var304>S78</var304>
+        <var305>S79</var305>
+        <var306>S80</var306>
+        <var307>S81</var307>
+        <var308>S82</var308>
+        <var309>S83</var309>
+        <var310>S84</var310>
+        <var311>S85</var311>
+        <var312>S86</var312>
+        <var313>S87</var313>
+        <var314>S88</var314>
+        <var315>S89</var315>
+        <var316>S90</var316>
+        <var317>S91</var317>
+        <var318>S92</var318>
+        <var319>S93</var319>
+        <var320>S94</var320>
+        <var321>S95</var321>
+        <var322>S96</var322>
+        <var323>S97</var323>
+        <var324>S98</var324>
+        <var325>S99</var325>
+        <var326>S100</var326>
+        <var327>S101</var327>
+        <var328>S102</var328>
+        <var329>S103</var329>
+        <var330>S104</var330>
+        <var331>S105</var331>
+        <var332>S106</var332>
+        <var333>S107</var333>
+        <var334>S108</var334>
+        <var335>S109</var335>
+        <var336>S110</var336>
+        <var337>S111</var337>
+        <var338>S112</var338>
+        <var339>S113</var339>
+        <var340>S114</var340>
+        <var341>S115</var341>
+        <var342>S116</var342>
+        <var343>S117</var343>
+        <var344>S118</var344>
+        <var345>S119</var345>
+        <var346>S120</var346>
+        <var347>S121</var347>
+        <var348>S122</var348>
+        <var349>S123</var349>
+        <var350>S124</var350>
+        <var351>S125</var351>
+        <var352>S126</var352>
+        <var353>S127</var353>
+        <var354>X1_t</var354>
+        <var355>EstadoLuz</var355>
+        <var356>X4_t</var356>
+        <var357>X5_t</var357>
+        <var358>X6_t</var358>
+        <var359>X7_t</var359>
+        <var360>MW6</var360>
+        <var361>MW7</var361>
+        <var362>MW8</var362>
+        <var363>X11_t</var363>
+        <var364>X12_t</var364>
+        <var365>X13_t</var365>
+        <var366>X14_t</var366>
+        <var367>X15_t</var367>
+        <var368>X16_t</var368>
+        <var369>X17_t</var369>
+        <var370>MW16</var370>
+        <var371>MW17</var371>
+        <var372>MW18</var372>
+        <var373>MW19</var373>
+        <var374>MW20</var374>
+        <var375>X18_t</var375>
+        <var376>X19_t</var376>
+        <var377>X20_t</var377>
+        <var378>MW24</var378>
+        <var379>MW25</var379>
+        <var380>MW26</var380>
+        <var381>MW27</var381>
+        <var382>MW28</var382>
+        <var383>MW29</var383>
+        <var384>MW30</var384>
+        <var385>MW31</var385>
+        <var386>MW32</var386>
+        <var387>MW33</var387>
+        <var388>MW34</var388>
+        <var389>MW35</var389>
+        <var390>MW36</var390>
+        <var391>MW37</var391>
+        <var392>MW38</var392>
+        <var393>MW39</var393>
+        <var394>MW40</var394>
+        <var395>MW41</var395>
+        <var396>MW42</var396>
+        <var397>MW43</var397>
+        <var398>MW44</var398>
+        <var399>MW45</var399>
+        <var400>MW46</var400>
+        <var401>MW47</var401>
+        <var402>MW48</var402>
+        <var403>MW49</var403>
+        <var404>MW50</var404>
+        <var405>MW51</var405>
+        <var406>MW52</var406>
+        <var407>MW53</var407>
+        <var408>MW54</var408>
+        <var409>MW55</var409>
+        <var410>MW56</var410>
+        <var411>MW57</var411>
+        <var412>MW58</var412>
+        <var413>MW59</var413>
+        <var414>MW60</var414>
+        <var415>MW61</var415>
+        <var416>MW62</var416>
+        <var417>MW63</var417>
+        <var418>MW64</var418>
+        <var419>MW65</var419>
+        <var420>MW66</var420>
+        <var421>MW67</var421>
+        <var422>MW68</var422>
+        <var423>MW69</var423>
+        <var424>MW70</var424>
+        <var425>MW71</var425>
+        <var426>MW72</var426>
+        <var427>MW73</var427>
+        <var428>MW74</var428>
+        <var429>MW75</var429>
+        <var430>MW76</var430>
+        <var431>MW77</var431>
+        <var432>MW78</var432>
+        <var433>MW79</var433>
+        <var434>MW80</var434>
+        <var435>MW81</var435>
+        <var436>MW82</var436>
+        <var437>MW83</var437>
+        <var438>MW84</var438>
+        <var439>MW85</var439>
+        <var440>MW86</var440>
+        <var441>MW87</var441>
+        <var442>MW88</var442>
+        <var443>MW89</var443>
+        <var444>MW90</var444>
+        <var445>MW91</var445>
+        <var446>MW92</var446>
+        <var447>MW93</var447>
+        <var448>MW94</var448>
+        <var449>MW95</var449>
+        <var450>MW96</var450>
+        <var451>MW97</var451>
+        <var452>MW98</var452>
+        <var453>MW99</var453>
+        <var454>MW100</var454>
+        <var455>MW101</var455>
+        <var456>MW102</var456>
+        <var457>MW103</var457>
+        <var458>MW104</var458>
+        <var459>MW105</var459>
+        <var460>MW106</var460>
+        <var461>MW107</var461>
+        <var462>MW108</var462>
+        <var463>MW109</var463>
+        <var464>MW110</var464>
+        <var465>MW111</var465>
+        <var466>MW112</var466>
+        <var467>MW113</var467>
+        <var468>MW114</var468>
+        <var469>MW115</var469>
+        <var470>MW116</var470>
+        <var471>MW117</var471>
+        <var472>MW118</var472>
+        <var473>MW119</var473>
+        <var474>MW120</var474>
+        <var475>MW121</var475>
+        <var476>MW122</var476>
+        <var477>MW123</var477>
+        <var478>MW124</var478>
+        <var479>MW125</var479>
+        <var480>MW126</var480>
+        <var481>MW127</var481>
+        <var482>SW0</var482>
+        <var483>SW1</var483>
+        <var484>SW2</var484>
+        <var485>SW3</var485>
+        <var486>SW4</var486>
+        <var487>SW5</var487>
+        <var488>SW6</var488>
+        <var489>SW7</var489>
+        <var490>SW8</var490>
+        <var491>SW9</var491>
+        <var492>SW10</var492>
+        <var493>SW11</var493>
+        <var494>SW12</var494>
+        <var495>SW13</var495>
+        <var496>SW14</var496>
+        <var497>SW15</var497>
+        <var498>SW16</var498>
+        <var499>SW17</var499>
+        <var500>SW18</var500>
+        <var501>SW19</var501>
+        <var502>SW20</var502>
+        <var503>SW21</var503>
+        <var504>SW22</var504>
+        <var505>SW23</var505>
+        <var506>SW24</var506>
+        <var507>SW25</var507>
+        <var508>SW26</var508>
+        <var509>SW27</var509>
+        <var510>SW28</var510>
+        <var511>SW29</var511>
+        <var512>SW30</var512>
+        <var513>SW31</var513>
+        <var514>SW32</var514>
+        <var515>SW33</var515>
+        <var516>SW34</var516>
+        <var517>SW35</var517>
+        <var518>SW36</var518>
+        <var519>SW37</var519>
+        <var520>SW38</var520>
+        <var521>SW39</var521>
+        <var522>SW40</var522>
+        <var523>SW41</var523>
+        <var524>SW42</var524>
+        <var525>SW43</var525>
+        <var526>SW44</var526>
+        <var527>SW45</var527>
+        <var528>SW46</var528>
+        <var529>SW47</var529>
+        <var530>SW48</var530>
+        <var531>SW49</var531>
+        <var532>SW50</var532>
+        <var533>SW51</var533>
+        <var534>SW52</var534>
+        <var535>SW53</var535>
+        <var536>SW54</var536>
+        <var537>SW55</var537>
+        <var538>SW56</var538>
+        <var539>SW57</var539>
+        <var540>SW58</var540>
+        <var541>SW59</var541>
+        <var542>SW60</var542>
+        <var543>SW61</var543>
+        <var544>SW62</var544>
+        <var545>SW63</var545>
+        <var546>SW64</var546>
+        <var547>SW65</var547>
+        <var548>SW66</var548>
+        <var549>SW67</var549>
+        <var550>SW68</var550>
+        <var551>SW69</var551>
+        <var552>SW70</var552>
+        <var553>SW71</var553>
+        <var554>SW72</var554>
+        <var555>SW73</var555>
+        <var556>SW74</var556>
+        <var557>SW75</var557>
+        <var558>SW76</var558>
+        <var559>SW77</var559>
+        <var560>SW78</var560>
+        <var561>SW79</var561>
+        <var562>SW80</var562>
+        <var563>SW81</var563>
+        <var564>SW82</var564>
+        <var565>SW83</var565>
+        <var566>SW84</var566>
+        <var567>SW85</var567>
+        <var568>SW86</var568>
+        <var569>SW87</var569>
+        <var570>SW88</var570>
+        <var571>SW89</var571>
+        <var572>SW90</var572>
+        <var573>SW91</var573>
+        <var574>SW92</var574>
+        <var575>SW93</var575>
+        <var576>SW94</var576>
+        <var577>SW95</var577>
+        <var578>SW96</var578>
+        <var579>SW97</var579>
+        <var580>SW98</var580>
+        <var581>SW99</var581>
+        <var582>SW100</var582>
+        <var583>SW101</var583>
+        <var584>SW102</var584>
+        <var585>SW103</var585>
+        <var586>SW104</var586>
+        <var587>SW105</var587>
+        <var588>SW106</var588>
+        <var589>SW107</var589>
+        <var590>SW108</var590>
+        <var591>SW109</var591>
+        <var592>SW110</var592>
+        <var593>SW111</var593>
+        <var594>SW112</var594>
+        <var595>SW113</var595>
+        <var596>SW114</var596>
+        <var597>SW115</var597>
+        <var598>SW116</var598>
+        <var599>SW117</var599>
+        <var600>SW118</var600>
+        <var601>SW119</var601>
+        <var602>SW120</var602>
+        <var603>SW121</var603>
+        <var604>SW122</var604>
+        <var605>SW123</var605>
+        <var606>SW124</var606>
+        <var607>SW125</var607>
+        <var608>SW126</var608>
+        <var609>SW127</var609>
+        <var610>TM0</var610>
+        <var611>TM1</var611>
+        <var612>TM2</var612>
+        <var613>TM3</var613>
+        <var614>TM4</var614>
+        <var615>TM5</var615>
+        <var616>TM6</var616>
+        <var617>TM7</var617>
+        <var618>TM8</var618>
+        <var619>TM9</var619>
+        <var620>TM10</var620>
+        <var621>TM11</var621>
+        <var622>TM12</var622>
+        <var623>TM13</var623>
+        <var624>TM14</var624>
+        <var625>TM15</var625>
+        <var626>TM16</var626>
+        <var627>TM17</var627>
+        <var628>TM18</var628>
+        <var629>TM19</var629>
+        <var630>TM20</var630>
+        <var631>TM21</var631>
+        <var632>TM22</var632>
+        <var633>TM23</var633>
+        <var634>TM24</var634>
+        <var635>TM25</var635>
+        <var636>TM26</var636>
+        <var637>TM27</var637>
+        <var638>TM28</var638>
+        <var639>TM29</var639>
+        <var640>TM30</var640>
+        <var641>TM31</var641>
+      </Vars_Names>
+    </FVariables>
+    <FIOLEDs>
+      <Props Visible="-1"/>
+      <Geometry top="57" left="1154" height="616" width="177"/>
+    </FIOLEDs>
+    <FLog>
+      <Props Visible="0"/>
+      <Geometry top="596" left="950" height="397" width="715"/>
+    </FLog>
+    <FormG7>
+      <Props Visible="-1" RoundStates="0"/>
+      <Geometry top="-8" left="-8" height="1018" width="1920"/>
+    </FormG7>
+  </FAProject>
+  <G7Project>
+    <Graph>
+      <Objects>
+        <Obj Name="X1" Page="0" CellX="3" CellY="4" BarInIdx="-1" BarOutIdx="0" Type="1" Flags="1">
+          <Code>~</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="t0" Page="0" CellX="3" CellY="6" BarInIdx="0" BarOutIdx="1" Type="2" Flags="0">
+          <Code>~Inicia
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="X4" Page="0" CellX="3" CellY="8" BarInIdx="1" BarOutIdx="2" Type="1" Flags="0">
+          <Code>~V6 := True;
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="X5" Page="0" CellX="4" CellY="8" BarInIdx="1" BarOutIdx="3" Type="1" Flags="0">
+          <Code>~Direita := True;
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="X6" Page="0" CellX="3" CellY="12" BarInIdx="4" BarOutIdx="6" Type="1" Flags="0">
+          <Code>~</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="X7" Page="0" CellX="4" CellY="12" BarInIdx="5" BarOutIdx="6" Type="1" Flags="0">
+          <Code>~</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="t1" Page="0" CellX="3" CellY="10" BarInIdx="2" BarOutIdx="4" Type="2" Flags="0">
+          <Code>~M_min
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="t2" Page="0" CellX="4" CellY="10" BarInIdx="3" BarOutIdx="5" Type="2" Flags="0">
+          <Code>~X5_T &gt; 50
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="t3" Page="0" CellX="3" CellY="14" BarInIdx="6" BarOutIdx="7" Type="2" Flags="0">
+          <Code>~True
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="X11" Page="0" CellX="3" CellY="16" BarInIdx="7" BarOutIdx="8" Type="1" Flags="4">
+          <Code>~</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="X12" Page="0" CellX="2" CellY="20" BarInIdx="9" BarOutIdx="10" Type="1" Flags="0">
+          <Code>~V1 := True;
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="X13" Page="0" CellX="3" CellY="20" BarInIdx="9" BarOutIdx="12" Type="1" Flags="0">
+          <Code>~V3 := True;
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="X14" Page="0" CellX="4" CellY="20" BarInIdx="9" BarOutIdx="14" Type="1" Flags="0">
+          <Code>~V5 := True;
+Bomba := True;
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="X15" Page="0" CellX="2" CellY="24" BarInIdx="11" BarOutIdx="16" Type="1" Flags="0">
+          <Code>~</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="X16" Page="0" CellX="3" CellY="24" BarInIdx="13" BarOutIdx="16" Type="1" Flags="0">
+          <Code>~</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="X17" Page="0" CellX="4" CellY="24" BarInIdx="15" BarOutIdx="16" Type="1" Flags="0">
+          <Code>~</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="t4" Page="0" CellX="2" CellY="22" BarInIdx="10" BarOutIdx="11" Type="2" Flags="0">
+          <Code>~Prato1
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="t5" Page="0" CellX="3" CellY="22" BarInIdx="12" BarOutIdx="13" Type="2" Flags="0">
+          <Code>~Prato2
+
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="t6" Page="0" CellX="4" CellY="22" BarInIdx="14" BarOutIdx="15" Type="2" Flags="0">
+          <Code>~M_max
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="t7" Page="0" CellX="3" CellY="18" BarInIdx="8" BarOutIdx="9" Type="2" Flags="0">
+          <Code>~Ciclo
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="t8" Page="0" CellX="3" CellY="26" BarInIdx="16" BarOutIdx="23" Type="2" Flags="0">
+          <Code>~True
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="X18" Page="0" CellX="3" CellY="28" BarInIdx="23" BarOutIdx="22" Type="1" Flags="0">
+          <Code>~Motor_pa := True;
+Esquerda := True;
+V4 := True;
+V2 := True;
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="X19" Page="0" CellX="3" CellY="32" BarInIdx="21" BarOutIdx="20" Type="1" Flags="0">
+          <Code>~Motor_pa := True;
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="X20" Page="0" CellX="3" CellY="36" BarInIdx="19" BarOutIdx="18" Type="1" Flags="0">
+          <Code>~V7 := True;
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="t9" Page="0" CellX="3" CellY="38" BarInIdx="18" BarOutIdx="17" Type="2" Flags="0">
+          <Code>~M_min
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="t10" Page="0" CellX="3" CellY="34" BarInIdx="20" BarOutIdx="19" Type="2" Flags="0">
+          <Code>~X19_T &gt; 30
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="t11" Page="0" CellX="3" CellY="30" BarInIdx="22" BarOutIdx="21" Type="2" Flags="0">
+          <Code>~X18_T &gt; 70
+</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="Jump4" Page="0" CellX="5" CellY="40" BarInIdx="17" BarOutIdx="-1" Type="4" Flags="2">
+          <Code>~</Code>
+          <Text></Text>
+        </Obj>
+        <Obj Name="Jump4" Page="0" CellX="5" CellY="14" BarInIdx="-1" BarOutIdx="7" Type="5" Flags="0">
+          <Code>~</Code>
+          <Text></Text>
+        </Obj>
+      </Objects>
+    </Graph>
+  </G7Project>
+</FEUPAutom>
