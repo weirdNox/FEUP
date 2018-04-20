@@ -1,0 +1,948 @@
+
+////////////////////////////////////////////////////////////
+// FEUPAutom - 5.4.0.68 - 
+// Code Automatically Generated:20-04-2018 16:26:02
+////////////////////////////////////////////////////////////
+
+//######################################//
+//################ Page 3 ##############//
+//######################################//
+
+////////////////////////////////////////////////////////////
+///////////// If boot => Set Initial Steps /////////////////
+//####################### Page 3 ########################//
+////////////////////////////////////////////////////////////
+
+  If (sw0=0) Then
+  End_If;
+if (sw0>0) then  // ** Prevent evolution in initial cycle
+
+////////////////////////////////////////////////////////////
+///////////////// Calc Fired Transitions ///////////////////
+//####################### Page 3 ########################//
+////////////////////////////////////////////////////////////
+
+end_if; //** Prevent evolution in initial cycle
+
+////////////////////////////////////////////////////////////
+///////////////// ReSet Steps Above fired Tr ///////////////
+//####################### Page 3 ########################//
+////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////
+///////////////// Set Steps below fired Tr /////////////////
+//####################### Page 3 ########################//
+////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////
+////////// Unset all Outputs (once for all pages) //////////
+//####################### Page 3 ########################//
+////////////////////////////////////////////////////////////
+
+  Iluminar:=False;
+  Esquerda:=False;
+  Direita:=False;
+  Bomba:=False;
+  Motor_pa:=False;
+  V7:=False;
+  V6:=False;
+  V5:=False;
+  V4:=False;
+  V3:=False;
+  V2:=False;
+  V1:=False;
+  Q12:=False;
+  Q13:=False;
+  Q14:=False;
+  Q15:=False;
+  Q16:=False;
+  Q17:=False;
+  Q18:=False;
+  Q19:=False;
+  Q20:=False;
+  Q21:=False;
+  Q22:=False;
+  Q23:=False;
+  Q24:=False;
+  Q25:=False;
+  Q26:=False;
+  Q27:=False;
+  Q28:=False;
+  Q29:=False;
+  Q30:=False;
+  Q31:=False;
+  Q32:=False;
+  Q33:=False;
+  Q34:=False;
+  Q35:=False;
+  Q36:=False;
+  Q37:=False;
+  Q38:=False;
+  Q39:=False;
+  Q40:=False;
+  Q41:=False;
+  Q42:=False;
+  Q43:=False;
+  Q44:=False;
+  Q45:=False;
+  Q46:=False;
+  Q47:=False;
+
+////////////////////////////////////////////////////////////
+///// If step active increment MW timer of step @ %s16 /////
+//####################### Page 3 ########################//
+////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////
+//////// If step active, execute its action code ///////////
+//####################### Page 3 ########################//
+////////////////////////////////////////////////////////////
+
+
+//######################################//
+//################ Page 2 ##############//
+//######################################//
+
+////////////////////////////////////////////////////////////
+///////////// If boot => Set Initial Steps /////////////////
+//####################### Page 2 ########################//
+////////////////////////////////////////////////////////////
+
+  If (sw0=0) Then
+  End_If;
+if (sw0>0) then  // ** Prevent evolution in initial cycle
+
+////////////////////////////////////////////////////////////
+///////////////// Calc Fired Transitions ///////////////////
+//####################### Page 2 ########################//
+////////////////////////////////////////////////////////////
+
+end_if; //** Prevent evolution in initial cycle
+
+////////////////////////////////////////////////////////////
+///////////////// ReSet Steps Above fired Tr ///////////////
+//####################### Page 2 ########################//
+////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////
+///////////////// Set Steps below fired Tr /////////////////
+//####################### Page 2 ########################//
+////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////
+///// If step active increment MW timer of step @ %s16 /////
+//####################### Page 2 ########################//
+////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////
+//////// If step active, execute its action code ///////////
+//####################### Page 2 ########################//
+////////////////////////////////////////////////////////////
+
+
+//######################################//
+//################ Page 1 ##############//
+//######################################//
+
+////////////////////////////////////////////////////////////
+///////////// If boot => Set Initial Steps /////////////////
+//####################### Page 1 ########################//
+////////////////////////////////////////////////////////////
+
+  If (sw0=0) Then
+  // ObjIdx=37 => INI_Step "X25"
+    X25 := True;
+  // ObjIdx=52 => INI_Step "X31"
+    X31 := True;
+  End_If;
+if (sw0>0) then  // ** Prevent evolution in initial cycle
+
+////////////////////////////////////////////////////////////
+///////////////// Calc Fired Transitions ///////////////////
+//####################### Page 1 ########################//
+////////////////////////////////////////////////////////////
+
+// ObjIdx=38 => Transition "t14"
+  // Steps Above: id=37 => X25 ;
+  // Steps Below: id=39 => X26 ;
+  t14 :=  X25 AND  (RE Paragem and (X12 or X13 or X14));
+// ObjIdx=40 => Transition "t15"
+  // Steps Above: id=39 => X26 ;
+  // Steps Below: id=41 => X27 ;
+  t15 :=  X26 AND  (True);
+// ObjIdx=42 => Transition "t16"
+  // Steps Above: id=41 => X27 ;
+  // Steps Below: id=44 => X28 ;
+  t16 :=  X27 AND  (not Paragem);
+// ObjIdx=43 => Transition "t17"
+  // Steps Above: id=41 => X27 ;
+  // Steps Below: id=45 => X29 ;
+  t17 :=  X27 AND  (RE Inicia);
+// ObjIdx=46 => Transition "t21"
+  // Steps Above: id=44 => X28 ;
+  // Steps Below: id=37 => X25 ;
+  t21 :=  X28 AND  (True);
+// ObjIdx=47 => Transition "t19"
+  // Steps Above: id=45 => X29 ;
+  // Steps Below: id=48 => X30 ;
+  t19 :=  X29 AND  ((not Inicia) and (not Paragem));
+// ObjIdx=49 => Transition "t20"
+  // Steps Above: id=48 => X30 ;
+  // Steps Below: id=37 => X25 ;
+  t20 :=  X30 AND  (True);
+// ObjIdx=56 => Transition "t22"
+  // Steps Above: id=53 => X32 ;
+  // Steps Below: id=52 => X31 ;
+  t22 :=  X32 AND  (True);
+// ObjIdx=57 => Transition "t23"
+  // Steps Above: id=52 => X31 ;
+  // Steps Below: id=53 => X32 ;
+  t23 :=  X31 AND  (X14 and (X14_T >= 60) and (not X22));
+end_if; //** Prevent evolution in initial cycle
+
+////////////////////////////////////////////////////////////
+///////////////// ReSet Steps Above fired Tr ///////////////
+//####################### Page 1 ########################//
+////////////////////////////////////////////////////////////
+
+// ObjIdx=38 => Transition "t14"
+  // Steps Above: id=37 => X25 ;
+  // Steps Below: id=39 => X26 ;
+  If (t14) Then
+     X25:=False; 
+  End_If;
+// ObjIdx=40 => Transition "t15"
+  // Steps Above: id=39 => X26 ;
+  // Steps Below: id=41 => X27 ;
+  If (t15) Then
+     X26:=False; 
+  End_If;
+// ObjIdx=42 => Transition "t16"
+  // Steps Above: id=41 => X27 ;
+  // Steps Below: id=44 => X28 ;
+  If (t16) Then
+     X27:=False; 
+  End_If;
+// ObjIdx=43 => Transition "t17"
+  // Steps Above: id=41 => X27 ;
+  // Steps Below: id=45 => X29 ;
+  If (t17) Then
+     X27:=False; 
+  End_If;
+// ObjIdx=46 => Transition "t21"
+  // Steps Above: id=44 => X28 ;
+  // Steps Below: id=37 => X25 ;
+  If (t21) Then
+     X28:=False; 
+  End_If;
+// ObjIdx=47 => Transition "t19"
+  // Steps Above: id=45 => X29 ;
+  // Steps Below: id=48 => X30 ;
+  If (t19) Then
+     X29:=False; 
+  End_If;
+// ObjIdx=49 => Transition "t20"
+  // Steps Above: id=48 => X30 ;
+  // Steps Below: id=37 => X25 ;
+  If (t20) Then
+     X30:=False; 
+  End_If;
+// ObjIdx=56 => Transition "t22"
+  // Steps Above: id=53 => X32 ;
+  // Steps Below: id=52 => X31 ;
+  If (t22) Then
+     X32:=False; 
+  End_If;
+// ObjIdx=57 => Transition "t23"
+  // Steps Above: id=52 => X31 ;
+  // Steps Below: id=53 => X32 ;
+  If (t23) Then
+     X31:=False; 
+  End_If;
+
+////////////////////////////////////////////////////////////
+///////////////// Set Steps below fired Tr /////////////////
+//####################### Page 1 ########################//
+////////////////////////////////////////////////////////////
+
+// ObjIdx=38 => Transition "t14"
+  // Steps Above: id=37 => X25 ;
+  // Steps Below: id=39 => X26 ;
+  If (t14) Then 
+    X26 := True; 
+    X26_T := 0; 
+  End_If;
+// ObjIdx=40 => Transition "t15"
+  // Steps Above: id=39 => X26 ;
+  // Steps Below: id=41 => X27 ;
+  If (t15) Then 
+    X27 := True; 
+    X27_T := 0; 
+  End_If;
+// ObjIdx=42 => Transition "t16"
+  // Steps Above: id=41 => X27 ;
+  // Steps Below: id=44 => X28 ;
+  If (t16) Then 
+    X28 := True; 
+    X28_T := 0; 
+  End_If;
+// ObjIdx=43 => Transition "t17"
+  // Steps Above: id=41 => X27 ;
+  // Steps Below: id=45 => X29 ;
+  If (t17) Then 
+    X29 := True; 
+    X29_T := 0; 
+  End_If;
+// ObjIdx=46 => Transition "t21"
+  // Steps Above: id=44 => X28 ;
+  // Steps Below: id=37 => X25 ;
+  If (t21) Then 
+    X25 := True; 
+    X25_T := 0; 
+  End_If;
+// ObjIdx=47 => Transition "t19"
+  // Steps Above: id=45 => X29 ;
+  // Steps Below: id=48 => X30 ;
+  If (t19) Then 
+    X30 := True; 
+    X30_T := 0; 
+  End_If;
+// ObjIdx=49 => Transition "t20"
+  // Steps Above: id=48 => X30 ;
+  // Steps Below: id=37 => X25 ;
+  If (t20) Then 
+    X25 := True; 
+    X25_T := 0; 
+  End_If;
+// ObjIdx=56 => Transition "t22"
+  // Steps Above: id=53 => X32 ;
+  // Steps Below: id=52 => X31 ;
+  If (t22) Then 
+    X31 := True; 
+    X31_T := 0; 
+  End_If;
+// ObjIdx=57 => Transition "t23"
+  // Steps Above: id=52 => X31 ;
+  // Steps Below: id=53 => X32 ;
+  If (t23) Then 
+    X32 := True; 
+    X32_T := 0; 
+  End_If;
+
+////////////////////////////////////////////////////////////
+///// If step active increment MW timer of step @ %s16 /////
+//####################### Page 1 ########################//
+////////////////////////////////////////////////////////////
+
+  // ObjIdx=37 => Step "X25"
+  If (s16) and (X25) Then 
+    X25_T := X25_T+1;
+  end_if;
+  // ObjIdx=39 => Step "X26"
+  If (s16) and (X26) Then 
+    X26_T := X26_T+1;
+  end_if;
+  // ObjIdx=41 => Step "X27"
+  If (s16) and (X27) Then 
+    X27_T := X27_T+1;
+  end_if;
+  // ObjIdx=44 => Step "X28"
+  If (s16) and (X28) Then 
+    X28_T := X28_T+1;
+  end_if;
+  // ObjIdx=45 => Step "X29"
+  If (s16) and (X29) Then 
+    X29_T := X29_T+1;
+  end_if;
+  // ObjIdx=48 => Step "X30"
+  If (s16) and (X30) Then 
+    X30_T := X30_T+1;
+  end_if;
+  // ObjIdx=52 => Step "X31"
+  If (s16) and (X31) Then 
+    X31_T := X31_T+1;
+  end_if;
+  // ObjIdx=53 => Step "X32"
+  If (s16) and (X32) Then 
+    X32_T := X32_T+1;
+  end_if;
+
+////////////////////////////////////////////////////////////
+//////// If step active, execute its action code ///////////
+//####################### Page 1 ########################//
+////////////////////////////////////////////////////////////
+
+  // ObjIdx=39 => Step "X26" (code...)
+  If X26 Then 
+    temp12 := X12;
+    
+    temp13 := X13;
+    
+    temp14 := X14;
+    
+    
+    
+    X12:=False;
+    
+    X13:=False;
+    
+    X14:=False;
+    
+    
+    
+  End_If;
+  // ObjIdx=44 => Step "X28" (code...)
+  If X28 Then 
+    X12 := temp12;
+    
+    X13 := temp13;
+    
+    X14 := temp14;
+    
+    X14_T := 0;
+    
+  End_If;
+  // ObjIdx=48 => Step "X30" (code...)
+  If X30 Then 
+    X1 := True;
+    
+    X15 := False;
+    
+    X16 := False;
+    
+    X17 := False;
+    
+  End_If;
+  // ObjIdx=53 => Step "X32" (code...)
+  If X32 Then 
+    X1:=True;
+    
+    X4:=False;
+    
+    X5:=False;
+    
+    X6:=False;
+    
+    X7:=False;
+    
+    X11:=False;
+    
+    X12:=False;
+    
+    X13:=False;
+    
+    X14:=False;
+    
+    X15:=False;
+    
+    X16:=False;
+    
+    X17:=False;
+    
+    X18:=False;
+    
+    X19:=False;
+    
+    X20:=False;
+    
+    X21:=True;
+    
+    X22:=False;
+    
+    
+    
+  End_If;
+
+//######################################//
+//################ Page 0 ##############//
+//######################################//
+
+////////////////////////////////////////////////////////////
+///////////// If boot => Set Initial Steps /////////////////
+//####################### Page 0 ########################//
+////////////////////////////////////////////////////////////
+
+  If (sw0=0) Then
+  // ObjIdx=0 => INI_Step "X1"
+    X1 := True;
+  // ObjIdx=29 => INI_Step "X21"
+    X21 := True;
+  End_If;
+if (sw0>0) then  // ** Prevent evolution in initial cycle
+
+////////////////////////////////////////////////////////////
+///////////////// Calc Fired Transitions ///////////////////
+//####################### Page 0 ########################//
+////////////////////////////////////////////////////////////
+
+// ObjIdx=1 => Transition "t0"
+  // Steps Above: id=0 => X1 ;
+  // Steps Below: id=2 => X4 ;id=3 => X5 ;
+  t0 :=  X1 AND  (Inicia);
+// ObjIdx=6 => Transition "t1"
+  // Steps Above: id=2 => X4 ;
+  // Steps Below: id=4 => X6 ;
+  t1 :=  X4 AND  (M_min);
+// ObjIdx=7 => Transition "t2"
+  // Steps Above: id=3 => X5 ;
+  // Steps Below: id=5 => X7 ;
+  t2 :=  X5 AND  (X5_T > 50);
+// ObjIdx=8 => Transition "t3"
+  // Steps Above: id=4 => X6 ;id=5 => X7 ;
+  // Steps Below: id=9 => X11 ;
+  t3 :=  X6 AND  X7 AND  (True);
+// ObjIdx=16 => Transition "t4"
+  // Steps Above: id=10 => X12 ;
+  // Steps Below: id=13 => X15 ;
+  t4 :=  X12 AND  (Prato1);
+// ObjIdx=17 => Transition "t5"
+  // Steps Above: id=11 => X13 ;
+  // Steps Below: id=14 => X16 ;
+  t5 :=  X13 AND  (Prato2);
+// ObjIdx=18 => Transition "t6"
+  // Steps Above: id=12 => X14 ;
+  // Steps Below: id=15 => X17 ;
+  t6 :=  X14 AND  (M_max);
+// ObjIdx=19 => Transition "t7"
+  // Steps Above: id=9 => X11 ;
+  // Steps Below: id=10 => X12 ;id=11 => X13 ;id=12 => X14 ;
+  t7 :=  X11 AND  (Re Ciclo);
+// ObjIdx=20 => Transition "t8"
+  // Steps Above: id=13 => X15 ;id=14 => X16 ;id=15 => X17 ;
+  // Steps Below: id=21 => X18 ;
+  t8 :=  X15 AND  X16 AND  X17 AND  (True);
+// ObjIdx=24 => Transition "t9"
+  // Steps Above: id=23 => X20 ;
+  // Steps Below: id=9 => X11 ;
+  t9 :=  X20 AND  (M_min);
+// ObjIdx=25 => Transition "t10"
+  // Steps Above: id=22 => X19 ;
+  // Steps Below: id=23 => X20 ;
+  t10 :=  X19 AND  (X19_T > 30);
+// ObjIdx=26 => Transition "t11"
+  // Steps Above: id=21 => X18 ;
+  // Steps Below: id=22 => X19 ;
+  t11 :=  X18 AND  (X18_T > 70);
+// ObjIdx=31 => Transition "t12"
+  // Steps Above: id=29 => X21 ;
+  // Steps Below: id=30 => X22 ;
+  t12 :=  X21 AND  ((Re Ciclo) and (X12 or X13 or X14));
+// ObjIdx=32 => Transition "t13"
+  // Steps Above: id=30 => X22 ;
+  // Steps Below: id=58 => X33 ;
+  t13 :=  X22 AND  (not Ciclo);
+// ObjIdx=59 => Transition "t25"
+  // Steps Above: id=58 => X33 ;
+  // Steps Below: id=29 => X21 ;
+  t25 :=  X33 AND  (True);
+end_if; //** Prevent evolution in initial cycle
+
+////////////////////////////////////////////////////////////
+////////////////////////// Zone3 ///////////////////////////
+//####################### Page 0 ########################//
+////////////////////////////////////////////////////////////
+
+ if X22 Then
+ 
+ t4:=False;
+ 
+ t5:=False;
+ 
+ t6:=False;
+ 
+ end_if;
+ 
+
+////////////////////////////////////////////////////////////
+///////////////// ReSet Steps Above fired Tr ///////////////
+//####################### Page 0 ########################//
+////////////////////////////////////////////////////////////
+
+// ObjIdx=1 => Transition "t0"
+  // Steps Above: id=0 => X1 ;
+  // Steps Below: id=2 => X4 ;id=3 => X5 ;
+  If (t0) Then
+     X1:=False; 
+  End_If;
+// ObjIdx=6 => Transition "t1"
+  // Steps Above: id=2 => X4 ;
+  // Steps Below: id=4 => X6 ;
+  If (t1) Then
+     X4:=False; 
+  End_If;
+// ObjIdx=7 => Transition "t2"
+  // Steps Above: id=3 => X5 ;
+  // Steps Below: id=5 => X7 ;
+  If (t2) Then
+     X5:=False; 
+  End_If;
+// ObjIdx=8 => Transition "t3"
+  // Steps Above: id=4 => X6 ;id=5 => X7 ;
+  // Steps Below: id=9 => X11 ;
+  If (t3) Then
+     X6:=False;  X7:=False; 
+  End_If;
+// ObjIdx=16 => Transition "t4"
+  // Steps Above: id=10 => X12 ;
+  // Steps Below: id=13 => X15 ;
+  If (t4) Then
+     X12:=False; 
+  End_If;
+// ObjIdx=17 => Transition "t5"
+  // Steps Above: id=11 => X13 ;
+  // Steps Below: id=14 => X16 ;
+  If (t5) Then
+     X13:=False; 
+  End_If;
+// ObjIdx=18 => Transition "t6"
+  // Steps Above: id=12 => X14 ;
+  // Steps Below: id=15 => X17 ;
+  If (t6) Then
+     X14:=False; 
+  End_If;
+// ObjIdx=19 => Transition "t7"
+  // Steps Above: id=9 => X11 ;
+  // Steps Below: id=10 => X12 ;id=11 => X13 ;id=12 => X14 ;
+  If (t7) Then
+     X11:=False; 
+  End_If;
+// ObjIdx=20 => Transition "t8"
+  // Steps Above: id=13 => X15 ;id=14 => X16 ;id=15 => X17 ;
+  // Steps Below: id=21 => X18 ;
+  If (t8) Then
+     X15:=False;  X16:=False;  X17:=False; 
+  End_If;
+// ObjIdx=24 => Transition "t9"
+  // Steps Above: id=23 => X20 ;
+  // Steps Below: id=9 => X11 ;
+  If (t9) Then
+     X20:=False; 
+  End_If;
+// ObjIdx=25 => Transition "t10"
+  // Steps Above: id=22 => X19 ;
+  // Steps Below: id=23 => X20 ;
+  If (t10) Then
+     X19:=False; 
+  End_If;
+// ObjIdx=26 => Transition "t11"
+  // Steps Above: id=21 => X18 ;
+  // Steps Below: id=22 => X19 ;
+  If (t11) Then
+     X18:=False; 
+  End_If;
+// ObjIdx=31 => Transition "t12"
+  // Steps Above: id=29 => X21 ;
+  // Steps Below: id=30 => X22 ;
+  If (t12) Then
+     X21:=False; 
+  End_If;
+// ObjIdx=32 => Transition "t13"
+  // Steps Above: id=30 => X22 ;
+  // Steps Below: id=58 => X33 ;
+  If (t13) Then
+     X22:=False; 
+  End_If;
+// ObjIdx=59 => Transition "t25"
+  // Steps Above: id=58 => X33 ;
+  // Steps Below: id=29 => X21 ;
+  If (t25) Then
+     X33:=False; 
+  End_If;
+
+////////////////////////////////////////////////////////////
+///////////////// Set Steps below fired Tr /////////////////
+//####################### Page 0 ########################//
+////////////////////////////////////////////////////////////
+
+// ObjIdx=1 => Transition "t0"
+  // Steps Above: id=0 => X1 ;
+  // Steps Below: id=2 => X4 ;id=3 => X5 ;
+  If (t0) Then 
+    X4 := True;  X5 := True; 
+    X4_T := 0; X5_T := 0; 
+  End_If;
+// ObjIdx=6 => Transition "t1"
+  // Steps Above: id=2 => X4 ;
+  // Steps Below: id=4 => X6 ;
+  If (t1) Then 
+    X6 := True; 
+    X6_T := 0; 
+  End_If;
+// ObjIdx=7 => Transition "t2"
+  // Steps Above: id=3 => X5 ;
+  // Steps Below: id=5 => X7 ;
+  If (t2) Then 
+    X7 := True; 
+    X7_T := 0; 
+  End_If;
+// ObjIdx=8 => Transition "t3"
+  // Steps Above: id=4 => X6 ;id=5 => X7 ;
+  // Steps Below: id=9 => X11 ;
+  If (t3) Then 
+    X11 := True; 
+    X11_T := 0; 
+  End_If;
+// ObjIdx=16 => Transition "t4"
+  // Steps Above: id=10 => X12 ;
+  // Steps Below: id=13 => X15 ;
+  If (t4) Then 
+    X15 := True; 
+    X15_T := 0; 
+  End_If;
+// ObjIdx=17 => Transition "t5"
+  // Steps Above: id=11 => X13 ;
+  // Steps Below: id=14 => X16 ;
+  If (t5) Then 
+    X16 := True; 
+    X16_T := 0; 
+  End_If;
+// ObjIdx=18 => Transition "t6"
+  // Steps Above: id=12 => X14 ;
+  // Steps Below: id=15 => X17 ;
+  If (t6) Then 
+    X17 := True; 
+    X17_T := 0; 
+  End_If;
+// ObjIdx=19 => Transition "t7"
+  // Steps Above: id=9 => X11 ;
+  // Steps Below: id=10 => X12 ;id=11 => X13 ;id=12 => X14 ;
+  If (t7) Then 
+    X12 := True;  X13 := True;  X14 := True; 
+    X12_T := 0; X13_T := 0; X14_T := 0; 
+  End_If;
+// ObjIdx=20 => Transition "t8"
+  // Steps Above: id=13 => X15 ;id=14 => X16 ;id=15 => X17 ;
+  // Steps Below: id=21 => X18 ;
+  If (t8) Then 
+    X18 := True; 
+    X18_T := 0; 
+  End_If;
+// ObjIdx=24 => Transition "t9"
+  // Steps Above: id=23 => X20 ;
+  // Steps Below: id=9 => X11 ;
+  If (t9) Then 
+    X11 := True; 
+    X11_T := 0; 
+  End_If;
+// ObjIdx=25 => Transition "t10"
+  // Steps Above: id=22 => X19 ;
+  // Steps Below: id=23 => X20 ;
+  If (t10) Then 
+    X20 := True; 
+    X20_T := 0; 
+  End_If;
+// ObjIdx=26 => Transition "t11"
+  // Steps Above: id=21 => X18 ;
+  // Steps Below: id=22 => X19 ;
+  If (t11) Then 
+    X19 := True; 
+    X19_T := 0; 
+  End_If;
+// ObjIdx=31 => Transition "t12"
+  // Steps Above: id=29 => X21 ;
+  // Steps Below: id=30 => X22 ;
+  If (t12) Then 
+    X22 := True; 
+    X22_T := 0; 
+  End_If;
+// ObjIdx=32 => Transition "t13"
+  // Steps Above: id=30 => X22 ;
+  // Steps Below: id=58 => X33 ;
+  If (t13) Then 
+    X33 := True; 
+    X33_T := 0; 
+  End_If;
+// ObjIdx=59 => Transition "t25"
+  // Steps Above: id=58 => X33 ;
+  // Steps Below: id=29 => X21 ;
+  If (t25) Then 
+    X21 := True; 
+    X21_T := 0; 
+  End_If;
+
+////////////////////////////////////////////////////////////
+///// If step active increment MW timer of step @ %s16 /////
+//####################### Page 0 ########################//
+////////////////////////////////////////////////////////////
+
+  // ObjIdx=0 => Step "X1"
+  If (s16) and (X1) Then 
+    X1_T := X1_T+1;
+  end_if;
+  // ObjIdx=2 => Step "X4"
+  If (s16) and (X4) Then 
+    X4_T := X4_T+1;
+  end_if;
+  // ObjIdx=3 => Step "X5"
+  If (s16) and (X5) Then 
+    X5_T := X5_T+1;
+  end_if;
+  // ObjIdx=4 => Step "X6"
+  If (s16) and (X6) Then 
+    X6_T := X6_T+1;
+  end_if;
+  // ObjIdx=5 => Step "X7"
+  If (s16) and (X7) Then 
+    X7_T := X7_T+1;
+  end_if;
+  // ObjIdx=9 => Step "X11"
+  If (s16) and (X11) Then 
+    X11_T := X11_T+1;
+  end_if;
+  // ObjIdx=10 => Step "X12"
+  If (s16) and (X12) Then 
+    X12_T := X12_T+1;
+  end_if;
+  // ObjIdx=11 => Step "X13"
+  If (s16) and (X13) Then 
+    X13_T := X13_T+1;
+  end_if;
+  // ObjIdx=12 => Step "X14"
+  If (s16) and (X14) Then 
+    X14_T := X14_T+1;
+  end_if;
+  // ObjIdx=13 => Step "X15"
+  If (s16) and (X15) Then 
+    X15_T := X15_T+1;
+  end_if;
+  // ObjIdx=14 => Step "X16"
+  If (s16) and (X16) Then 
+    X16_T := X16_T+1;
+  end_if;
+  // ObjIdx=15 => Step "X17"
+  If (s16) and (X17) Then 
+    X17_T := X17_T+1;
+  end_if;
+  // ObjIdx=21 => Step "X18"
+  If (s16) and (X18) Then 
+    X18_T := X18_T+1;
+  end_if;
+  // ObjIdx=22 => Step "X19"
+  If (s16) and (X19) Then 
+    X19_T := X19_T+1;
+  end_if;
+  // ObjIdx=23 => Step "X20"
+  If (s16) and (X20) Then 
+    X20_T := X20_T+1;
+  end_if;
+  // ObjIdx=29 => Step "X21"
+  If (s16) and (X21) Then 
+    X21_T := X21_T+1;
+  end_if;
+  // ObjIdx=30 => Step "X22"
+  If (s16) and (X22) Then 
+    X22_T := X22_T+1;
+  end_if;
+  // ObjIdx=33 => Step "Zone3"
+  If (s16) and (Zone3) Then 
+    Zone3_T := Zone3_T+1;
+  end_if;
+  // ObjIdx=34 => Step "Zone8"
+  If (s16) and (Zone8) Then 
+    Zone8_T := Zone8_T+1;
+  end_if;
+  // ObjIdx=58 => Step "X33"
+  If (s16) and (X33) Then 
+    X33_T := X33_T+1;
+  end_if;
+
+////////////////////////////////////////////////////////////
+//////// If step active, execute its action code ///////////
+//####################### Page 0 ########################//
+////////////////////////////////////////////////////////////
+
+  // ObjIdx=2 => Step "X4" (code...)
+  If X4 Then 
+    V6 := True;
+  End_If;
+  // ObjIdx=3 => Step "X5" (code...)
+  If X5 Then 
+    Direita := True;
+  End_If;
+  // ObjIdx=10 => Step "X12" (code...)
+  If X12 Then 
+    V1 := True;
+  End_If;
+  // ObjIdx=11 => Step "X13" (code...)
+  If X13 Then 
+    V3 := True;
+  End_If;
+  // ObjIdx=12 => Step "X14" (code...)
+  If X14 Then 
+    V5 := True;
+    Bomba := True;
+  End_If;
+  // ObjIdx=21 => Step "X18" (code...)
+  If X18 Then 
+    Motor_pa := True;
+    Esquerda := True;
+    V4 := True;
+    V2 := True;
+  End_If;
+  // ObjIdx=22 => Step "X19" (code...)
+  If X19 Then 
+    Motor_pa := True;
+  End_If;
+  // ObjIdx=23 => Step "X20" (code...)
+  If X20 Then 
+    V7 := True;
+  End_If;
+  // ObjIdx=33 => Step "Zone3" (code...)
+  If Zone3 Then 
+    if X22 Then
+    
+    t4:=False;
+    
+    t5:=False;
+    
+    t6:=False;
+    
+    end_if;
+    
+  End_If;
+  // ObjIdx=34 => Step "Zone8" (code...)
+  If Zone8 Then 
+    If (X22 and Externo) Then
+    
+       Prato1 := False;
+    
+       Prato2 := False;
+    
+       V5 := False;
+    
+       Bomba := False;
+    
+    End_if;
+    
+  End_If;
+  // ObjIdx=58 => Step "X33" (code...)
+  If X33 Then 
+    X14_T := X14_T - X22_T
+    
+  End_If;
+
+////////////////////////////////////////////////////////////
+////////////////////////// Zone8 ///////////////////////////
+//####################### Page 0 ########################//
+////////////////////////////////////////////////////////////
+
+ If (X22 and Externo) Then
+ 
+    Prato1 := False;
+ 
+    Prato2 := False;
+ 
+    V5 := False;
+ 
+    Bomba := False;
+ 
+ End_if;
+ 
+
+(*************** End of ST Code ****************)

@@ -1,0 +1,10 @@
+#+TITLE: S&A - Lab10 - I005
+#+SUBTITLE: Turma 1
+#+AUTHOR: Gonçalo Santos e Rafael Moura
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+* Printscreens
+[[file:Page0.PNG]]
+[[file:Page1.PNG]]
+
+* Código
+#+INCLUDE: STCode.txt example
