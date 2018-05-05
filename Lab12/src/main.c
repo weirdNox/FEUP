@@ -11,9 +11,6 @@
 #include <string.h>
 #include <conio.h>
 
-
-
-////////////////////////////////////////////////////////////////////////////////
 #ifdef WIN32
   void GOTOXY(int XPos, int YPos) { COORD Coord; Coord.X = XPos; Coord.Y = YPos; SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Coord); }
   #define CLEAR() system("cls")
@@ -21,10 +18,6 @@
   #define CLEAR() printf("\033[H\033[J")
   #define GOTOXY(x,y) printf("\033[%d;%dH", (x), (y))
 #endif
-
-
-////////////////////////////////////////////////////////////////////////////////
-
 
 #define ESQUERDA out.b0
 #define BOMBA_V5 out.b1
@@ -42,45 +35,25 @@
 #define PARAGEM  in.b4
 #define CICLO    in.b5
 
+#define MAX_STATES 128
+#define MAX_TRANSITIONS 128
 
-ms_timer timer1;  // Declare a timer (miliseconds)
+int States[MAX_STATES];
+int Transitions[MAX_TRANSITIONS];
+
+ms_timer timer1;
 
 int main()
 {
     initialize_all();
-   	start_timer(&timer1, 5000);  // initialize timer for first time (miliseconds)
+    start_timer(&timer1, 5000);
 
-	while (1)              // infinite control cycle
+    States[10] = 1;
+    States[50] = 1;
+
+	while (1)
 	{
-		read_all_inputs(); // global variables "in.b0" up to "in.b7" are updated from <<buttons>>
-
-
-        //Examples:
-        //out.b7 = in.b7;
-		//out.b3 = 1 - out.b3;
-		// if (in.b0) {printf(".");}    // if button 1, then print
-		// out.b1=(cur_time & 1);       // make led blick 1/10 sencod on, equal time off
-		//                              // cur_time in tenths of sec, uses timer0
-		//if (in.b2) out.b2=1-out.b2;  // if button2, then toggle out.b2
-
-		V7 = (cur_time & 0x02) ? 1 : 0 ;
-		V4 = (cur_time & 0x04) ? 1 : 0 ;
-		V3 = (cur_time & 0x08) ? 1 : 0 ;
-		V2 = (cur_time & 0x10) ? 1 : 0 ;
-		V1 = (cur_time & 0x20) ? 1 : 0 ;
-
-		//Timer Examples:
-		//if (get_timer(&timer1)) {       // If timer expired
-      	//    start_timer(&timer1, 1000); // Re-Start it
-      	//    out.b7=1-out.b7;            // and toggle out.b7
-        //}
-
-		if (get_timer(&timer1)) {       // If timer expired
-      	    start_timer(&timer1, 1000); // Re-Start it
-      	    ESQUERDA=1-ESQUERDA;        // and toggle out.b2
-        }
-
-    	//CLEAR();
+		read_all_inputs();
 
         GOTOXY(1,1);
         printf("%09.1f",cur_time/10.0);
@@ -93,13 +66,94 @@ int main()
 		printf("Saidas: ESQ=%01d B_V5=%01d MOT_PA=%01d V1=%01d V2=%01d V3=%01d V4=%01d V7=%01d\n\r",
     		            ESQUERDA, BOMBA_V5, MOTOR_PA, V1, V2, V3, V4, V7);
 
+    	// Deactivate outputs
+    	V7 = 0;
+		V4 = 0;
+		V3 = 0;
+		V2 = 0;
+		V1 = 0;
 
-		//////////////////// *** Escrever C�digo AQUI ***
+		// Set transitions
+    	if(States[10] && PRATO1) {
+    		Transitions[0] = 1;
+		}
+    	if(States[20] && PRATO2) {
+    		Transitions[1] = 1;
+		}
 
+    	if(States[50] && PARAGEM) {
+    		Transitions[6] = 1;
+		}
+    	if(States[60] && !PARAGEM) {
+    		Transitions[7] = 1;
+		}
+		///// FINAL DO CÁLCULO DAS TRANSIÇÕES /////
+
+		// Deactivate above steps
+    	if(Transitions[0]) {
+    		States[10] = 0;
+		}
+    	if(Transitions[1]) {
+    		States[20] = 0;
+		}
+
+    	if(Transitions[6]) {
+    		States[50] = 0;
+		}
+    	if(Transitions[7]) {
+    		States[60] = 0;
+		}
+
+		// Activate next steps
+    	if(Transitions[0]) {
+    		States[20] = 1;
+		}
+    	if(Transitions[1]) {
+    		States[10] = 1;
+		}
+
+    	if(Transitions[6]) {
+    		States[60] = 1;
+		}
+    	if(Transitions[7]) {
+    		States[50] = 1;
+		}
+
+		// Special output for hierarchy
+    	if(States[60]) {
+    		States[10] = 1;
+    		States[20] = 0;
+		}
+
+		// Activate outputs
+    	if(States[10]) {
+    		V1 = 1;
+		}
+    	if(States[20]) {
+    		V2 = 1;
+		}
+
+    	if(States[50]) {
+    		V3 = 1;
+		}
+
+		printf("Grafcet G1\n");
+		printf("State 10: %d\nState 20: %d\n\n", States[10], States[20]);
+
+		printf("Grafcet G2\n");
+		printf("State 50: %d\nState 60: %d\n\n", States[50], States[60]);
+
+		// Reset all transitions
+		{
+			int i;
+			for(i = 0; i < MAX_TRANSITIONS; ++i) {
+				Transitions[i] = 0;
+			}
+		}
 
 		fflush(stdout);
 
-		write_all_outputs(); // write global variables "out.b0" up to "out.b7" the <<leds>>
+		write_all_outputs();
 
 		if (kbhit()) {
 			if (getch()==27) break;

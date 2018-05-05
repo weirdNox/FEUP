@@ -1,0 +1,19 @@
+#+TITLE: S&A - Lab12 Aula 1 - I005
+#+SUBTITLE: Bancada 9
+#+AUTHOR: Gonçalo Santos e Rafael Moura, Turma 1
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+* Grafcets
+#+ATTR_LATEX: :width 190px
+[[file:Grafcets1e2.jpg]]
+
+* Funcionalidades conseguidas
+- Os 2 Grafcets implementados, com:
+  - Etapas
+  - Transições
+  - Saídas associadas a etapas
+  - Hierarquia (feita com a ordem correta dos outputs)
+
+- Debug com impressão do estado de ambos os Grafcets
+
+* Código
+#+INCLUDE: src/main.c src C
