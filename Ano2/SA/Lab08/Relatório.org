@@ -1,0 +1,11 @@
+#+TITLE: S&A - Lab8 - I005
+#+SUBTITLE: Turma 1
+#+AUTHOR: Gonçalo Santos e Rafael Moura
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+* Printscreens
+[[file:1.PNG]]
+
+[[file:2.PNG]]
+
+* Ficheiro FEF
+#+INCLUDE: LAB78_PL7_T01_B09_GONCALOSANTOS+RAFAELMOURA.FEF example

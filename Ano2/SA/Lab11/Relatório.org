@@ -1,0 +1,14 @@
+#+TITLE: S&A - Lab11 - I005
+#+SUBTITLE: Turma 1
+#+AUTHOR: Gonçalo Santos e Rafael Moura
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+* Printscreens
+[[file:DTEs.png]]
+[[file:1.PNG]]
+[[file:2.PNG]]
+
+* Código PRL
+#+INCLUDE: PRL.st src
+
+* Ficheiro FEF
+#+INCLUDE: AppCode.FEF src

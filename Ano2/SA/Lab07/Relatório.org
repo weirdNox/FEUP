@@ -1,0 +1,10 @@
+#+TITLE: S&A - Lab7 - I005
+#+SUBTITLE: Turma 1
+#+AUTHOR: Gonçalo Santos e Rafael Moura
+#+OPTIONS: toc:nil
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+
+#+ATTR_LATEX: :height 20cm
+[[file:Preparation.jpg]]
+#+ATTR_LATEX: :height 20cm
+[[file:Grafcet.PNG]]

@@ -1,0 +1,28 @@
+#+TITLE: S&A - Lab12 Aula 2 - I005
+#+SUBTITLE: Bancada 9
+#+DATE: 2018-05-18 15:30
+#+AUTHOR: Gonçalo Santos e Rafael Moura, Turma 1
+#+OPTIONS: toc:nil
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+Na preparação desta aula fizemos um sistema genérico de Grafcets, o que nos permitiu
+resolver o problema da aula com grande rapidez e facilidade de debugging.
+
+Uma vez que é um projeto por si só, em vez de colocar aqui o =main.c= isoladamente, ponho
+o link para o seu [[https://github.com/weirdNox/Generic-Grafcet/][repositório no GitHub (https://github.com/weirdNox/Generic-Grafcet/)]]. O
+repositório inclui um vídeo do funcionamento.
+
+No momento da aula só havia suporte para Linux, mas o suporte para Windows deve ser
+trivial de adicionar.
+
+* Funcionalidades
+- Sistema completamente genérico, com número variável de Grafcets, etapas e transições
+- Inputs e outputs customizáveis
+  - Os inputs têm funcionalidade de RE e FE
+- Informação de debug gerada automaticamente
+  - Com cores para facilitar a análise
+- Temporizadores de estados ativos
+- Supervisão e hierarquia
+  - Funcionalidade de congelamento
+
+* Grafcets
+[[file:GrafcetAula2.png]]
