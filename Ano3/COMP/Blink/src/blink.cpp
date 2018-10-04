@@ -2,26 +2,31 @@
 
 enum {
     LED = 13,
+    DELAY = 250,
 };
 
-#if 0
+#if 1
+
 void setup() {
     pinMode(LED, OUTPUT);
 }
 
 void loop() {
     digitalWrite(LED, true);
-    delay(1000);
+    delay(DELAY);
     digitalWrite(LED, false);
-    delay(1000);
+    delay(DELAY);
 }
+
 #else
+
 void setup() {
     TRISFCLR = 0x0001;
 }
 
 void loop() {
     LATFINV = 0x0001;
-    delay(1000);
+    delay(DELAY);
 }
+
 #endif
