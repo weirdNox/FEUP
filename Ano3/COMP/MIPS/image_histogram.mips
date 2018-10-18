@@ -1,0 +1,43 @@
+        .data
+image:  .space  1024
+hist:   .word   0 : 256                 # 256 tons de cinzento
+
+        .text
+        la      $t0, image
+        li      $t1, 1024
+        add     $t1, $t0, $t1
+fill_loop:
+        # Random value 0 <= result < 256
+        li      $a0, 12123              # Seed
+        li      $a1, 256
+        li      $v0, 42
+        syscall
+        sb      $a0, ($t0)
+        addi    $t0, $t0, 1
+        bne     $t0, $t1, fill_loop
+
+        la      $a0, image
+        la      $a1, hist
+        jal     build_hist
+
+        li      $v0, 10
+        syscall
+
+# Histogram building routine
+# Arguments
+#   - $a0 :: Image base (monochromatic, with 1024 bytes)
+#   - $a1 :: Histogram base (with 256 words, for every possible shade of gray)
+build_hist:
+        add     $t0, $zero, $a0
+        li      $t1, 1024
+        add     $t1, $t0, $t1
+hist_loop:
+        lb      $t2, ($t0)
+        sll     $t2, $t2, 2
+        add     $t2, $a1, $t2
+        lw      $t3, ($t2)
+        addi    $t3, $t3, 1
+        sw      $t3, ($t2)
+        addi    $t0, $t0, 1
+        bne     $t0, $t1, hist_loop
+        jr      $ra
