@@ -1,0 +1,70 @@
+        .eqv    NUM_LIMIT 100
+        .eqv    NUM_SUB -50
+
+        .data
+vector: .half   0:10
+size:   .word   10
+
+        .text
+        jal     fill
+        jal     print
+        jal     func
+        jal     print
+
+        li      $v0, 10
+        syscall
+
+fill:   la      $t0, vector
+        la      $t1, size
+        lw      $t1, ($t1)
+        sll     $t1, $t1, 1
+        add     $t1, $t0, $t1
+        # Set seed for reproducible runs
+        li      $a0, 0
+        li      $a1, 13985
+        li      $v0, 40
+        syscall
+fill_loop:
+        li      $a0, 0
+        li      $a1, NUM_LIMIT
+        li      $v0, 42
+        syscall
+        addi    $a0, $a0, NUM_SUB
+        sh      $a0, ($t0)
+        addi    $t0, $t0, 2
+        bne     $t0, $t1, fill_loop
+        jr      $ra
+
+
+print:  la      $t0, vector
+        la      $t1, size
+        lw      $t1, ($t1)
+        sll     $t1, $t1, 1
+        add     $t1, $t0, $t1
+print_loop:
+        lh      $a0, ($t0)
+        li      $v0, 1
+        syscall
+        li      $a0, ' '
+        li      $v0, 11
+        syscall
+        addi    $t0, $t0, 2
+        bne     $t0, $t1, print_loop
+        li      $a0, '\n'
+        li      $v0, 11
+        syscall
+        jr      $ra
+
+func:   la      $t0, vector
+        la      $t1, size
+        lw      $t1, ($t1)
+        sll     $t1, $t1, 1
+        add     $t1, $t0, $t1
+loop:   lh      $t2, ($t0)
+        andi    $t3, $t2, 1
+        beq     $t3, $zero, after
+        sub     $t2, $zero, $t2
+        sh      $t2, ($t0)
+after:  addi    $t0, $t0 2
+        bne     $t0, $t1, loop
+        jr $ra
