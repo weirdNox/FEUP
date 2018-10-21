@@ -1,0 +1,59 @@
+        .eqv    SIZE 10
+        .eqv    NUM_LIMIT 100
+
+        .data
+vec:    .word   0:SIZE
+
+        .text
+        la      $t0, vec
+        li      $s0, SIZE
+        sll     $s0, $s0, 2
+        add     $s0, $t0, $s0
+
+        # Set seed for reproducible runs
+        li      $a0, 0
+        li      $a1, 13985
+        li      $v0, 40
+        syscall
+
+fill_loop:
+        li      $a0, 0
+        li      $a1, NUM_LIMIT
+        li      $v0, 42
+        syscall
+        sw      $a0, ($t0)
+        addi    $t0, $t0, 4
+        bne     $t0, $s0, fill_loop
+
+        # Insertion sort
+        la      $t0, vec
+        addi    $t1, $t0, 4
+outer_loop:
+        add     $t2, $zero, $t1
+inner_loop:
+        beq     $t0, $t2, after_loop
+        lw      $t3, -4($t2)
+        lw      $t4,  0($t2)
+        slt     $t5, $t4, $t3
+        beq     $t5, $zero, after_loop
+        sw      $t3,  0($t2)
+        sw      $t4, -4($t2)
+        addi    $t2, $t2, -4
+        j       inner_loop
+after_loop:
+        addi    $t1, $t1, 4
+        bne     $t1, $s0, outer_loop
+
+        la      $t0, vec
+print_loop:
+        lw      $a0, ($t0)
+        li      $v0, 1
+        syscall
+        li      $a0, ' '
+        li      $v0, 11
+        syscall
+        addi    $t0, $t0, 4
+        bne     $t0, $s0, print_loop
+
+        li      $v0, 10
+        syscall

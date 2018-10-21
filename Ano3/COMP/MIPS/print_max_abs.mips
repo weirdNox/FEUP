@@ -1,0 +1,39 @@
+        .data
+query:  .asciiz "Insert two numbers:\n"
+resultstr: .asciiz "Number with maximum absolute value: "
+
+        .text
+        la      $a0, query
+        li      $v0, 4
+        syscall
+
+        li      $v0, 5
+        syscall
+        add     $s0, $zero, $v0         # Save first argument
+        add     $a0, $zero, $s0
+        jal     abs
+        add     $s1, $zero, $a0         # First argument absolute
+
+        li      $v0, 5
+        syscall
+        add     $s2, $zero, $v0         # Save second argument
+        add     $a0, $zero, $s2
+        jal     abs
+
+        slt     $t0, $s1, $a0
+        beq     $t0, $zero, end
+        add     $s0, $zero, $s2
+
+end:    la      $a0, resultstr
+        li      $v0, 4
+        syscall
+        add     $a0, $zero, $s0
+        li      $v0, 1
+        syscall
+
+        li      $v0, 10
+        syscall
+
+abs:    bgez    $a0, abs_end
+        sub     $a0, $zero, $a0
+abs_end:jr      $ra
