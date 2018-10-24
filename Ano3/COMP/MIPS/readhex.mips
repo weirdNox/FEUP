@@ -1,0 +1,24 @@
+        .data
+strhex: .asciiz "1A0281FF"
+
+        .text
+        la      $a0, strhex
+        add     $v0, $zero, $zero
+
+readhex:lb      $t0, ($a0)
+        beq     $t0, $zero, fim
+        sll     $v0, $v0, 4
+        slti    $t1, $t0, 58
+        beq     $t1, $zero, letter
+        addi    $t0, $t0, -48
+        or      $v0, $v0, $t0
+        j       iter
+letter: addi    $t0, $t0, -65
+        addi    $t0, $t0, 10
+        or      $v0, $v0, $t0
+
+iter:   addi    $a0, $a0, 1
+        j       readhex
+
+fim:    li      $v0, 10
+        syscall
