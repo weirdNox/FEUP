@@ -1,0 +1,4 @@
+Comando de inicialização:
+#+BEGIN_SRC sh
+pio init --board uno_pic32
+#+END_SRC
