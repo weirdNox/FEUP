@@ -75,8 +75,36 @@ token nextToken(cmd *Cmd) {
         case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9': {
             Token.Type = Token_Number;
 
-            while((Next = Cmd->Buffer[Cmd->Parse]) && Next >= '0' && Next <= '9') {
-                Token.Number = Token.Number*10 + (Next - '0');
+            int Base = 10;
+            if(Next == '0') {
+                ++Cmd->Parse;
+                Next = Cmd->Buffer[Cmd->Parse];
+
+                switch(Next) {
+                    case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': {
+                        Base = 8;
+                    } break;
+
+                    case 'd': case 'D': {
+                        Base = 10;
+                        ++Cmd->Parse;
+                    } break;
+
+                    case 'x': case 'X': {
+                        Base = 16;
+                        ++Cmd->Parse;
+                    } break;
+
+                    default: break;
+                }
+            }
+
+            while((Next = Cmd->Buffer[Cmd->Parse]) &&
+                  ((Next >= '0' && Next <= '9') || (Next >= 'A' && Next <= 'Z') || (Next >= 'a' && Next <= 'z'))) {
+                int Digit = Next < 'A' ? Next - '0' : (Next & ~0x20) - 'A' + 10;
+                if(Digit < Base) {
+                    Token.Number = Token.Number*Base + Digit;
+                }
                 ++Cmd->Parse;
             }
 
