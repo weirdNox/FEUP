@@ -1,0 +1,635 @@
+\documentclass[10pt,landscape,a4paper]{article}
+\usepackage{etoolbox}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[nosf]{kpfonts}
+\usepackage{sourcesanspro}
+\usepackage[portuguese]{babel}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage[top=6.35mm,bottom=6.35mm,left=6.35mm,right=6.35mm% ,showframe
+]{geometry}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{breqn}
+\usepackage{xcolor}
+
+\definecolor{section}{cmyk}{1,.72,0,.38}
+\definecolor{math}{cmyk}{1,.72,0,.38}
+\definecolor{highlight}{cmyk}{0,0.3,0.5,0.41}
+
+\renewcommand\emph[1]{\textcolor{highlight}{#1}}
+\everymath{\color{math}}
+\patchcmd{\mathdisplay}{$$}{$$\begingroup\color{math}}{}{}
+\patchcmd{\endmathdisplay}{$$}{\endgroup$$}{}{}
+
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}{.2ex plus 1pt}{.2ex}{\sffamily\small\bfseries\color{section}}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}{.2ex}{.2ex}{\sffamily\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}{.2ex}{.2ex}{\footnotesize\sffamily\bfseries}}
+
+\g@addto@macro \small {%
+  \setlength\abovedisplayskip{0pt plus 0pt minus 0pt}%
+  \setlength\belowdisplayskip{0pt plus 0pt minus 0pt}%
+  \setlength{\abovedisplayshortskip}{0pt plus 0pt minus 0pt}%
+  \setlength{\belowdisplayshortskip}{0pt plus 0pt minus 0pt}%
+}
+
+\flushbottom
+\setlength{\maxdepth}{0pt}
+\setlength{\parindent}{0pt}
+\renewcommand{\baselinestretch}{.8}
+\pagestyle{empty}
+\AtBeginDocument{\small}
+\makeatother
+
+\newcommand*\FixMathSpacing{\nointerlineskip}
+\newenvironment{nscenter}{\parskip=0pt\par\nopagebreak\centering}{\par\vspace{.05cm}\noindent\ignorespacesafterend}
+
+% ------------------------------------------------------------------------------------------
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\makeatletter
+\let\oldabs\abs
+\let\oldnorm\norm
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+\newcommand*\Fou[1]{\operatorname{\mathcal{F}}\left\{#1\right\}}
+\newcommand*\iFou[1]{\operatorname{\mathcal{F}^{-1}}\left\{#1\right\}}
+\newcommand*\Lap[1]{\operatorname{\mathcal{L}}\left\{#1\right\}}
+\newcommand*\iLap[1]{\operatorname{\mathcal{L}^{-1}}\left\{#1\right\}}
+\newcommand*\Real[1]{\operatorname{Re}\{#1\}}
+\newcommand*{\E}[1]{\operatorname{E}\left[#1\right]}
+\newcommand*{\Var}[1]{\operatorname{Var}\left[#1\right]}
+\newcommand*{\cov}[1]{\operatorname{cov}\left(#1\right)}
+\newcommand*{\tr}[1]{\operatorname{tr}\left(#1\right)}
+\newcommand*{\diag}[1]{\operatorname{diag}\left(#1\right)}
+\DeclareMathOperator{\Image}{Im}
+\DeclareMathOperator{\rank}{rank}
+\def\vetpp/{v\textsubscript{pp}}
+\def\valpp/{$\color{black}\lambda$\textsubscript{pp}}
+
+\begin{document}
+\begin{multicols*}{5}
+  \section{Álgebra}
+  Matriz $A_{n\times{}n}$, $a$ \valpp/ distintos, $b$ \vetpp/ LI \\
+  Polinómio característico $\Delta(s) = |sI - A|$ \\
+  $a \le b \le n$. $n \text{ \vetpp/ } \Rightarrow$ diagonalizável. \\
+  Diagonalização: $V = \begin{bsmallmatrix}v_{pp1} & v_{pp2} &\dots\end{bsmallmatrix} \Rightarrow \diag{\lambda_i} = V^{-1}AV$. \\
+  Um \valpp/ \emph{defetivo} tem multiplicidade
+  $\text{\color{math}geométrica (subespaço)} < \text{\color{math}algébrica}$; a sua matriz pode ser
+  diagonalizada para a forma de Jordan. Cada bloco tem o $\lambda$ na diagonal, com uma diagonal de $1$
+  acima. O número de blocos por $\lambda$ é a sua multiplicidade geométrica.
+
+  \subsection{Exponencial matricial, $e^{X}$}
+  \FixMathSpacing
+  \begin{gather*}
+    \textstyle e^{At} = \iLap{(sI - A)^{-1}} = \sum_{k=0}^{\infty}\frac{1}{k!}(At)^k \\
+    \textstyle e^{A0} = I \quad \frac{d}{dt}e^{At} = Ae^{At} \\
+    \textstyle e^{A^T} = \left(e^{A}\right)^T \quad e^{A^*} = \left(e^{A}\right)^*
+  \end{gather*}
+  $At$ diagonal, $e^{At} = \diag{e^{\lambda{}_it}}$. \\
+  Diagonalizável, $e^{At} = V\diag{e^{\lambda{}_it}}V^{-1}$. \\
+  Na forma de Jordan, fica com termos $\frac{e^{\lambda_it}t^k}{k!}$ acima da diagonal.
+
+  \section{Tranformada de Laplace}
+  \FixMathSpacing
+  \bgroup
+  \hfuzz=3.9pt
+  \begin{gather*}
+    \mathclap{t^n \leftrightarrow \frac{n!}{s^{n+1}} \quad e^{at} \leftrightarrow \frac{1}{s-a} \quad \delta(t-c) \leftrightarrow e^{-cs}} \\
+    \sin(at) \leftrightarrow \frac{a}{s^2 + a^2} \quad \cos(at) \leftrightarrow \frac{s}{s^2 + a^2}
+  \end{gather*}
+  \egroup
+  \section{Representação espaço de estados}
+  \FixMathSpacing
+  \begin{align*}
+    \frac{Y(s)}{U(s)} &= \frac{b_ns^n + b_{n-1}s^{n-1} + \dotsb + b_1s + b_0}{s^n + a_{n-1}s^{n-1} + \dotsb + a_1s + a_0} \\
+                      &= C(sI - A)^{-1}B +D
+  \end{align*}
+  \subsection{Formas canónicas}
+  Na \emph{controlável}, a \textit{última linha} de $A$ é $[-a_0 \cdots -a_{n-1}]$ e a de $B$ é $1$.
+  ${C = \left[b_0 - a_0b_n | b_1 - a_1b_n | \cdots\right]}$ e $D = \left[b_n\right]$. \\
+  A \emph{observável} é $(A^T, C^T, B^T, D)$.
+
+  \subsection{Mudanças de base}
+  $x = Tz \to (T^{-1}AT, T^{-1}B, CT, D)$
+
+  \subsection{Evolução temporal}
+  \begin{nscenter}
+    $\textcolor{highlight}{x(t)} = e^{At}x(0) + \int_0^t e^{A(t-\tau)}Bu(\tau)\,d\tau$ \\
+    $y(t) = C\textcolor{highlight}{x(t)} + Du(t)$
+  \end{nscenter}
+
+  \subsubsection{Análise modal (reposta livre)}
+  $x(0)$ associado a $\lambda \in \mathbb{R} \Rightarrow x(t) = e^{\lambda t}x(0)$.
+
+  \vspace{.1cm}
+  $v = u + jw$ associado a $\lambda = \alpha + j\omega$, os conjugados também o são.
+  $x(0) = u \Rightarrow x(t) = e^{\alpha{}t}\left[\cos(\omega t)u - \sin(\omega t)w\right]$ $\alpha = 0 \to$
+  elípse, $\alpha > 0 \to$ espiral divergente, $\alpha < 0 \to$ convergente.
+
+  \section{Estabilidade}
+  \subsection{Interna}
+  Caracteriza a evolução do estado do sistema com $u(t) = 0$, definida por $\dot{x}(t) = Ax(t)$.
+  Ponto de equilíbrio: $x^*: Ax^* = 0$. Para estabilidade interna, $x^* = 0$. Um sistema é:
+
+  (Assintoticamente) \emph{Estável}: Todas as trajetórias convergem para 0, $\Real{\lambda_i} < 0$ \\
+  \emph{Lyapunov Estável}: Todas as trajetórias são limitadas,
+  $\Real{\lambda_i} < 0 \lor (\Real{\lambda_i} = 0 \land \lambda_i \text{
+    \color{math}\textcolor{highlight}{não} é defetivo})$
+
+  \subsection{Externa (BIBO)}
+  Pólos da FT têm todos parte real negativa. Estabilidade interna $\Rightarrow$ externa.
+
+  \section{Observabilidade}
+  $x_0$ é \emph{não observável} se $u(t) = 0,\, x(0) = x_0 \Rightarrow y(t) = 0$. \\
+  $\Gamma_o(A,C) = \begin{bsmallmatrix}C \\ \dots \\ CA^{n-1}\end{bsmallmatrix}$. Um sistema é observável se o estado nulo
+  for o único não observável
+  $\Leftrightarrow \rank{\Gamma_o} = n \Leftrightarrow \rank{\begin{bmatrix} \lambda_iI - A \\
+      C \end{bmatrix}} = n\, \forall \lambda_i$. O subespaço não observável é $\ker{\Gamma_o}$.
+
+  \section{Controlabilidade}
+  $x^*$ é \emph{atingível} a partir de $x_0$ se existir $u$ que leve o sistema de $x_0$ a $x^*$ em tempo
+  finito. $x^*$ é \emph{controlável} se for atingível a partir de $0$. $x^*$ é \emph{zero-controlável} se
+  $0$ for atingível a partir de $x^*$. $\Gamma_c(A,B) = \left[B\; AB\; \cdots\; A^{n-1}B\right]$. Um
+  sistema é controlável se é possível atingir qualquer
+  $x^* \Leftrightarrow \rank{\Gamma_c} = n \Leftrightarrow \rank{\begin{bmatrix} \lambda_iI - A &
+      B \end{bmatrix}} = n\, \forall \lambda_i$. O subespaço controlável é o espaço das colunas (imagem)
+  de $\Gamma_c$.
+
+  \section{Cont./Obs. e forma de Jordan}
+  É controlável se só houver um bloco por cada \valpp/ distinto, e se as linhas de $B$ associadas às
+  últimas linhas de cada bloco sejam não nulas. Para observável é o mesmo, mas com $C$ e primeiras.
+
+  \section{Decomposições de Kalman}
+  FT: $\tilde{C}_{1}(sI_r - \tilde{A}_{11})^{-1}\tilde{B}_{1} + D$.
+  \subsection{De controlabilidade}
+  $b_1, \dotsc, b_r$ formam uma base do subespaço \emph{controlável}. $b_{r+1}, \dotsc, b_n$ completam a base para
+  $\mathbb{R}^n$. Mudança de coordenadas $x = Tz,\, T = \left[b_1 | \cdots | b_n\right]$.
+  $A_{11} \in \mathbb{R}^{r\times r},\, \left(\tilde{A}_{11}, \tilde{B}_{1}, \tilde{C}_{1}, D\right)$
+  são o \emph{subsistema controlável}. $\tilde{A}_{21} = \tilde{B}_2 = 0$
+
+  \subsection{De observabilidade}
+  $b_{r+1}, \dotsc, b_n$ formam uma base do subespaço \emph{não observável}. $b_{1}, \dotsc, b_r$ completam
+  a base para $\mathbb{R}^n$. Mudança de coordenadas $x = Tz,\, T = \left[b_1 | \cdots | b_n\right]$.
+  $A_{11} \in \mathbb{R}^{r\times r},\, \left(\tilde{A}_{11}, \tilde{B}_{1}, \tilde{C}_{1}, D\right)$ são
+  o \emph{subsistema observável}. $\tilde{A}_{12} = \tilde{C}_2 = 0$
+
+  \section{Realimentação de estado}
+  \FixMathSpacing
+  \begin{gather*}
+    K = \begin{bmatrix} k_0 & \dots & k_{n-1} \end{bmatrix} \\
+    u = -Kx \Rightarrow \dot{x} = (A - BK)x \\
+    \mathclap{\abs{sI - (A-BK)} = \alpha(s) = s^n + d_{n-1}s^{n-1} + \dotsb}
+  \end{gather*}
+  \subsection{Forma canónica controlável}
+  A última linha de $A-BK$ fica \[ -a_i - k_i = -d_i \Leftrightarrow k_i = d_i - a_i \]
+  \subsection{Sistema controlável}
+  Aplica-se a \emph{fórmula de Ackermann},
+  \[K = [0\;0\;\cdots\;1]\left[\Gamma_c(A, B)\right]^{-1}\alpha(A)\]
+
+  \subsection{Sistema não controlável}
+  Faz-se a decomposição de Kalman de controlabilidade, $x = T\tilde{x}$. Vamos ter
+  $u = -\tilde{K}\tilde{x} = -\begin{bmatrix}\tilde{K}_1 & \tilde{K}_2 \end{bmatrix}\tilde{x}$, onde
+  $\tilde{K}_1 = \left[0\;0\;\cdots\;1\right]\begin{bmatrix}\Gamma_c(\tilde{A}_{11},
+    \tilde{B}_1)\end{bmatrix}^{-1} \alpha(A)$ é a realimentação da parte controlável, $\tilde{K}_2$
+  qualquer. $u = -Kx = -\tilde{K}\tilde{x} \Rightarrow K = \tilde{K}T^{-1}$. \\
+  Um sistema é \emph{estabilizável} se os modos não controláveis forem estáveis.
+  \section{Observadores de estado}
+  \FixMathSpacing
+  \begin{gather*}
+    L = \begin{bmatrix} l_0 & \dots & l_{n-1} \end{bmatrix}^T \\
+    \begin{aligned}
+      \dot{\hat{x}} &= A\hat{x} + Bu + L[y - (C\hat{x} + Du)] \\
+      &= LCx + (A-LC)\hat{x} + Bu
+    \end{aligned} \\
+    e = x-\hat{x} \quad \dot{e} = \dot{x} - \dot{\hat{x}} = (A - LC)e \\
+    \mathclap{\abs{sI-(A-LC)} = \beta(s) = s^n+d_{n-1}s^{n-1}+\dotsb}
+  \end{gather*}
+  Se os \valpp/ de $A-LC$ forem todos negativos, $e\to0$. Os \valpp/ de uma matriz mantêm-se depois de
+  uma transposição, logo são os mesmos \valpp/ que os de $A^T - C^TL^T$. Se o par $(A^T, C^T)$ for
+  \emph{controlável} ($\equiv$ par $(A,C)$ ser observável), podemos colocar os seus valores próprios onde
+  quisermos!
+  \subsection{Forma canónica observável}
+  A última coluna de $A-LC$ fica \[ -a_i - l_i = -d_i \Leftrightarrow l_i = d_i - a_i\]
+  \subsection{Sistema observável}
+  \FixMathSpacing
+  \[{L = \beta(A)[\Gamma_o(A,C)]^{-1}[0\;0\;\cdots\;1]^T}\]
+
+  \subsection{Sistema não observável}
+  Faz-se a decomposição Kalman $x = T\tilde{x}$. Obtém-se $\tilde{L}_1$ com a fórmula de Ackermann.
+  $L = T\left[\tilde{L}_1^T \tilde{L}_2^T\right]^T$.
+  Um sistema é \emph{detetável} se os modos não observáveis forem estáveis. \\
+  Com realimentação $u = -K\hat{x}$, ficamos com a seguinte dinâmica:
+  \begin{align*}
+    \begin{bmatrix}
+      \dot{x} \\ \dot{\hat{x}}
+    \end{bmatrix}
+    &=
+      \begin{bmatrix}
+        A & -BK \\ LC & A-LC-BK
+      \end{bmatrix} \begin{bmatrix} x \\ \hat{x} \end{bmatrix} \\
+    \begin{bmatrix}
+      \dot{x} \\ \dot{e}
+    \end{bmatrix}
+    &=
+    \begin{bmatrix}
+      A-BK & BK \\ 0 & A-LC
+    \end{bmatrix} \begin{bmatrix} x \\ e \end{bmatrix}
+  \end{align*}
+
+  \section{Seguimento e rejeição}
+  ${G_c(s) = \frac{n_c(s)}{d_c(s)}}$ e ${G_p(s) = \frac{n_p(s)}{d_p(s)}}$ são o compensador e a planta,
+  sem fatores comuns entre nada que possa cortar, e em MF estável $\Leftrightarrow {1 + G_c(s)G_p(s)}$
+  tem todos os zeros no SPE.
+  \subsection{Seguimento de referências}
+  \FixMathSpacing
+  \begin{align*}
+    E(s) &= \frac{1}{1 + G_c(s)G_p(s)}R(s)\\
+         &= \frac{d_c(s)d_p(s)}{d_c(s)d_p(s) + n_c(s)n_p(s)}\frac{n_r(s)}{d_r(s)}
+  \end{align*}
+  Se os pólos da fração da esquerda são estáveis, então é preciso anular os pólos instáveis de
+  $R \Leftrightarrow$ zeros \emph{instáveis} de $d_r$ têm de estar em $d_cd_p$.
+
+  \subsection{Rejeição de perturbações}
+  \FixMathSpacing
+  \begin{align*}
+    Y(s) &= \frac{G_p(s)}{1 + G_c(s)G_p(s)}D(s)\\
+         &= \frac{d_c(s)n_p(s)}{d_c(s)d_p(s) + n_c(s)n_p(s)}\frac{n_d(s)}{d_d(s)}
+  \end{align*}
+  Se os pólos da fração da esquerda são estáveis, então é preciso anular os pólos instáveis de
+  $D \Leftrightarrow$ zeros \emph{instáveis} de $d_d$ têm de estar em $d_cn_p$.
+  \subsection{Dinâmica acrescentada}
+  \FixMathSpacing
+  \begin{align*}
+    \begin{bmatrix} \dot{x} \\ \dot{x}_a \end{bmatrix} =
+    &\begin{bmatrix}
+      A-BK & BK_a \\
+      B_a(DK-C) & A_a - B_aDK_a
+    \end{bmatrix} \begin{bmatrix} x \\ x_a \end{bmatrix} \\
+    + &\begin{bmatrix} 0 \\ B_a \end{bmatrix} r \\
+    y = &\begin{bmatrix} C-DK & DK_a \end{bmatrix} \begin{bmatrix} x \\ x_a \end{bmatrix}
+  \end{align*}
+  \subsection{Dinâmica acrescentada c/ obs.}
+  \FixMathSpacing
+  \begin{gather*}
+    \begin{bmatrix} \dot{x} \\ \dot{x}_a \\ \dot{\hat{x}} \end{bmatrix} = \begin{bmatrix} 0 \\ B_a \\ 0 \end{bmatrix} r + \\
+    \mathclap{
+      \begin{bmatrix}
+        A & BK_a  & -BK \\
+        -B_aC & A_a - B_aDK_a & B_aDK \\
+        LC & BK_a & A-LC-BK
+      \end{bmatrix} \begin{bmatrix} x \\ x_a \\ \hat{x} \end{bmatrix}
+    } \\
+    y = \begin{bmatrix} C & DK_a & -DK \end{bmatrix} \begin{bmatrix} x \\ x_a \\ \hat{x} \end{bmatrix}
+  \end{gather*}
+  Também pode ser representado por:
+  \begin{gather*}
+    \begin{bmatrix} \dot{x} \\ \dot{x}_a \\ \dot{\hat{e}} \end{bmatrix} = \begin{bmatrix} 0 \\ B_a \\ 0 \end{bmatrix} r + \\
+    \mathclap{
+      \begin{bmatrix}
+        A-BK & BK_a  & BK \\
+        B_a(DK-C) & A_a - B_aDK_a & -B_aDK \\
+        0 & 0 & A-LC
+      \end{bmatrix} \begin{bmatrix} x \\ x_a \\ \hat{e} \end{bmatrix}
+    } \\
+    y = \begin{bmatrix} C-DK & DK_a & DK \end{bmatrix} \begin{bmatrix} x \\ x_a \\ \hat{e} \end{bmatrix}
+  \end{gather*}
+  \section{Sinais e Sistemas Discretos}
+  % \subsection{Transformada Z}
+  % \begin{nscenter}
+  %   $X(z) = Z[x(k)] = \sum_{k=-\infty}^{+\infty} x(k)z^{-k}$
+  % \end{nscenter}
+  % \subsubsection{Propriedades RC}
+  % $RC$ consiste numa \emph{coroa circular} centrada na origem e \emph{não contém} pólos. $x(k)$, de $m$ a
+  % $M$. Quando: \\
+  % É \emph{limitado} $\Rightarrow RC = \mathbb{C}$ exceto $m < 0 \to \infty \notin RC$ e
+  % $M > 0 \to 0 \notin RC$ \\
+  % $M \to \infty \Rightarrow RC$ é o exterior de um círculo de raio $r_0$ e $m \ge 0 \to \infty \in RC$ \\
+  % $m \to -\infty \Rightarrow RC$ é um círculo até $r_0$ e $M \le 0 \to 0 \in RC$. \\
+  % $m \to -\infty \land M \to \infty \Rightarrow RC$ é uma coroa circular
+  \subsection{Transformada Z unilateral}
+  \begin{nscenter}
+    $X(z) = \mathcal{Z}_u[x(k)] = \sum_{k=0}^{+\infty} x(k)z^{-k}$
+  \end{nscenter}
+  $RC$ é sempre o exterior de uma circunferência que inclui $\infty$.
+  \[\delta(k) \leftrightarrow 1 \quad a^ku(k) \leftrightarrow \frac{1}{1-az^{-1}}\]
+  \[ x(k-1) \leftrightarrow z^{-1}X(z) + x(-1) \]
+  \[ x(k+1) \leftrightarrow z\left(X(z) - x(0)\right) \]
+  % \[ \hspace{-.1cm}y(k) + \dotsb + a_ny(k-n)=b_0r(k)+\dotsb+b_mr(k-m) \]
+  % \[\frac{Y(z)}{R(Z)} = \frac{b_0 + b_1z^{-1} + \dotsb + b_mz^{-m}}{b_0 + b_1z^{-1} + \dotsb + b_mz^{-m}}\]
+
+  \subsection{Espaço de estados}
+  \FixMathSpacing
+  \begin{align*}
+    x(k+1) &= Ax(k) + Bu(k) \\
+      y(k) &= Cx(k) + Du(k)
+  \end{align*}
+  \begin{gather*}
+    y(k+n) + \dotsb +a_{1}y(k+1) + a_0y(k) = \\
+    b_nu(k+n) + \dotsb +b_{1}u(k+1) + b_0u(k)
+  \end{gather*}
+  \begin{align*}
+    \frac{Y(z)}{U(z)} &= \frac{b_nz^n + b_{n-1}z^{n-1} + \dotsb + b_1z + b_0}{z^n + a_{n-1}z^{n-1} + \dotsb + a_1z + a_0} \\
+                      &= C(zI - A)^{-1}B + D
+  \end{align*}
+
+  \subsubsection{Evolução temporal}
+  \begin{nscenter}
+    $\textcolor{highlight}{x(k)} = A^kx(0) + \sum_{m=0}^{k-1} A^{k-1-m}Bu(m)$ \\
+    $y(k) = C\textcolor{highlight}{x(k)} + Du(k)$
+  \end{nscenter}
+
+  \subsubsection{Análise modal (reposta livre)}
+  $x(0)$ associado a $\lambda \in \mathbb{R} \Rightarrow x(k) = \lambda^kx(0)$.
+
+  \vspace{.1cm}
+  $v = u + jw$ associado a $\lambda = re^{j\theta}$, os conjugados também o são.
+  $x(0) = u \Rightarrow x(t) = r^k\left[\cos(k\theta)u - \sin(k\theta)w\right]$. $r = 1 \to$ elípse,
+  $r > 1 \to$ espiral divergente, $r < 1 \to$ convergente.
+
+  \subsubsection{Estabilidade interna}
+  Ponto de equilíbrio: $x^*: x^* = Ax^*$. Um sistema é
+  \emph{estável} quando todas as trajetórias convergem para 0, $\left|\lambda_i\right| < 1$;
+  \emph{Lyapunov estável}: Todas as trajetórias são limitadas,
+  $\left|\lambda_i\right| < 1 \lor \left(\left|\lambda_i\right| = 1 \land \lambda_i \text{
+    \color{math}\textcolor{highlight}{não} é defetivo}\right)$
+
+  \subsubsection{Estabilidade externa (BIBO)}
+  Pólos da FT têm todos módulo menor que $1$. Estabilidade interna $\Rightarrow$ externa.
+
+  \subsubsection{Observabilidade}
+  Igual ao caso contínuo.
+
+  \subsubsection{Controlabilidade}
+  Os estados controláveis $= \Image \Gamma_c(A,B)$. Se $x^*$ for zero-controlável,
+  $A^nx^* \in \Image \Gamma_c(A,B) \Leftrightarrow A^nx^*$ é controlável. Finalmente, todos os estados
+  controláveis são zero-controláveis, e se se $A$ for invertível $\Rightarrow$ os estados controláveis são
+  os mesmos que os zero-controláveis.
+
+  \section{Sistemas amostrados}
+  Um sistema discreto com comportamento semelhante ao contínuo ($H(s)$) é um $H_d(z)$ composto por um
+  interpolador de ordem 0 (ZOH), seguido de $H(s)$ e um amostrador no final.
+
+  \subsection{Amostragem ideal}
+  Com um sinal $x(t)$ e um $p(t) = \sum_{k=-\infty}^{+\infty}\delta(t-kT)$, temos um sinal amostrado com
+  período de amostragem $T$, $x_s(t) = x(t)p(t) = \sum_{k=-\infty}^{+\infty}x(kT)\delta(t-kT)$; o sinal
+  em tempo discreto $x_d$ é formado pelas amostras.
+
+  \subsubsection{Caracterização espectral}
+  \FixMathSpacing
+  \[ 1 \leftrightarrow 2\pi\delta(\omega) \quad e^{-\frac{t^2}{2\sigma^2}} \leftrightarrow \sigma\sqrt{2\pi}e^{-\frac{\sigma^2\omega^2}{2}} \]
+  $P(\omega) = \Fou{p(t)} = \omega_s\sum_{k=-\infty}^{+\infty}\delta(\omega-k\omega_s)$
+  \begin{align*}
+    X_s(\omega) &= \Fou{x_s(t)} = \frac{1}{2\pi}X(\omega)*P(\omega) \\
+                &= \frac{1}{T}\textstyle\sum_{k=-\infty}^{+\infty}X(\omega - k\omega_s)
+  \end{align*}
+  $\omega_s = \frac{2\pi}{T}$; o espetro do sinal amostrado a soma de infinitas cópias do sinal
+  original, deslocadas de um múltiplo de $\omega_s$.
+
+  O \emph{teorema da amostragem} diz-nos que um sinal de largura de banda $B$ ($-B$ a $B$) é univocamente
+  determinado pelas amostras se $\omega_s > 2B$ ($2B$ é frequência de Nyquist), pois $X_s$ não tem
+  sobreposições. Para isso, usa-se um filtro passa baixo com $B < \omega_c < \omega_s-B$. Caso contrário,
+  dá-se o \emph{aliasing}.
+
+  \subsection{ZOH}
+  Sistema com resposta impulsional:
+  \begin{align*}
+    h(t) &= u(t) - u(t-T) \\
+    \to H(s) &= \Lap{h(t)} = \frac{1-e^{-sT}}{s}
+  \end{align*}
+  Serve para reconstruir um sinal contínuo a partir do discreto, $y(t) = \sum_{k=0}^{+\infty}x(k)h(t-kT)$.
+
+  \subsection{Resposta invariante ao degrau}
+  A resposta ao degrau do sistema discreto corresponde à amostragem da resposta ao degrau do sistema
+  contínuo.
+  \[
+    \left. \iLap{\frac{H(s)}{s}}\right\rvert_{t=kT} = \left.
+      \mathcal{Z}^{-1}\left\{\frac{H_d(z)}{1-z^{-1}}\right\}\right\rvert_{k}
+  \]
+
+  \subsection{Equivalente discreto do EE}
+  \FixMathSpacing
+  \[ A_d = e^{AT} \quad B_d = \int_0^Te^{A\tau}\,d\tau{}B \] Se A for invertível,
+  $B_d = A^{-1}(e^{AT} - I)B$ \\
+  Com
+  $\Phi = \begin{bmatrix}A & B \\ 0 & 0\end{bmatrix} \to e^{\Phi T} = \begin{bmatrix}A_d & B_d \\ 0 &
+    1\end{bmatrix}$
+
+  Um sistema amostrado nunca será cont./obs. se o contínuo não o for. Se \valpp/ distintos no contínuo
+  passarem a ser o mesmo no discreto, então o sistema perde a cont. e obs..
+  \subsection{Relação entre plano $s$ e $z$}
+  \FixMathSpacing
+  \[ z = e^{sT} \]
+
+  \subsection{Projeto em tempo discreto}
+  Obter equivalente discreto da planta \\
+  Projetar ganho em tempo discreto (mapear \valpp/ e pólos de $s$ em $z$) \\
+  Se precisar de observador e/ou dinâmica adicional, considerar o equivalente discreto (e mapeamentos)
+
+  \section{Processos estocásticos}
+  Um processo $X$ é \emph{estocástico} se não for previsível para alguns instantes de tempo. Pode ser
+  caracterizado pela correspondência entre o resultado de uma experiência aleatória e uma função do
+  tempo, onde cada $X_{A,B,\dots}$ é uma \emph{realização do processo}. $X(t)$ é uma \emph{variável aleatória}
+  que se obtém amostrando as diferentes realizações em $t$. $f_{X(t)}$ é a sua \emph{densidade de
+    probabilidade}.
+  \subsection{Propriedades}
+  Se $X$ e $Y$ são processos \emph{estatisticamente independentes},
+  $f_{X(t_1)X(t_2)\dots Y(t_1')Y(t_2')\dots} = f_{X(t_1)X(t_2)\dots}\cdot f_{Y(t_1')Y(t_2')\dots}$. $X$ é
+  \emph{gaussiano} se \textbf{todas} as suas densidades (ordem 1, 2, \dots) forem gaussianas. $X$ é
+  \emph{estacionário} se as suas densidades forem invariantes no tempo
+  $f_{X(t_1)X(t_2)\dots} = f_{X(t_1 + \tau)X(t_2 + \tau)\dots},\, \forall \tau$. $X$ é \emph{estacionário
+    no sentido lato} (ESL) se $\E{X(t)}$ não depende de $t$ e $\E{X(t_1)X(t_2)}$ só depende de
+  $t_2 - t_1$. $X$ é \emph{ergódico} se as médias temporais $= \E{X(t)}$ ($\equiv$ uma realização
+  tem todas as variações estatísticas de $X$).
+
+  \subsection{Ferramentas}
+  \emph{Valor médio}: $\E{X(t)} = \int_{-\infty}^{+\infty}x f_{X(t)}(x)\, dx$ \\
+  \emph{Covariância}:
+  \begin{align*}
+    \cov{X,Y} &= \E{(X-\E{X})(Y-\E{Y})^T} \\
+              &= \E{XY^T} - \E{X}\E{Y}^T
+    \intertext{$M$ matriz constante}
+    \cov{MX}  &= M\cov{X}M^T
+    \intertext{$X$ e $Y$ independentes}
+    \cov{X,Y} &= 0 \\
+    \cov{X+Y} &= \cov{X} + \cov{Y}
+  \end{align*}
+  \emph{Variância}: $ \Var{X} = \sigma^2 = \cov{X,X} $
+  \emph{Traço $\tr{M}$}: Soma dos elementos da diagonal \\
+  \emph{Autocorrelação}:
+  \bgroup
+  \hfuzz=6pt
+  \begin{gather*}
+    R_X(t_1, t_2) = \E{X(t_1)X(t_2)} \\
+    = \textstyle\int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty} x_1x_2f_{X(t_1)X(t_2)}(x_1,x_2)\, dx_1dx_2 \\
+    \intertext{$X$ estacionário}
+    R_X(t_1, t_2) = R_X(t_1 + \Delta t, t_2 + \Delta t) \\
+    \tau = t_2-t_1 \Rightarrow R_X(\tau) = R_X(t, t+\tau) \\
+    \intertext{$X$ não estacionário, Autocorrelação temporal de $X_A$:}
+    \textstyle R_{X_A}(\tau) = \lim\limits_{T\to+\infty}\frac{1}{T}\int_0^TX_A(t)X_A(t+\tau)\,dt \\
+    \intertext{Propriedades}
+    \mathclap{R_X(t_1, t_2) = R_X(t_2, t_1) \!\Leftrightarrow\! R_X(\tau) = R_X(-\tau)} \\
+    \abs{R_X(\tau)} \le R_X(0) = \E{X^2(t)}
+  \end{gather*}
+  \egroup
+  \emph{Correlação cruzada}:
+  \bgroup
+  \hfuzz=5pt
+  \begin{gather*}
+    R_{XY}(t_1, t_2) = \E{X(t_1)Y(t_2)} \\
+    \intertext{$X$ e $Y$ conjuntamente estacionários}
+    \begin{aligned}
+      R_{XY}(\tau) &= \E{X(t)Y(t + \tau)} \\
+      &= \E{X(t - \tau)Y(t)} = R_{YX}(-\tau)
+    \end{aligned}
+    \intertext{Processo $Z(t) = X(t) + Y(t),\, Z$ também é estacionário}
+    \mathclap{
+      \begin{aligned}
+        R_{Z}(\tau)
+        &= \E{Z(t)Z(t + \tau)} \\
+        &= \E{(X(t) + Y(t))(X(t+\tau)Y(t+\tau))} \\
+        &= R_X(\tau) + R_{XY}(\tau) + R_{YX}(\tau) + R_Y(\tau)
+      \end{aligned}
+    }
+    \intertext{$X$ e $Y$, $\E{\cdot} = 0$ e não correlacionados}
+    \Rightarrow R_{Z}(\tau) = R_X(\tau) + R_Y(\tau)
+  \end{gather*}
+  \egroup
+  \emph{Densidade espetral de potência}: Se $R_X(\tau)$ decai rapidamente com $\tau \Leftrightarrow$ de
+  $X$ variam rapidamente (e o mesmo para lentamente).
+  \begin{gather*}
+    \mathclap{\textstyle S_X(j\omega) = \Fou{R_X(\tau)} = \int\limits_{-\infty}^{+\infty}R_X(\tau)e^{-j\omega\tau}\, d\tau} \\
+    \textstyle R_X(\tau) = \dots = \frac{1}{2\pi}\int_{-\infty}^{+\infty}S_X(j\omega)e^{j\omega\tau}\, d\omega \\
+    \textstyle R_X(0) = \E{X^2(t)} = \frac{1}{2\pi}\int\limits_{-\infty}^{+\infty}S_X(j\omega)\, d\omega
+  \end{gather*}
+  $S_X(j\omega)$ é real, não negativa e simétrica. \\
+  \emph{Densidade espetral cruzada}: $X$ e $Y$ conjuntamente estacionários
+  \begin{gather*}
+    \textstyle S_{XY}(j\omega) = \int_{-\infty}^{+\infty}R_{XY}(\tau)e^{-j\omega\tau}\, d\tau \\
+    \textstyle R_{XY}(\tau) = R_{YX}(-\tau) \Rightarrow S_{XY} = S_{YX}^* \\
+    \intertext{$X$ e $Y$, $\E{\cdot} = 0$ e não correlacionados}
+    \Rightarrow S_{X+Y}(j\omega) = S_X(j\omega) + S_Y(j\omega)
+  \end{gather*}
+  \subsection{Processos gaussianos}
+  Caracterizado por $\E{\cdot}$ e $R_X(t_1,t_2)$. Se
+  $R_X(t_1,t_2) = \E{X(t_1)}\E{X(t_2)} \Rightarrow X(t_1)$ e $X(t_2)$ são independentes e não
+  correlacionados. Se $X$ é ESL $\Rightarrow X$ é estacionário e ergódico. Qualquer operação linear sobre
+  $X$ produz outro processo gaussiano.
+  \subsection{Ruído branco}
+  $S_X(j\omega) \!\!=\!\! A \!\Leftrightarrow\! R_X(\tau) \!\!=\!\! A\delta(\tau) \!\Rightarrow\! R_X(0) \!=\! \infty$
+  \subsection{Processo de Wiener}
+  $X(t) = \int_0^tF(u)du$, $F$ é ruído branco gaussiano unitário, $\E{F(u)} = 0$.
+  \[\textstyle \E{X(t)} = \int_0^t\E{F(u)}du = 0\]
+  \begin{align*}
+    \textstyle \E{X^2(t)} &= \textstyle \int_0^t\int_0^t\E{F(u)F(v)}dudv \\
+                          &= \textstyle \int_0^t\int_0^t\delta(u-v)dudv = t \\
+    \textstyle \E{X(t_1)X(t_2)} &= \textstyle \int_0^{t_2}\int_0^{t_1}\delta(u-v)dudv \\
+                          &= min(t_2,t_1)
+  \end{align*}
+
+  \subsection{Resposta de um LTI, $h(t)$}
+  $X$ processo estacionário \\
+  $\textcolor{highlight}{Y(t)} = h(t)*X(t) = \int_{-\infty}^{+\infty}h(\lambda)X(t-\lambda)d\lambda$
+  \begin{gather*}
+    \textstyle \textcolor{highlight}{R_{XY}(\tau)} \!\!=\!\! \textstyle \E{X(t)\int\limits_{-\infty}^{+\infty}h(\lambda)X(t+\tau-\lambda) d\lambda} \\
+    = \textstyle \int_{-\infty}^{+\infty}h(\lambda)R_X(\tau-\lambda) d\lambda = h(\tau)*R_X(\tau)
+  \end{gather*}
+  \bgroup
+  \setlength{\jot}{0mm}
+  \begin{gather*}
+    \textstyle \textcolor{highlight}{R_{Y}(\tau)} = \textstyle \!\!=\!\! \E{\int\limits_{-\infty}^{+\infty}h(\lambda)X(t-\lambda)d\lambda\, Y(t+\tau)} \\
+    \textstyle = \int_{-\infty}^{+\infty} h(\lambda) R_{XY}(\tau+\lambda)d\lambda \\
+    = h(-\tau)*R_{XY}(\tau) = h(-\tau)*h(\tau)*R_X(\tau)
+  \end{gather*}
+  \egroup
+  \begin{align*}
+    \Rightarrow \textcolor{highlight}{S_Y(j\omega)} &= H(-j\omega)H(j\omega)S_X(j\omega) \\
+              &= \abs{H(j\omega)}^2S_X(j\omega)
+  \end{align*}
+  \begin{nscenter}
+    $\textcolor{highlight}{\E{Y(t)}} = \mu_Y = \mu_XH(0)$ \\
+    $\textcolor{highlight}{\E{Y^2(t)}} = R_Y(0) = \frac{1}{2\pi}\int_{-\infty}^{+\infty} S_Y(j\omega) d\omega$
+  \end{nscenter}
+
+  \subsection{Processos em tempo discreto}
+  \subsubsection{Sequência branca}
+  $f_{Y_k}(y) = f_{Y_l}(y)$, $Y_k$ independentes, $\E{Y_k} = 0$, $\E{Y_k^2} = 1$ (unitária), $Y_k$ normal
+  (gaussiana).
+
+  \subsubsection{Marcha aleatória}
+  $Y_k = \sum_{i=1}^{k}S_i,\; S_k$ independentes
+  \[ P(S_k = 1) = P(S_k = -1) = \frac{1}{2} \quad \E{S_k} = 0 \]
+  \[ \E{S_k^2} = 1 \quad \E{S_kS_l} = \delta(k-l) \]
+  \[\E{Y_k} = 0 \]
+  \[\textstyle \E{Y_k^2} = \sum_{i=1}^k\sum_{j=1}^k \E{S_iS_j} = k \]
+  \[ \mathclap{\textstyle \E{Y_kY_l} = \sum_{i=1}^k\sum_{j=1}^l \E{S_iS_j} = \min(k,l)} \] Com $t=kT$ e
+  $T \to 0$, o processo de Wiener é o limite da marcha aleatória de amplitude $\sqrt{T}$.
+
+  \section{Sistemas lineares estocásticos}
+  \FixMathSpacing
+  \begin{align*}
+    x_{k+1} &= Ax_k + Bu_k + Fw_k \\
+      y_k &= Cx_k + Gv_k
+  \end{align*}
+  $u_k$ determinístico, $w_k, v_k \to N(0, I)$, $x_0$ VA gaussiana independente de $w_k,v_k$.
+  \[\hat{x}_k = \E{x_k} \Rightarrow \hat{x}_{k+1} = A\hat{x}_k + Bu_k \]
+  \[ P_k = \cov{x_k} \Rightarrow P_{k+1} = AP_kA^T + Q \]
+  \[Q = FF^T \quad R = GG^T\]
+
+  \subsection{Filtro de Kalman}
+  $\hat{x}_{k|k-1}$ estimativa \emph{a priori} (com base até em obs. $k-1$). $\hat{x}_{k|k}$ estimativa
+  \emph{a posteriori} (com base até em obs. $k$).
+  \[ \hat{e}_{k|k-1} = x_k - \hat{x}_{k|k-1} \]
+  \[ \hat{e}_{k|k} = x_k - \hat{x}_{k|k} \]
+
+  \subsubsection{Obtenção de estimativas}
+  \FixMathSpacing
+  \[ \hat{x}_{0|0} = \E{x_0} \]
+  \begin{align*}
+    \textcolor{highlight}{\hat{x}_{k+1|k}} &= \E{x_{k+1}|Y_k} \\
+                                           &= \E{Ax_k + Bu_k + Fw_k \;|\; Y_k} \\
+                                           &= A\E{x_k|Y_k} + Bu_k = A\hat{x}_{k|k} + Bu_k
+  \end{align*}
+  \[\textcolor{highlight}{\hat{x}_{k|k}} = \hat{x}_{k|k-1} + K_k(y_k - C\hat{x}_{k|k-1})\]
+  Determina-se $K_k$ de maneira a minimizar $\E{\cdot}$ do erro quadrático médio,
+  \[ \norm{e_{k|k}}^2 = e_{k|k}^Te_{k|k} = \tr{e_{k|k}e_{k|k}^T} \]
+  \subsubsection{Evolução das $\cov{\cdot}$ dos erros}
+  $P_{k|k} = \E{e_{k|k}e_{k|k}^T} = \cov{e_{k|k}}$ \\
+  $P_{k|k-1} = \E{e_{k|k-1}e_{k|k-1}^T} = \cov{e_{k|k-1}}$ \\
+  Como $e_{k+1|k} = x_k - \hat{x}_{k+1|k} = Ae_{k|k} + Fw_k$ e
+  $e_{k|k} = x_k -\hat{x}_{k|k} = (I-K_kC)e_{k|k-1}-K_kGv_k$
+
+  $\textcolor{highlight}{P_{k+1|k}} = AP_{k|k}A^T + Q$ \\
+  $P_{k|k} \!=\! (I - K_kC)P_{k|k-1}(I-K_kC)^T + K_kRK_k^T$ \\
+  Com ganho ideal, simplificação para \[ \textcolor{highlight}{P_{k|k}} = (I - K_kC)P_{k|k-1} \]
+  Minimização de
+  $\tr{P_{k|k}} \to \frac{\partial\tr{P_{k|k}}}{\partial K_k} = 0 = -2(CP_{k|k-1})^T + 2K_k(CP_{k|k-1}C^T + R)$
+  \[ \textcolor{highlight}{K_k} = P_{k|k-1}C^T(CP_{k|k-1}C^T + R)^{-1} \]
+
+  \subsubsection{Filtro de Kalman em tempo discreto}
+  \begin{itemize}[leftmargin=*]
+  \item Processo e observações $y_k$
+  \item Atualização da estimativa com base na observação $\hat{x}_{k|k}$
+  \item Atualização da covariância $P_{k|k}$
+  \item Extrapolação $\hat{x}_{k+1|k},\; P_{k+1|k}$
+  \item Avanço de tempo $k \to k+1$
+  \item Cálculo do ganho de Kalman $K_k$
+  \end{itemize}
+
+  \section{Extra}
+  \FixMathSpacing
+  \[\sum_{k=m}^{n}r^k = \frac{r^m-r^{n+1}}{1-r} \]
+
+  {\vfill\hfill Feito por Gonçalo Santos}
+\end{multicols*}
+\end{document}
