@@ -1,0 +1,82 @@
+* Trabalho - Quantização
+:PROPERTIES:
+:NOTER_DOCUMENT: guide.pdf
+:END:
+** 3.1 Quantização uniforme
+:PROPERTIES:
+:NOTER_PAGE: (4 . 0.34407796101949023)
+:END:
+*** 1
+:PROPERTIES:
+:NOTER_PAGE: (4 . 0.38605697151424284)
+:END:
+Níveis de...
+
+| Decisão | Quantização |
+|---------+-------------|
+|       1 |             |
+|         |        0.75 |
+|     0.5 |             |
+|         |        0.25 |
+|       0 |             |
+|         |       -0.25 |
+|    -0.5 |             |
+|         |       -0.75 |
+|      -1 |             |
+
+*** 2
+:PROPERTIES:
+:NOTER_PAGE: (4 . 0.6671664167916042)
+:END:
+|    x |      x_q | Código binário |
+|------+---------+----------------|
+|  0.7 |  0.7500 | 11             |
+| -0.3 | -0.2500 | 01             |
+| -0.9 | -0.7500 | 00             |
+|  0.1 |  0.2500 | 10             |
+| -0.4 | -0.2500 | 01             |
+|  0.2 |  0.2500 | 10             |
+|  0.6 |  0.7500 | 11             |
+|  0.8 |  0.7500 | 11             |
+
+*** 3
+:PROPERTIES:
+:NOTER_PAGE: (5 . 0.48200899550224885)
+:END:
+
+** 3.2 Distorção introduzida pela quantização
+:PROPERTIES:
+:NOTER_PAGE: (5 . 0.6596701649175412)
+:END:
+*** 4
+:PROPERTIES:
+:NOTER_PAGE: (5 . 0.6979010494752623)
+:END:
+
+*** 5
+:PROPERTIES:
+:NOTER_PAGE: (6 . 0.4032983508245877)
+:END:
+
+** 3.3 Influência do número de níveis na quantização
+:PROPERTIES:
+:NOTER_PAGE: (7 . 0.23238380809595202)
+:END:
+*** 6
+:PROPERTIES:
+:NOTER_PAGE: (7 . 0.2653673163418291)
+:END:
+
+** 3.4 Quantização não-uniforme
+:PROPERTIES:
+:NOTER_PAGE: (8 . 0.0914542728635682)
+:END:
+*** 1
+:PROPERTIES:
+:NOTER_PAGE: (8 . 0.16716641679160418)
+:END:
+
+*** 2
+:PROPERTIES:
+:NOTER_PAGE: (8 . 0.315592203898051)
+:END:
