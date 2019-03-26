@@ -30,7 +30,21 @@ h=[0.0021999162100326
    -0.0116726512182460
    -0.0161510588495792
    0.00219991621003269];
-figure(1); plot(h); xlabel('Amostras'); ylabel('Magnitude');
-fid=fopen('coefs.txt','w');
-fprintf(fid, '%20.18f\n', h');
-fclose(fid);
+
+figure(1); clf;
+plot(h);
+xlabel('Amostras'); ylabel('Magnitude');
+
+figure(2); clf;
+[H W] = freqz(h, 1.0);
+plot(W/pi, abs(H));
+
+%% Atraso de grupo: 15.5    ((32-1)/2)
+
+f = [0 0.2 0.3 1];
+m = [1 1 0 0];
+w = [1 1];
+h = firpm(31, f, m, w);
+
+figure(3); clf;
+plot(h);
