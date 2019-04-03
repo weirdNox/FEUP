@@ -43,23 +43,18 @@ stack_element *push(stack *Stack, int Number, char *String) {
     return NewElement;
 }
 
-// NOTE(nox): The returned pointer is only guaranteed be valid until the next stack modification
-stack_element *pop(stack *Stack) {
-    stack_element *Element = 0;
-
+void pop(stack *Stack) {
     int HasElementToPop = 0;
     while(!HasElementToPop) {
         if(Stack->Length) {
             pthread_mutex_lock(&Stack->Mutex);
             if(Stack->Length) {
-                Element = Stack->Data + --Stack->Length;
+                --Stack->Length;
                 HasElementToPop = 1;
             }
             pthread_mutex_unlock(&Stack->Mutex);
         }
     }
-
-    return Element;
 }
 
 void show(stack *Stack) {

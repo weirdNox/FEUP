@@ -5,13 +5,13 @@
 #define Safe 2
 
 #if   Safe==1
-#define WarningText "SAFE BUSY WAIT"
+#define InfoText "SAFE STACK WITH BUSY WAIT"
 #include "safe_stack.c"
 #elif Safe==2
-#define WarningText "SAFE CONDITION VARIABLES"
+#define InfoText "SAFE STACK WITH CONDITION VARIABLES"
 #include "safe_cond_stack.c"
 #else
-#define WarningText "UNSAFE"
+#define InfoText "UNSAFE STACK"
 #include "unsafe_stack.c"
 #endif
 
@@ -51,10 +51,11 @@ void *threadRemove(void *RawArg) {
 }
 
 int main() {
+    puts("TESTING " InfoText "\n");
     stack Stack;
     init(&Stack, StackSize);
 
-    printf("== Single-thread test - "WarningText" ==\n");
+    printf("== Single-thread test ==\n");
     push(&Stack,   1, "Ahhh");
     push(&Stack, 123, "Hello");
     push(&Stack,  20, "Adios");
@@ -76,7 +77,7 @@ int main() {
     }
 
     clear(&Stack);
-    printf("\n== Multi-thread test - " WarningText " ==\n");
+    printf("\n== Multi-thread test ==\n");
     thread_info Threads[NumThreads];
     for(int Idx = 0, Consumer = 0; Idx < NumThreads; ++Idx, Consumer = !Consumer) {
         thread_info *Info = Threads + Idx;
