@@ -1,19 +1,17 @@
+#include <unistd.h>
+#include <pthread.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <pthread.h>
-#include <unistd.h>
 
-int match_line(int fd, char *str);
+#define arrayCount(Arr) (sizeof(Arr)/sizeof(*(Arr)))
+long long du(int fd);
 
 typedef struct {
     pthread_t Thread;
-    char *FileName;
+    char FileName[1024];
 } thread_info;
-
-char *SearchStr;
 
 void *threadRoutine(void *RawArg) {
     thread_info *Arg = (thread_info *)RawArg;
@@ -22,10 +20,8 @@ void *threadRoutine(void *RawArg) {
         return 0;
     }
 
-    int LineNumber;
-    while((LineNumber = match_line(FileDesc, SearchStr)) != 0) {
-        printf("%s:\t%d\n", Arg->FileName, LineNumber);
-    }
+    int FileLength = du(FileDesc);
+    printf("%s:\t%d bytes\n", Arg->FileName, FileLength);
 
     close(FileDesc);
 
@@ -33,14 +29,15 @@ void *threadRoutine(void *RawArg) {
 }
 
 int main(int ArgCount, char *ArgVals[]) {
-    if(ArgCount < 3) {
-        fprintf(stderr, "Usage: %s [Text to search] [File]\n", ArgVals[0]);
-        exit(1);
+    thread_info Thread;
+    int Length = read(STDIN_FILENO, Thread.FileName, arrayCount(Thread.FileName)-1);
+    if(Thread.FileName[Length-1] == '\n') {
+        Thread.FileName[Length-1] = 0;
+    }
+    else {
+        Thread.FileName[Length] = 0;
     }
 
-    SearchStr = ArgVals[1];
-
-    thread_info Thread = { .FileName = ArgVals[2] };
     pthread_create(&Thread.Thread, 0, threadRoutine, &Thread);
     pthread_join(Thread.Thread, 0);
 
