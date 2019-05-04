@@ -1,0 +1,1552 @@
+Model {
+  Name			  "QAM_model1"
+  Version		  7.6
+  MdlSubVersion		  0
+  GraphicalInterface {
+    NumRootInports	    0
+    NumRootOutports	    0
+    ParameterArgumentNames  ""
+    ComputedModelVersion    "1.28"
+    NumModelReferences	    0
+    NumTestPointedSignals   0
+  }
+  SavedCharacterEncoding  "windows-1252"
+  PreLoadFcn		  "fs=100000; Ts=1/fs; R=1000; T=1/R; fc=10000; M=16; A=20*sqrt(T/2);"
+  SaveDefaultBlockParams  on
+  ScopeRefreshTime	  0.035000
+  OverrideScopeRefreshTime on
+  DisableAllScopes	  off
+  DataTypeOverride	  "UseLocalSettings"
+  DataTypeOverrideAppliesTo "AllNumericTypes"
+  MinMaxOverflowLogging	  "UseLocalSettings"
+  MinMaxOverflowArchiveMode "Overwrite"
+  MaxMDLFileLineLength	  120
+  Created		  "Tue Apr 24 16:42:02 2007"
+  Creator		  "Lab220"
+  UpdateHistory		  "UpdateHistoryNever"
+  ModifiedByFormat	  "%<Auto>"
+  LastModifiedBy	  "Sílvio"
+  ModifiedDateFormat	  "%<Auto>"
+  LastModifiedDate	  "Sat Apr 20 00:51:38 2013"
+  RTWModifiedTimeStamp	  288319885
+  ModelVersionFormat	  "1.%<AutoIncrement:28>"
+  ConfigurationManager	  "None"
+  SampleTimeColors	  off
+  SampleTimeAnnotations	  off
+  LibraryLinkDisplay	  "none"
+  WideLines		  on
+  ShowLineDimensions	  off
+  ShowPortDataTypes	  off
+  ShowLoopsOnError	  on
+  IgnoreBidirectionalLines off
+  ShowStorageClass	  off
+  ShowTestPointIcons	  on
+  ShowSignalResolutionIcons on
+  ShowViewerIcons	  on
+  SortedOrder		  off
+  ExecutionContextIcon	  off
+  ShowLinearizationAnnotations on
+  BlockNameDataTip	  off
+  BlockParametersDataTip  off
+  BlockDescriptionStringDataTip	off
+  ToolBar		  on
+  StatusBar		  on
+  BrowserShowLibraryLinks off
+  BrowserLookUnderMasks	  off
+  SimulationMode	  "normal"
+  LinearizationMsg	  "none"
+  Profile		  off
+  ParamWorkspaceSource	  "MATLABWorkspace"
+  AccelSystemTargetFile	  "accel.tlc"
+  AccelTemplateMakefile	  "accel_default_tmf"
+  AccelMakeCommand	  "make_rtw"
+  TryForcingSFcnDF	  off
+  RecordCoverage	  off
+  CovPath		  "/"
+  CovSaveName		  "covdata"
+  CovMetricSettings	  "dw"
+  CovNameIncrementing	  off
+  CovHtmlReporting	  on
+  CovForceBlockReductionOff on
+  covSaveCumulativeToWorkspaceVar on
+  CovSaveSingleToWorkspaceVar on
+  CovCumulativeVarName	  "covCumulativeData"
+  CovCumulativeReport	  off
+  CovReportOnPause	  on
+  CovModelRefEnable	  "Off"
+  CovExternalEMLEnable	  off
+  ExtModeBatchMode	  off
+  ExtModeEnableFloating	  on
+  ExtModeTrigType	  "manual"
+  ExtModeTrigMode	  "normal"
+  ExtModeTrigPort	  "1"
+  ExtModeTrigElement	  "any"
+  ExtModeTrigDuration	  1000
+  ExtModeTrigDurationFloating "auto"
+  ExtModeTrigHoldOff	  0
+  ExtModeTrigDelay	  0
+  ExtModeTrigDirection	  "rising"
+  ExtModeTrigLevel	  0
+  ExtModeArchiveMode	  "off"
+  ExtModeAutoIncOneShot	  off
+  ExtModeIncDirWhenArm	  off
+  ExtModeAddSuffixToVar	  off
+  ExtModeWriteAllDataToWs off
+  ExtModeArmWhenConnect	  on
+  ExtModeSkipDownloadWhenConnect off
+  ExtModeLogAll		  on
+  ExtModeAutoUpdateStatusClock on
+  BufferReuse		  on
+  ShowModelReferenceBlockVersion off
+  ShowModelReferenceBlockIO off
+  Array {
+    Type		    "Handle"
+    Dimension		    1
+    Simulink.ConfigSet {
+      $ObjectID		      1
+      Version		      "1.10.0"
+      Array {
+	Type			"Handle"
+	Dimension		8
+	Simulink.SolverCC {
+	  $ObjectID		  2
+	  Version		  "1.10.0"
+	  StartTime		  "0.0"
+	  StopTime		  "1"
+	  AbsTol		  "1e-6"
+	  FixedStep		  "Ts"
+	  InitialStep		  "auto"
+	  MaxNumMinSteps	  "-1"
+	  MaxOrder		  5
+	  ZcThreshold		  "auto"
+	  ConsecutiveZCsStepRelTol "10*128*eps"
+	  MaxConsecutiveZCs	  "1000"
+	  ExtrapolationOrder	  4
+	  NumberNewtonIterations  1
+	  MaxStep		  "auto"
+	  MinStep		  "auto"
+	  MaxConsecutiveMinStep	  "1"
+	  RelTol		  "1e-3"
+	  SolverMode		  "SingleTasking"
+	  ConcurrentTasks	  off
+	  Solver		  "FixedStepDiscrete"
+	  SolverName		  "FixedStepDiscrete"
+	  SolverJacobianMethodControl "auto"
+	  ShapePreserveControl	  "DisableAll"
+	  ZeroCrossControl	  "UseLocalSettings"
+	  ZeroCrossAlgorithm	  "Nonadaptive"
+	  AlgebraicLoopSolver	  "TrustRegion"
+	  SolverResetMethod	  "Fast"
+	  PositivePriorityOrder	  off
+	  AutoInsertRateTranBlk	  off
+	  SampleTimeConstraint	  "Unconstrained"
+	  InsertRTBMode		  "Whenever possible"
+	}
+	Simulink.DataIOCC {
+	  $ObjectID		  3
+	  Version		  "1.10.0"
+	  Decimation		  "1"
+	  ExternalInput		  "[t, u]"
+	  FinalStateName	  "xFinal"
+	  InitialState		  "xInitial"
+	  LimitDataPoints	  off
+	  MaxDataPoints		  "1000"
+	  LoadExternalInput	  off
+	  LoadInitialState	  off
+	  SaveFinalState	  off
+	  SaveCompleteFinalSimState off
+	  SaveFormat		  "Array"
+	  SaveOutput		  on
+	  SaveState		  off
+	  SignalLogging		  on
+	  DSMLogging		  on
+	  InspectSignalLogs	  off
+	  SaveTime		  on
+	  ReturnWorkspaceOutputs  off
+	  StateSaveName		  "xout"
+	  TimeSaveName		  "tout"
+	  OutputSaveName	  "yout"
+	  SignalLoggingName	  "sigsOut"
+	  DSMLoggingName	  "dsmout"
+	  OutputOption		  "RefineOutputTimes"
+	  OutputTimes		  "[]"
+	  ReturnWorkspaceOutputsName "out"
+	  Refine		  "1"
+	}
+	Simulink.OptimizationCC {
+	  $ObjectID		  4
+	  Version		  "1.10.0"
+	  BlockReduction	  on
+	  BooleanDataType	  off
+	  ConditionallyExecuteInputs on
+	  InlineParams		  off
+	  UseIntDivNetSlope	  off
+	  UseSpecifiedMinMax	  off
+	  InlineInvariantSignals  off
+	  OptimizeBlockIOStorage  on
+	  BufferReuse		  on
+	  EnhancedBackFolding	  off
+	  StrengthReduction	  off
+	  ExpressionFolding	  on
+	  BooleansAsBitfields	  off
+	  BitfieldContainerType	  "uint_T"
+	  EnableMemcpy		  on
+	  MemcpyThreshold	  64
+	  PassReuseOutputArgsAs	  "Structure reference"
+	  ExpressionDepthLimit	  2147483647
+	  FoldNonRolledExpr	  on
+	  LocalBlockOutputs	  on
+	  RollThreshold		  5
+	  SystemCodeInlineAuto	  off
+	  StateBitsets		  off
+	  DataBitsets		  off
+	  UseTempVars		  off
+	  ZeroExternalMemoryAtStartup on
+	  ZeroInternalMemoryAtStartup on
+	  InitFltsAndDblsToZero	  off
+	  NoFixptDivByZeroProtection off
+	  EfficientFloat2IntCast  off
+	  EfficientMapNaN2IntZero on
+	  OptimizeModelRefInitCode off
+	  LifeSpan		  "inf"
+	  MaxStackSize		  "Inherit from target"
+	  BufferReusableBoundary  on
+	  SimCompilerOptimization "Off"
+	  AccelVerboseBuild	  off
+	}
+	Simulink.DebuggingCC {
+	  $ObjectID		  5
+	  Version		  "1.10.0"
+	  RTPrefix		  "error"
+	  ConsistencyChecking	  "none"
+	  ArrayBoundsChecking	  "none"
+	  SignalInfNanChecking	  "none"
+	  SignalRangeChecking	  "none"
+	  ReadBeforeWriteMsg	  "UseLocalSettings"
+	  WriteAfterWriteMsg	  "UseLocalSettings"
+	  WriteAfterReadMsg	  "UseLocalSettings"
+	  AlgebraicLoopMsg	  "warning"
+	  ArtificialAlgebraicLoopMsg "warning"
+	  SaveWithDisabledLinksMsg "warning"
+	  SaveWithParameterizedLinksMsg	"none"
+	  CheckSSInitialOutputMsg on
+	  UnderspecifiedInitializationDetection	"Classic"
+	  MergeDetectMultiDrivingBlocksExec "none"
+	  CheckExecutionContextPreStartOutputMsg off
+	  CheckExecutionContextRuntimeOutputMsg	off
+	  SignalResolutionControl "TryResolveAllWithWarning"
+	  BlockPriorityViolationMsg "warning"
+	  MinStepSizeMsg	  "warning"
+	  TimeAdjustmentMsg	  "none"
+	  MaxConsecutiveZCsMsg	  "error"
+	  MaskedZcDiagnostic	  "warning"
+	  IgnoredZcDiagnostic	  "warning"
+	  SolverPrmCheckMsg	  "none"
+	  InheritedTsInSrcMsg	  "warning"
+	  DiscreteInheritContinuousMsg "warning"
+	  MultiTaskDSMMsg	  "warning"
+	  MultiTaskCondExecSysMsg "none"
+	  MultiTaskRateTransMsg	  "error"
+	  SingleTaskRateTransMsg  "none"
+	  TasksWithSamePriorityMsg "warning"
+	  SigSpecEnsureSampleTimeMsg "warning"
+	  CheckMatrixSingularityMsg "none"
+	  IntegerOverflowMsg	  "warning"
+	  Int32ToFloatConvMsg	  "warning"
+	  ParameterDowncastMsg	  "error"
+	  ParameterOverflowMsg	  "error"
+	  ParameterUnderflowMsg	  "none"
+	  ParameterPrecisionLossMsg "warning"
+	  ParameterTunabilityLossMsg "warning"
+	  FixptConstUnderflowMsg  "none"
+	  FixptConstOverflowMsg	  "none"
+	  FixptConstPrecisionLossMsg "none"
+	  UnderSpecifiedDataTypeMsg "none"
+	  UnnecessaryDatatypeConvMsg "none"
+	  VectorMatrixConversionMsg "none"
+	  InvalidFcnCallConnMsg	  "error"
+	  FcnCallInpInsideContextMsg "Use local settings"
+	  SignalLabelMismatchMsg  "none"
+	  UnconnectedInputMsg	  "warning"
+	  UnconnectedOutputMsg	  "warning"
+	  UnconnectedLineMsg	  "warning"
+	  SFcnCompatibilityMsg	  "none"
+	  UniqueDataStoreMsg	  "none"
+	  BusObjectLabelMismatch  "warning"
+	  RootOutportRequireBusObject "warning"
+	  AssertControl		  "UseLocalSettings"
+	  EnableOverflowDetection off
+	  ModelReferenceIOMsg	  "none"
+	  ModelReferenceMultiInstanceNormalModeStructChecksumCheck "error"
+	  ModelReferenceVersionMismatchMessage "none"
+	  ModelReferenceIOMismatchMessage "none"
+	  ModelReferenceCSMismatchMessage "none"
+	  UnknownTsInhSupMsg	  "warning"
+	  ModelReferenceDataLoggingMessage "warning"
+	  ModelReferenceSymbolNameMessage "warning"
+	  ModelReferenceExtraNoncontSigs "error"
+	  StateNameClashWarn	  "warning"
+	  SimStateInterfaceChecksumMismatchMsg "warning"
+	  InitInArrayFormatMsg	  "warning"
+	  StrictBusMsg		  "None"
+	  BusNameAdapt		  "WarnAndRepair"
+	  NonBusSignalsTreatedAsBus "none"
+	  LoggingUnavailableSignals "error"
+	  BlockIODiagnostic	  "none"
+	  SFUnusedDataAndEventsDiag "warning"
+	  SFUnexpectedBacktrackingDiag "warning"
+	  SFInvalidInputDataAccessInChartInitDiag "warning"
+	  SFNoUnconditionalDefaultTransitionDiag "warning"
+	  SFTransitionOutsideNaturalParentDiag "warning"
+	}
+	Simulink.HardwareCC {
+	  $ObjectID		  6
+	  Version		  "1.10.0"
+	  ProdBitPerChar	  8
+	  ProdBitPerShort	  16
+	  ProdBitPerInt		  32
+	  ProdBitPerLong	  32
+	  ProdBitPerFloat	  32
+	  ProdBitPerDouble	  64
+	  ProdBitPerPointer	  32
+	  ProdLargestAtomicInteger "Char"
+	  ProdLargestAtomicFloat  "None"
+	  ProdIntDivRoundTo	  "Undefined"
+	  ProdEndianess		  "Unspecified"
+	  ProdWordSize		  32
+	  ProdShiftRightIntArith  on
+	  ProdHWDeviceType	  "32-bit Generic"
+	  TargetBitPerChar	  8
+	  TargetBitPerShort	  16
+	  TargetBitPerInt	  32
+	  TargetBitPerLong	  32
+	  TargetBitPerFloat	  32
+	  TargetBitPerDouble	  64
+	  TargetBitPerPointer	  32
+	  TargetLargestAtomicInteger "Char"
+	  TargetLargestAtomicFloat "None"
+	  TargetShiftRightIntArith on
+	  TargetIntDivRoundTo	  "Undefined"
+	  TargetEndianess	  "Unspecified"
+	  TargetWordSize	  32
+	  TargetTypeEmulationWarnSuppressLevel 0
+	  TargetPreprocMaxBitsSint 32
+	  TargetPreprocMaxBitsUint 32
+	  TargetHWDeviceType	  "Specified"
+	  TargetUnknown		  on
+	  ProdEqTarget		  on
+	}
+	Simulink.ModelReferenceCC {
+	  $ObjectID		  7
+	  Version		  "1.10.0"
+	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
+	  CheckModelReferenceTargetMessage "error"
+	  EnableParallelModelReferenceBuilds off
+	  ParallelModelReferenceErrorOnInvalidPool on
+	  ParallelModelReferenceMATLABWorkerInit "None"
+	  ModelReferenceNumInstancesAllowed "Multi"
+	  PropagateVarSize	  "Infer from blocks in model"
+	  ModelReferencePassRootInputsByReference on
+	  ModelReferenceMinAlgLoopOccurrences off
+	  PropagateSignalLabelsOutOfModel off
+	  SupportModelReferenceSimTargetCustomCode off
+	}
+	Simulink.SFSimCC {
+	  $ObjectID		  8
+	  Version		  "1.10.0"
+	  SFSimEnableDebug	  on
+	  SFSimOverflowDetection  on
+	  SFSimEcho		  on
+	  SimBlas		  on
+	  SimCtrlC		  on
+	  SimExtrinsic		  on
+	  SimIntegrity		  on
+	  SimUseLocalCustomCode	  off
+	  SimParseCustomCode	  on
+	  SimBuildMode		  "sf_incremental_build"
+	}
+	Simulink.RTWCC {
+	  $BackupClass		  "Simulink.RTWCC"
+	  $ObjectID		  9
+	  Version		  "1.10.0"
+	  SystemTargetFile	  "grt.tlc"
+	  GenCodeOnly		  off
+	  MakeCommand		  "make_rtw"
+	  GenerateMakefile	  on
+	  TemplateMakefile	  "grt_unix.tmf"
+	  GenerateReport	  off
+	  SaveLog		  off
+	  RTWVerbose		  on
+	  RetainRTWFile		  off
+	  ProfileTLC		  off
+	  TLCDebug		  off
+	  TLCCoverage		  off
+	  TLCAssert		  off
+	  ProcessScriptMode	  "Default"
+	  ConfigurationMode	  "Optimized"
+	  ConfigAtBuild		  off
+	  RTWUseLocalCustomCode	  off
+	  RTWUseSimCustomCode	  off
+	  IncludeHyperlinkInReport off
+	  LaunchReport		  off
+	  TargetLang		  "C"
+	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
+	  IncludeERTFirstTime	  on
+	  GenerateTraceInfo	  off
+	  GenerateTraceReport	  off
+	  GenerateTraceReportSl	  off
+	  GenerateTraceReportSf	  off
+	  GenerateTraceReportEml  off
+	  GenerateCodeInfo	  off
+	  GenerateSLWebview	  off
+	  RTWCompilerOptimization "Off"
+	  CheckMdlBeforeBuild	  "Off"
+	  CustomRebuildMode	  "OnUpdate"
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    2
+	    Simulink.CodeAppCC {
+	      $ObjectID		      10
+	      Version		      "1.10.0"
+	      ForceParamTrailComments off
+	      GenerateComments	      on
+	      IgnoreCustomStorageClasses on
+	      IgnoreTestpoints	      off
+	      IncHierarchyInIds	      off
+	      MaxIdLength	      31
+	      PreserveName	      off
+	      PreserveNameWithParent  off
+	      ShowEliminatedStatement off
+	      IncAutoGenComments      off
+	      SimulinkDataObjDesc     off
+	      SFDataObjDesc	      off
+	      MATLABFcnDesc	      off
+	      IncDataTypeInIds	      off
+	      MangleLength	      1
+	      CustomSymbolStrGlobalVar "$R$N$M"
+	      CustomSymbolStrType     "$N$R$M"
+	      CustomSymbolStrField    "$N$M"
+	      CustomSymbolStrFcn      "$R$N$M$F"
+	      CustomSymbolStrFcnArg   "rt$I$N$M"
+	      CustomSymbolStrBlkIO    "rtb_$N$M"
+	      CustomSymbolStrTmpVar   "$N$M"
+	      CustomSymbolStrMacro    "$R$N$M"
+	      DefineNamingRule	      "None"
+	      ParamNamingRule	      "None"
+	      SignalNamingRule	      "None"
+	      InsertBlockDesc	      off
+	      InsertPolySpaceComments off
+	      SimulinkBlockComments   on
+	      MATLABSourceComments    off
+	      EnableCustomComments    off
+	      InlinedPrmAccess	      "Literals"
+	      ReqsInCode	      off
+	      UseSimReservedNames     off
+	    }
+	    Simulink.GRTTargetCC {
+	      $BackupClass	      "Simulink.TargetCC"
+	      $ObjectID		      11
+	      Version		      "1.10.0"
+	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
+	      TargetLibSuffix	      ""
+	      TargetPreCompLibLocation ""
+	      TargetFunctionLibrary   "ANSI_C"
+	      UtilityFuncGeneration   "Auto"
+	      ERTMultiwordTypeDef     "System defined"
+	      ERTCodeCoverageTool     "None"
+	      ERTMultiwordLength      256
+	      MultiwordLength	      2048
+	      GenerateFullHeader      on
+	      GenerateSampleERTMain   off
+	      GenerateTestInterfaces  off
+	      IsPILTarget	      off
+	      ModelReferenceCompliant off
+	      ParMdlRefBuildCompliant on
+	      CompOptLevelCompliant   on
+	      IncludeMdlTerminateFcn  on
+	      GeneratePreprocessorConditionals "Disable all"
+	      CombineOutputUpdateFcns off
+	      CombineSignalStateStructs	off
+	      SuppressErrorStatus     off
+	      ERTFirstTimeCompliant   off
+	      IncludeFileDelimiter    "Auto"
+	      ERTCustomFileBanners    off
+	      SupportAbsoluteTime     on
+	      LogVarNameModifier      "rt_"
+	      MatFileLogging	      off
+	      MultiInstanceERTCode    off
+	      SupportNonFinite	      on
+	      SupportComplex	      on
+	      PurelyIntegerCode	      off
+	      SupportContinuousTime   on
+	      SupportNonInlinedSFcns  on
+	      SupportVariableSizeSignals off
+	      EnableShiftOperators    on
+	      ParenthesesLevel	      "Nominal"
+	      PortableWordSizes	      off
+	      ModelStepFunctionPrototypeControlCompliant off
+	      CPPClassGenCompliant    off
+	      AutosarCompliant	      off
+	      UseMalloc		      off
+	      ExtMode		      off
+	      ExtModeStaticAlloc      off
+	      ExtModeTesting	      off
+	      ExtModeStaticAllocSize  1000000
+	      ExtModeTransport	      0
+	      ExtModeMexFile	      "ext_comm"
+	      ExtModeIntrfLevel	      "Level1"
+	      RTWCAPISignals	      off
+	      RTWCAPIParams	      off
+	      RTWCAPIStates	      off
+	      GenerateASAP2	      off
+	    }
+	    PropName		    "Components"
+	  }
+	}
+	PropName		"Components"
+      }
+      Name		      "Configuration"
+      CurrentDlgPage	      "Solver"
+      ConfigPrmDlgPosition    " [ 200, 85, 1080, 715 ] "
+    }
+    PropName		    "ConfigurationSets"
+  }
+  Simulink.ConfigSet {
+    $PropName		    "ActiveConfigurationSet"
+    $ObjectID		    1
+  }
+  BlockDefaults {
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    NamePlacement	    "normal"
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    ShowName		    on
+    BlockRotation	    0
+    BlockMirror		    off
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    "center"
+    VerticalAlignment	    "middle"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    UseDisplayTextAsClickCallback off
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  BlockParameterDefaults {
+    Block {
+      BlockType		      "Lookup_n-D"
+      NumberOfTableDimensions "2"
+      BreakpointsForDimension1 "[10,22,31]"
+      BreakpointsForDimension2 "[10,22,31]"
+      BreakpointsForDimension3 "[1:3]"
+      BreakpointsForDimension4 "[1:3]"
+      BreakpointsForDimension5 "[1:3]"
+      BreakpointsForDimension6 "[1:3]"
+      BreakpointsForDimension7 "[1:3]"
+      BreakpointsForDimension8 "[1:3]"
+      BreakpointsForDimension9 "[1:3]"
+      BreakpointsForDimension10	"[1:3]"
+      BreakpointsForDimension11	"[1:3]"
+      BreakpointsForDimension12	"[1:3]"
+      BreakpointsForDimension13	"[1:3]"
+      BreakpointsForDimension14	"[1:3]"
+      BreakpointsForDimension15	"[1:3]"
+      BreakpointsForDimension16	"[1:3]"
+      BreakpointsForDimension17	"[1:3]"
+      BreakpointsForDimension18	"[1:3]"
+      BreakpointsForDimension19	"[1:3]"
+      BreakpointsForDimension20	"[1:3]"
+      BreakpointsForDimension21	"[1:3]"
+      BreakpointsForDimension22	"[1:3]"
+      BreakpointsForDimension23	"[1:3]"
+      BreakpointsForDimension24	"[1:3]"
+      BreakpointsForDimension25	"[1:3]"
+      BreakpointsForDimension26	"[1:3]"
+      BreakpointsForDimension27	"[1:3]"
+      BreakpointsForDimension28	"[1:3]"
+      BreakpointsForDimension29	"[1:3]"
+      BreakpointsForDimension30	"[1:3]"
+      BreakpointsForDimension1Min "[]"
+      BreakpointsForDimension2Min "[]"
+      BreakpointsForDimension3Min "[]"
+      BreakpointsForDimension4Min "[]"
+      BreakpointsForDimension5Min "[]"
+      BreakpointsForDimension6Min "[]"
+      BreakpointsForDimension7Min "[]"
+      BreakpointsForDimension8Min "[]"
+      BreakpointsForDimension9Min "[]"
+      BreakpointsForDimension10Min "[]"
+      BreakpointsForDimension11Min "[]"
+      BreakpointsForDimension12Min "[]"
+      BreakpointsForDimension13Min "[]"
+      BreakpointsForDimension14Min "[]"
+      BreakpointsForDimension15Min "[]"
+      BreakpointsForDimension16Min "[]"
+      BreakpointsForDimension17Min "[]"
+      BreakpointsForDimension18Min "[]"
+      BreakpointsForDimension19Min "[]"
+      BreakpointsForDimension20Min "[]"
+      BreakpointsForDimension21Min "[]"
+      BreakpointsForDimension22Min "[]"
+      BreakpointsForDimension23Min "[]"
+      BreakpointsForDimension24Min "[]"
+      BreakpointsForDimension25Min "[]"
+      BreakpointsForDimension26Min "[]"
+      BreakpointsForDimension27Min "[]"
+      BreakpointsForDimension28Min "[]"
+      BreakpointsForDimension29Min "[]"
+      BreakpointsForDimension30Min "[]"
+      BreakpointsForDimension1Max "[]"
+      BreakpointsForDimension2Max "[]"
+      BreakpointsForDimension3Max "[]"
+      BreakpointsForDimension4Max "[]"
+      BreakpointsForDimension5Max "[]"
+      BreakpointsForDimension6Max "[]"
+      BreakpointsForDimension7Max "[]"
+      BreakpointsForDimension8Max "[]"
+      BreakpointsForDimension9Max "[]"
+      BreakpointsForDimension10Max "[]"
+      BreakpointsForDimension11Max "[]"
+      BreakpointsForDimension12Max "[]"
+      BreakpointsForDimension13Max "[]"
+      BreakpointsForDimension14Max "[]"
+      BreakpointsForDimension15Max "[]"
+      BreakpointsForDimension16Max "[]"
+      BreakpointsForDimension17Max "[]"
+      BreakpointsForDimension18Max "[]"
+      BreakpointsForDimension19Max "[]"
+      BreakpointsForDimension20Max "[]"
+      BreakpointsForDimension21Max "[]"
+      BreakpointsForDimension22Max "[]"
+      BreakpointsForDimension23Max "[]"
+      BreakpointsForDimension24Max "[]"
+      BreakpointsForDimension25Max "[]"
+      BreakpointsForDimension26Max "[]"
+      BreakpointsForDimension27Max "[]"
+      BreakpointsForDimension28Max "[]"
+      BreakpointsForDimension29Max "[]"
+      BreakpointsForDimension30Max "[]"
+      BreakpointsForDimension1DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension2DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension3DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension4DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension5DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension6DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension7DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension8DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension9DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension10DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension11DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension12DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension13DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension14DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension15DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension16DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension17DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension18DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension19DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension20DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension21DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension22DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension23DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension24DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension25DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension26DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension27DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension28DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension29DataTypeStr "Inherit: Same as corresponding input"
+      BreakpointsForDimension30DataTypeStr "Inherit: Same as corresponding input"
+      IndexSearchMethod	      "Binary search"
+      BeginIndexSearchUsingPreviousIndexResult off
+      UseOneInputPortForAllInputData off
+      Table		      "[4 5 6;16 19 20;10 18 23]"
+      TableMin		      "[]"
+      TableMax		      "[]"
+      TableDataTypeStr	      "Inherit: Same as output"
+      IntermediateResultsDataTypeStr "Inherit: Same as output"
+      InterpMethod	      "Linear"
+      ExtrapMethod	      "Linear"
+      ActionForOutOfRangeInput "None"
+      UseLastTableValue	      off
+      SampleTime	      "-1"
+      InputSameDT	      on
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	off
+      FractionDataTypeStr     "Inherit: Inherit via internal rule"
+      LUTDesignTableMode      "Redesign Table"
+      LUTDesignDataSource     "Block Dialog"
+      LUTDesignFunctionName   "sqrt(x)"
+      LUTDesignUseExistingBP  on
+      LUTDesignRelError	      "0.01"
+      LUTDesignAbsError	      "1e-6"
+    }
+    Block {
+      BlockType		      Mux
+      Inputs		      "4"
+      DisplayOption	      "none"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      NonVirtualBus	      off
+    }
+    Block {
+      BlockType		      Product
+      Inputs		      "2"
+      Multiplication	      "Element-wise(.*)"
+      CollapseMode	      "All dimensions"
+      CollapseDim	      "1"
+      InputSameDT	      on
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Zero"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      RealImagToComplex
+      Input		      "Real and imag"
+      ConstantPart	      "0"
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Scope
+      ModelBased	      off
+      TickLabels	      "OneTimeTick"
+      ZoomMode		      "on"
+      Grid		      "on"
+      TimeRange		      "auto"
+      YMin		      "-5"
+      YMax		      "5"
+      SaveToWorkspace	      off
+      SaveName		      "ScopeData"
+      LimitDataPoints	      on
+      MaxDataPoints	      "5000"
+      Decimation	      "1"
+      SampleInput	      off
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Sin
+      SineType		      "Time based"
+      TimeSource	      "Use simulation time"
+      Amplitude		      "1"
+      Bias		      "0"
+      Frequency		      "1"
+      Phase		      "0"
+      Samples		      "10"
+      Offset		      "0"
+      SampleTime	      "-1"
+      VectorParams1D	      on
+    }
+    Block {
+      BlockType		      Sum
+      IconShape		      "rectangular"
+      Inputs		      "++"
+      CollapseMode	      "All dimensions"
+      CollapseDim	      "1"
+      InputSameDT	      on
+      AccumDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      VariableName	      "simulink_output"
+      MaxDataPoints	      "1000"
+      Decimation	      "1"
+      SampleTime	      "0"
+      FixptAsFi		      off
+    }
+  }
+  System {
+    Name		    "QAM_model1"
+    Location		    [195, 112, 1052, 486]
+    Open		    on
+    ModelBrowserVisibility  off
+    ModelBrowserWidth	    200
+    ScreenColor		    "white"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "usletter"
+    PaperUnits		    "inches"
+    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+    TiledPageScale	    1
+    ShowPageBoundaries	    off
+    ZoomFactor		    "100"
+    ReportName		    "simulink-default.rpt"
+    SIDHighWatermark	    "31"
+    Block {
+      BlockType		      Reference
+      Name		      "Discrete-Time\nEye Diagram\nScope"
+      SID		      "3"
+      Tag		      "EyeDiagram"
+      Ports		      [1]
+      Position		      [700, 237, 750, 273]
+      LibraryVersion	      "1.316"
+      SourceBlock	      "commsink2/Discrete-Time\nEye Diagram\nScope"
+      SourceType	      "Discrete-Time Eye Diagram Scope"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      sampPerSymb	      "100"
+      offsetEye		      "0"
+      symbPerTrace	      "2"
+      numTraces		      "100"
+      numNewFrames	      "4"
+      LineStyles	      "-"
+      LineColors	      "b"
+      dupPoints		      on
+      fading		      on
+      render		      on
+      AxisGrid		      on
+      yMin		      "-4"
+      yMax		      "4"
+      inphaseLabel	      "In-phase Amplitude"
+      quadratureLabel	      "Quadrature Amplitude"
+      openScopeAtSimStart     on
+      dispDiagram	      "In-phase Only"
+      FrameNumber	      off
+      FigPos		      "get(0,'defaultfigureposition');"
+      figTitle		      "Eye Diagram"
+      block_type_	      "eye"
+      numLinesMax	      "8"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Discrete-Time\nScatter Plot\nScope"
+      SID		      "4"
+      Tag		      "ScatterPlot"
+      Ports		      [1]
+      Position		      [615, 279, 670, 321]
+      LibraryVersion	      "1.316"
+      SourceBlock	      "commsink2/Discrete-Time\nScatter Plot\nScope"
+      SourceType	      "Discrete-Time Scatter Plot Scope"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      sampPerSymb	      "fs/R"
+      offsetEye		      "0"
+      numTraces		      "100"
+      numNewFrames	      "100"
+      LineMarkers	      "."
+      LineColors	      "b"
+      fading		      on
+      render		      on
+      AxisGrid		      on
+      xMin		      "-4"
+      xMax		      "4"
+      yMin		      "-4"
+      yMax		      "4"
+      inphaseLabel	      "In-phase Amplitude"
+      quadratureLabel	      "Quadrature Amplitude"
+      openScopeAtSimStart     on
+      FrameNumber	      off
+      FigPos		      "get(0,'defaultfigureposition');"
+      figTitle		      "Scatter Plot"
+      numLinesMax	      "8"
+      block_type_	      "scatter"
+    }
+    Block {
+      BlockType		      "Lookup_n-D"
+      Name		      "Lookup Table"
+      SID		      "29"
+      Ports		      [1, 1]
+      Position		      [145, 50, 210, 100]
+      NumberOfTableDimensions "1"
+      BreakpointsForDimension1 "[0:15]"
+      IndexSearchMethod	      "Binary search"
+      Table		      "[-3 -3 -3 -3 -1 -1 -1 -1 3 3 3 3 1 1 1 1]"
+    }
+    Block {
+      BlockType		      "Lookup_n-D"
+      Name		      "Lookup Table1"
+      SID		      "30"
+      Ports		      [1, 1]
+      Position		      [145, 123, 210, 177]
+      NumberOfTableDimensions "1"
+      BreakpointsForDimension1 "[0:15]"
+      IndexSearchMethod	      "Binary search"
+      Table		      "[-3 -1 3 1 -3 -1 3 1 -3 -1 3 1 -3 -1 3 1]"
+    }
+    Block {
+      BlockType		      Mux
+      Name		      "Mux1"
+      SID		      "5"
+      Ports		      [2, 1]
+      Position		      [275, 232, 310, 268]
+      Inputs		      "2"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Raised Cosine\nTransmit Filter 1"
+      SID		      "8"
+      Ports		      [1, 1]
+      Position		      [305, 53, 385, 97]
+      LibraryVersion	      "1.600"
+      UserDataPersistent      on
+      UserData		      "DataTag0"
+      DialogController	      "dspDDGCreate"
+      DialogControllerArgs    "DataTag1"
+      SourceBlock	      "commfilt2/Raised Cosine\nTransmit Filter"
+      SourceType	      "Raised Cosine Transmit Filter"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      filtType		      "Normal"
+      D			      "4"
+      R			      "0.5"
+      sampMode		      "Mute"
+      saveAsFlag	      "0"
+      N			      "100"
+      framing		      "Maintain input frame size"
+      InputProcessing	      "Elements as channels (sample based)"
+      checkGain		      "Normalized"
+      filterGain	      "1"
+      checkCoeff	      off
+      variableName	      "rcTxFilt"
+      launchFVT		      off
+      roundingMode	      "Floor"
+      overflowMode	      off
+      coeffMode		      "Same word length as input"
+      coeffWordLength	      "16"
+      coeffFracLength	      "15"
+      prodOutputMode	      "Inherit via internal rule"
+      prodOutputWordLength    "32"
+      prodOutputFracLength    "30"
+      accumMode		      "Inherit via internal rule"
+      accumWordLength	      "32"
+      accumFracLength	      "30"
+      outputMode	      "Same as accumulator"
+      outputWordLength	      "16"
+      outputFracLength	      "15"
+      LockScale		      off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Raised Cosine\nTransmit Filter 2"
+      SID		      "9"
+      Ports		      [1, 1]
+      Position		      [305, 128, 385, 172]
+      LibraryVersion	      "1.600"
+      UserDataPersistent      on
+      UserData		      "DataTag2"
+      DialogController	      "dspDDGCreate"
+      DialogControllerArgs    "DataTag3"
+      SourceBlock	      "commfilt2/Raised Cosine\nTransmit Filter"
+      SourceType	      "Raised Cosine Transmit Filter"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      filtType		      "Normal"
+      D			      "4"
+      R			      "0.5"
+      sampMode		      "Mute"
+      saveAsFlag	      "0"
+      N			      "100"
+      framing		      "Maintain input frame size"
+      InputProcessing	      "Elements as channels (sample based)"
+      checkGain		      "Normalized"
+      filterGain	      "1"
+      checkCoeff	      off
+      variableName	      "rcTxFilt1"
+      launchFVT		      off
+      roundingMode	      "Floor"
+      overflowMode	      off
+      coeffMode		      "Same word length as input"
+      coeffWordLength	      "16"
+      coeffFracLength	      "15"
+      prodOutputMode	      "Inherit via internal rule"
+      prodOutputWordLength    "32"
+      prodOutputFracLength    "30"
+      accumMode		      "Inherit via internal rule"
+      accumWordLength	      "32"
+      accumFracLength	      "30"
+      outputMode	      "Same as accumulator"
+      outputWordLength	      "16"
+      outputFracLength	      "15"
+      LockScale		      off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Random Integer\nGenerator"
+      SID		      "31"
+      Ports		      [0, 1]
+      Position		      [15, 82, 85, 128]
+      LibraryVersion	      "1.111"
+      FontName		      "Arial"
+      SourceBlock	      "commrandsrc2/Random Integer\nGenerator"
+      SourceType	      "Random Integer Generator"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      mul		      "M"
+      seed		      "randseed"
+      Ts		      "T"
+      frameBased	      off
+      sampPerFrame	      "1"
+      orient		      off
+      outDataType	      "double"
+    }
+    Block {
+      BlockType		      RealImagToComplex
+      Name		      "Real-Imag to\nComplex"
+      SID		      "10"
+      Ports		      [2, 1]
+      Position		      [550, 283, 580, 312]
+      Input		      "Real and imag"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "Scope"
+      SID		      "12"
+      Ports		      [1]
+      Position		      [780, 165, 810, 195]
+      Floating		      off
+      Location		      [14, 59, 569, 282]
+      Open		      on
+      NumInputPorts	      "1"
+      TickLabels	      "on"
+      ZoomMode		      "xonly"
+      List {
+	ListType		AxesTitles
+	axes1			"Sinal QAM"
+      }
+      TimeRange		      "0.01"
+      DataFormat	      "Array"
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "Scope1"
+      SID		      "13"
+      Ports		      [1]
+      Position		      [330, 235, 360, 265]
+      Floating		      off
+      Location		      [167, 248, 969, 547]
+      Open		      on
+      NumInputPorts	      "1"
+      TickLabels	      "on"
+      ZoomMode		      "xonly"
+      List {
+	ListType		AxesTitles
+	axes1			"Coordenadas dos pontos QAM"
+      }
+      YMin		      "-4"
+      YMax		      "4"
+      DataFormat	      "Array"
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Sum
+      Name		      "Sum"
+      SID		      "15"
+      Ports		      [2, 1]
+      Position		      [705, 98, 730, 127]
+      SampleTime	      "Ts"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Switch 1"
+      SID		      "16"
+      Ports		      [2, 1]
+      Position		      [420, 52, 450, 83]
+      LibraryVersion	      "1.225"
+      SourceBlock	      "simulink/Signal\nRouting/Manual Switch"
+      SourceType	      "Manual Switch"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      sw		      "0"
+      action		      "0"
+      varsize		      off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Switch 2"
+      SID		      "17"
+      Ports		      [2, 1]
+      Position		      [420, 142, 450, 173]
+      LibraryVersion	      "1.225"
+      SourceBlock	      "simulink/Signal\nRouting/Manual Switch"
+      SourceType	      "Manual Switch"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      sw		      "1"
+      action		      "0"
+      varsize		      off
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace"
+      SID		      "18"
+      Ports		      [1]
+      Position		      [780, 100, 815, 130]
+      VariableName	      "qam16"
+      MaxDataPoints	      "inf"
+      SampleTime	      "Ts"
+      SaveFormat	      "Array"
+    }
+    Block {
+      BlockType		      Sin
+      Name		      "cos"
+      SID		      "19"
+      Ports		      [0, 1]
+      Position		      [590, 20, 620, 50]
+      BlockRotation	      270
+      BlockMirror	      on
+      Frequency		      "2*pi*fc"
+      Phase		      "pi/2"
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Product
+      Name		      "mixer_I"
+      SID		      "20"
+      Ports		      [2, 1]
+      Position		      [645, 53, 670, 77]
+      RndMeth		      "Floor"
+      SampleTime	      "Ts"
+    }
+    Block {
+      BlockType		      Product
+      Name		      "mixer_Q"
+      SID		      "21"
+      Ports		      [2, 1]
+      Position		      [650, 153, 675, 177]
+      RndMeth		      "Floor"
+      SampleTime	      "Ts"
+    }
+    Block {
+      BlockType		      Sin
+      Name		      "sin"
+      SID		      "22"
+      Ports		      [0, 1]
+      Position		      [595, 185, 625, 215]
+      BlockRotation	      270
+      Frequency		      "2*pi*fc"
+      SampleTime	      "0"
+    }
+    Line {
+      SrcBlock		      "Raised Cosine\nTransmit Filter 2"
+      SrcPort		      1
+      DstBlock		      "Switch 2"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Raised Cosine\nTransmit Filter 1"
+      SrcPort		      1
+      DstBlock		      "Switch 1"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Mux1"
+      SrcPort		      1
+      DstBlock		      "Scope1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Random Integer\nGenerator"
+      SrcPort		      1
+      Points		      [25, 0]
+      Branch {
+	Points			[0, -30]
+	DstBlock		"Lookup Table"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 45]
+	DstBlock		"Lookup Table1"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "mixer_I"
+      SrcPort		      1
+      Points		      [15, 0]
+      DstBlock		      "Sum"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "mixer_Q"
+      SrcPort		      1
+      Points		      [10, 0]
+      DstBlock		      "Sum"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "sin"
+      SrcPort		      1
+      Points		      [0, -10]
+      DstBlock		      "mixer_Q"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "cos"
+      SrcPort		      1
+      Points		      [0, 5]
+      DstBlock		      "mixer_I"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Sum"
+      SrcPort		      1
+      Points		      [15, 0]
+      Branch {
+	Points			[0, 65]
+	DstBlock		"Scope"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"To Workspace"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "Real-Imag to\nComplex"
+      SrcPort		      1
+      DstBlock		      "Discrete-Time\nScatter Plot\nScope"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Lookup Table"
+      SrcPort		      1
+      Points		      [35, 0]
+      Branch {
+	Points			[0, 165]
+	DstBlock		"Mux1"
+	DstPort			1
+      }
+      Branch {
+	Points			[35, 0]
+	Branch {
+	  Points		  [0, -50; 120, 0]
+	  DstBlock		  "Switch 1"
+	  DstPort		  1
+	}
+	Branch {
+	  DstBlock		  "Raised Cosine\nTransmit Filter 1"
+	  DstPort		  1
+	}
+      }
+    }
+    Line {
+      SrcBlock		      "Lookup Table1"
+      SrcPort		      1
+      Points		      [20, 0]
+      Branch {
+	Points			[0, 110]
+	DstBlock		"Mux1"
+	DstPort			2
+      }
+      Branch {
+	Points			[45, 0]
+	Branch {
+	  DstBlock		  "Raised Cosine\nTransmit Filter 2"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, 55; 125, 0]
+	  DstBlock		  "Switch 2"
+	  DstPort		  2
+	}
+      }
+    }
+    Line {
+      SrcBlock		      "Switch 1"
+      SrcPort		      1
+      Points		      [65, 0]
+      Branch {
+	DstBlock		"mixer_I"
+	DstPort			2
+      }
+      Branch {
+	Points			[0, 185]
+	Branch {
+	  DstBlock		  "Discrete-Time\nEye Diagram\nScope"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, 35]
+	  DstBlock		  "Real-Imag to\nComplex"
+	  DstPort		  1
+	}
+      }
+    }
+    Line {
+      SrcBlock		      "Switch 2"
+      SrcPort		      1
+      Points		      [45, 0]
+      Branch {
+	DstBlock		"mixer_Q"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 145]
+	DstBlock		"Real-Imag to\nComplex"
+	DstPort			2
+      }
+    }
+    Annotation {
+      Name		      "I channel"
+      Position		      [606, 85]
+    }
+    Annotation {
+      Name		      "Q channel"
+      Position		      [607, 141]
+    }
+  }
+}
+MatData {
+  NumRecords		  4
+  DataRecord {
+    Tag			    DataTag3
+    Data		    "  %)30     .    P     8    (     0         %    \"     $    \"     0         .    2     8    (    !    "
+    "      %    \"     $    4     0         0    %    %)A:7-E9$-O<VEN949I;'1E<E1X      X   !     !@    @    $          "
+    "4    (     0    H    !         !     *    8V]M;61I86QO9P        "
+  }
+  DataRecord {
+    Tag			    DataTag2
+    Data		    "  %)30     .    <!H   8    (     @         %    \"     $    !     0         %  0 %@    $   !\"    :&%S2"
+    "6YH97)I=&5D3W!T:6]N     &9I;'1E<D-O;G-T<G5C=&]R      !F:6QT97)#;VYS=')U8W1O<D%R9W,         #@   #     &    \"     "
+    "D\"        !0    @    !     0    $          @ !  $    .    0     8    (    !          %    \"     $    +     0    "
+    "     0    \"P   &1F:6QT+F1F9FER       .    :!D   8    (     0         %    \"     $    !     0         .    .!D   "
+    "8    (    !@         %    \"     $    A P   0         )    \"!D  ,X?]=LR^$<\\9^(SC](\")C\\NGN\\G:BHV/T]VM%Y6NT _X@"
+    ")/EMUP1C\\0SWW)@#-,/X70O0-T %$_8TG'-U?K4S_&I\\RE,=E6/Q*$IIK%R%D_0<[%HM\"X7#^O.\\$F#*A?/Z?[/P:72F$_])5?KG2_8C]T959V"
+    "]S%D/QAHIP5WH64_DZ UF4H-9S]I%U%=R71H/ZT@-,E*UVD_MLG&^R8T:S\\/#GT9MXIL/RPY(ZM5VFT_);1J_5XB;S^%-83 &#%P/R9[FA67S' _]"
+    ".$N:UQC<3\\]U6I1'/5Q/[]#J2N,@7(_:G\"\"8&,(<S]Q]HJ)6XES/WKPJZ(P!'0_MP+Z.*%X=#\\FW?\"8;N9T/Z*R^/M<374_VA$;M3.M=3\\YC"
+    ",Q<O05V/_JAL/O'5G8_O(,]-\"6@=C^L7B5KJN%V/_D<:^XP&W<_E,,(&Y9,=S]$Y0V!NW5W/TW^' :'EG<_;O4N!N.N=S^/=81ROKYW/^Y7K>X,QG"
+    "<_2^B.Z\\;$=S^/:U+ Z;IW/_S])<%WJ'<_69>Z4WB-=S^FR6H!^&EW/ZFB]H8(/G<_G??!X< )=S_I3H-:/<UV/U*34HV?B'8_&L ';PX\\=C^:Q-"
+    "I/MN=U/SWX-MO(BW4_'YRU%'TH=3]?&#12#[YT/Q':^S+!3'0_UOORD]G4<S\\J+<Z I%9S/T:A/2)STG(_YRH0J9M(<C_,#4DV>;EQ/PAY)L!K)7$"
+    "_9A 8]->,<#]_O4PK3N!O/PT6F[2-GVX_]T^>A%)8;3]I^0#=B ML/[!7..8DNFH_2E4_3R)E:3^B\"7WG@PUH/^[U[3)3M&8_92BJ^)]:93\\SGN7"
+    "+?P%D/]!0BX\\-JF(_KG>6]&A583_JGE#SM01@/SUV/'\\X<ET_YN,,<8WG6C]MD$NFQ6M8/]BY? )  58_Z8$V)UZJ4S_ZK/XP@VE1/_BX:]DD@DX"
+    "_BF48#-QF2C_$+ %?ZX5&/UH/XH@*Y$(_2.0=E\\T+/S_EXTU'0. X/]*>EM^,3C,_%7HS0EJ_+#^&O2T)WC@D/\\F&5I*[-1H_3.N*!(W8#3\\27K"
+    "J\\Z]?Z/F%@ IZ>)ML^#5>=4B^7$CG/S%I*W+[;/D9L1L]!\"/P^CB1S>+79#S\\=R *[/94</T'NCAI)B28_UP.$AJ!>,#_AR0&7/'@V/W.Y2$K[E"
+    "3T_!M8\\DO'=0C^:-AFUO'9'/Z AVX3>EDP__H45:L@?43\\H\"<2UXCA4/QN@5MP1EU<_B8%!2H,Z6S^X]X<0/2-?/Y?E-7\".J&$_/51$BNOA8S^"
+    "\\Q ;D>CUF/R\"%8?[KNF@_40)%:-A9:S]M^7QAPQEN/]:8\\,(,?7 _X)&;0!C]<3_;O AFHXQS/U#D^[A!*W4_\\ F/\\'K8=C\\38OCARI-X/\\"
+    "E76W*A7'H_SL'#C6(R?#_URF@C9A1^/Z>AJ1/\\ ( _&Z# 3\"S]@#\\_@T_)7?Z!/Z\"A-:LD!(,_6$;M-0\\.A#^Y!X;=I1N%/[:.CUAK+(8_5I/"
+    "[M-P_AS\\HJ_QO<56(/^AAYI\";;(D_AN,1Q\\>$BC_H2\\F*79V+/V-U.D&_M8P_B^-P8TK-C3]S(%6H5^../S^BKC$[]X\\_3O\\17B*$D#\\-]1"
+    "GIWPJ1/S\\7$ %ZCY$_?SIABY(1DC\\ZMJ\"IR9\"2/Q3!S=B]#),_#HC]$0R%DS]_1V/L3_F3/RT%K\\ C:90_9^\"ZS2#4E#]Y1WY>WSF5/YRY/?"
+    "'VF94_%AGM7_[SE3\\7[;D)C$>6/^92LOTUE)8_5[Y\\)I+9EC],#A1W-A>7/TC@>ABY3)<_QGA8F+!YES_F G$8M)V7/P%<ZGY;N)<_+!1.IS_)ES"
+    "_KQCB4^L^7/^ALIJ$GS)<_<LK*MV.]ES]IIF1^3:.7/S<\">I\"%?9<_2!YKL*Y+ES]9KDG\\;0V7/^X_82)KPI8_0'G=E5!JEC_&@7K#RP26/[:7*"
+    "T:-D94_$(VC&TD0E3]6IZK8MH\"4/SHB+=V1XI,_?F3MAYDUDS]>RL1ID7F2/W/'77A!KI$_3P120';3D#]Y%BXM M*//Y832))PW8T_X5=VG>[(BS"
+    "]V+X+K/92)/W-!&B0K/X<_[[DY4X[)A#\\<S2M 2S.\"/_;> H2C^'X_P B?(CQ)>3^H5Q@N<EAS/P:#B>'B3&H_\\P.=^@#.6C_!9_*2/_9MO!(6D"
+    "BQ)SEN_-%]7'3M-;+]&[,(M;)AUOY#%%I8K2'V_\"^.8[76:@K]A#\"2MSZZ&O\\)263.-X(J__@VM?PDOC[^F_E,CR,R1O_E#].JN#Y2_\")9Z?L]"
+    "?EK_2DWU]N+R8OW]^R;CP)9N_1'E1+O>:G;_)B=V#H0V@OTU/Q\\TA4Z&_^/Z*.+\"=HK]-97FC_.RCOU;B.0ZS0*6_RU78GGN8IK\\66#FI^O.GOR"
+    "1B][?04JF_*P^KEIJTJK\\=**!=\\1BLOP\"M^'YJ?ZV_IY$^U9?GKK\\5,K+9@RBPOQE)&GNBW;\"_ D\"7B^N2L;][$&@@(4BROS4>);(#_;*_\\"
+    "().*%*QL[^3%(WER62TOQ5SI-0F%[6_K\"@4=B/(M;]\\I&7N>'>VOX\"4)!7?)+>_BN%^A S0M[^538FIMGBXO]ER)=61'KF_9Z&%35'!N;^1UTI@"
+    "IV\"ZOSO2.'5%_+J_N?)[(=R3N[_0>7P[&R>\\OTQ:.N^QM;R_@*DLTTX_O;]3>9_]G\\.]O_&MBAI30KZ_JRC<@16[OK_':R].E\"V_O_\"D['-\\"
+    "F;^_/]G(V'K^O[_^7= U'B[ OX#$4QXW6<\"_1(?QREZ P+^C\\O8);*/ OW=6?-\\UPL\"_.'T!DI/<P+]70\"*W7/+ OV!L7T!I \\&_'!?XAY$/"
+    "P;^>>L]=KA;!OUE:6Q29&,&_F^J6C2L5P;]F)_9'0 S!OV1]56NR_<\"_>9_AU5WIP+^+6_,H'\\_ OYX[V]73KL\"_1KN8*EJ(P+\\GUWA>D5O OZ"
+    "ZYEYY9*,\"_$Y&\"-\"C=O[_:KE@>1ER_OUJ.&*O3S;Z_,+KIUYDQOK]?1A@&9(>]OVU3#!( S[R_(Q;-:3X(O+\\F.0<C\\C*[OXJ&CA#Q3KJ_;=]"
+    "2UQ-<N;\\ I\\ \"-EJXOP#DA!@V2;>_C8\"MJ_4HMK\\1-!YO6?FTOQ_-4D=)NK._2+IG6[!KLK_MX6$E?0VQO^8*7@-#/Z^_CDBP>R5$K+_^\"+]"
+    ",DRFIOS\"&B\">%[Z6_4@I+[?J5HK_\"COZ+]SF>OV^A]VDL\"9>_':_=KH SC[_8@ /5N*]_OP=<%#,FIH$\\+$Q^+&)3@#^/E\"*0O)\"0/WK%8)"
+    ".J-)D_O8B>[7D*H3\\&F9O7@)BE/R&7_.X61*H__=1&7N$,KS\\4U7G*/OFQ/XDRL*5 >K0_Z,!V1#T)MS\\EO\"?6]Z6Y/\\!G\";LO4+P_OC2JBJ"
+    " 'OS^NE*L- >; /^@H5D6$3L(_'E:?(S*]PS]^4:\\-X3'%/X?I>)QEK,8_:3XQHY(LR#]05%$V.;+)/Q14(+,H/<L_=B7%QR[-S#_AW=U[%V+./UI"
+    "5FSFM^\\\\_0(*O:]S,T#^JDNS0 )[1/[QQ4K,F<=(_0!^P/S!&TS_KBY[N_AS4/S)=A(IS]=0_MH'3-6[/U3\\R%7]QSJK6/R, J\"-SA]<_$:M^G"
+    "CIEV#\\^#%BG D39/[5\"]'VH(]H_F^'TXP@$VS_D^X D .7;/_'Q%!QJQMP_F/![0\"*HW3^! _&H XK>/P6-91;I:]\\_\"W3U?=8FX#^W=9[#E)"
+    "?@/S-\\M50<\".$_\\9G.#UIXX3^,OOF].NCA/V#5/1>K5^(_&D<>QY?&XC]LF2EQ[33C/Q+DC[68HN,_P<Z_-88/Y#]:R B9HGOD/^,D09':YN0_A"
+    "\\UNWQI1Y3_9*W%84+KE/Q;XJNEG(N8_*Y&JG4Z)YC];A,^@\\>[F/ZCJZT4^4^<_ST'@\"B*VYS_<9S\"=BA?H/QMAD-YE=^@_\"Y)GZ:'5Z#^Q&$"
+    "D5+3+I/UOS7_OUC.D_IJ7->NOEZ3_F#_J\\_#SJ/_0PTSD9DNH_9([[NS#EZC_= ^9D,S;K/T\"_W; 1A>L_SC3Y>KS1ZS\\*W/8 )1SL/^F, N<\\"
+    "9.P_=EIB._:I[#]+T EZ0^WL/Y!^$I 7+NT_7<@8WV5L[3^8\\'M (JCM/U]I@ A!X>T_)7-3\";<7[C^5(>^5>4ON/\\#EW81^?.X_A,;<,KRJ[C^"
+    "1>EN%*=;N/Q*AV>R]_NX_XF @9W$D[S_$P%>!/$?O/P,6]UD89^\\_&_*/HOZ#[S]Q W.AZ9WO/W]H+C/4M.\\_NP#ER[G([S]=4GYXEMGO/P^HKM]"
+    "FY^\\_SQ770BCR[S^\"(+U^V/GO/P;0&0QV_N\\_        \\#\\&T!D,=O[O/X(@O7[8^>\\_SQ770BCR[S\\/J*[?9N?O/UU2?GB6V>\\_NP#ER"
+    "[G([S]_:\"XSU+3O/W$#<Z'IG>\\_&_*/HOZ#[S\\#%O=9&&?O/\\3 5X$\\1^\\_XF @9W$D[S\\2H=GLO?[N/Y%Z6X4IUNX_A,;<,KRJ[C_ Y=V$"
+    "?GSN/Y4A[Y5Y2^X_)7-3\";<7[C]?:8 (0>'M/YCP>T BJ.T_7<@8WV5L[3^0?A*0%R[M/TO0\"7I#[>P_=EIB._:I[#_IC +G/&3L/PK<]@ E'.P_"
+    "SC3Y>KS1ZS] O]VP$87K/]T#YF0S-NL_9([[NS#EZC_T,-,Y&9+J/^8/^KS\\/.H_IJ7->NOEZ3];\\U_[]8SI/[$8214M,ND_\"Y)GZ:'5Z#\\;89"
+    "#>97?H/]QG,)V*%^@_ST'@\"B*VYS^HZNM%/E/G/UN$SZ#Q[N8_*Y&JG4Z)YC\\6^*KI9R+F/]DK<5A0NN4_A\\UNWQI1Y3_C)$&1VN;D/UK(\")FB"
+    ">^0_P<Z_-88/Y#\\2Y(^UF*+C/VR9*7'M-.,_&D<>QY?&XC]@U3T7JU?B/XR^^;TZZ.$_\\9G.#UIXX3\\S?+54' CA/[=UGL.4E^ _\"W3U?=8FX#"
+    "\\%C646Z6O?/X$#\\:@#BMX_F/![0\"*HW3_Q\\10<:L;</^3[@\"0 Y=L_F^'TXP@$VS^U0O1]J\"/:/SX,6*<\"1-D_$:M^GCIEV#\\C *@C<X?7"
+    "/S(5?W'.JM8_MH'3-6[/U3\\R782*<_74/^N+GN[^'-0_0!^P/S!&TS^\\<5*S)G'2/ZJ2[-  GM$_0(*O:]S,T#]:59LYK?O//^'=W7L78LX_=B7%"
+    "QR[-S#\\45\"\"S*#W+/U!4438YLLD_:3XQHY(LR#^'Z7B<9:S&/WY1KPWA,<4_'E:?(S*]PS_H*%9%A$[\"/ZZ4JPT!YL _OC2JBJ 'OS_ 9PF[+U"
+    "\"\\/R6\\)];WI;D_Z,!V1#T)MS^),K\"E0'JT/Q35><H^^;$__=1&7N$,KS\\AE_SN%D2J/P:9F]> F*4_O8B>[7D*H3]ZQ6\"3JC29/X^4(I\"\\"
+    "D) _+$Q^+&)3@#\\'7!0S)J:!/-B  ]6XKW^_':_=KH SC[]OH?=I+ F7O\\*._HOW.9Z_4@I+[?J5HK\\PAH@GA>^EO_X(OTR3*:F_CDBP>R5$K+_"
+    "F\"EX#0S^OO^WA825]#;&_2+IG6[!KLK\\?S5)'2;JSOQ$T'F]9^;2_C8\"MJ_4HMK\\ Y(08-DFWOP\"GP (V6KB_;=]2UQ-<N;^*AHX0\\4ZZOR8"
+    "Y!R/R,KN_(Q;-:3X(O+]M4PP2 ,^\\OU]&& 9DA[V_,+KIUYDQOK]:CABKT\\V^O]JN6!Y&7+^_$Y&\"-\"C=O[^NN9>>62C OR?7>%Z16\\\"_1KN"
+    "8*EJ(P+^>.]O5TZ[ OXM;\\R@?S\\\"_>9_AU5WIP+]D?55KLOW OV8G]D= #,&_F^J6C2L5P;]96EL4F1C!OYYZSUVN%L&_'!?XAY$/P;]@;%] :0"
+    "/!OU= (K=<\\L\"_.'T!DI/<P+]W5GS?-<+ OZ/R]@ELH\\\"_1(?QREZ P+^ Q%,>-UG O_Y=T#4>+L\"_/]G(V'K^O[_PI.QS?)F_O\\=K+TZ4+;"
+    "^_JRC<@16[OK_QK8H:4T*^OU-YG_V?P[V_@*DLTTX_O;],6CKOL;6\\O]!Y?#L;)[R_N?)[(=R3N[\\[TCAU1?RZOY'72F\"G8+J_9Z&%35'!N;_9<"
+    "B75D1ZYOY5-B:FV>+B_BN%^A S0M[^ E\"05WR2WOWRD9>YX=[:_K\"@4=B/(M;\\5<Z34)A>UOY,4C>7)9+2_\\().*%*QL[\\U'B6R _VROWL0:\""
+    " A2+*_ D\"7B^N2L;\\921I[HMVPOQ4RLMF#*+\"_IY$^U9?GKK\\ K?A^:G^MOQTHH%WQ&*R_*P^KEIJTJK\\D8O>WT%*IOQ98.:GZ\\Z>_RU78GG"
+    "N8IK]6XCD.LT\"EOTUE>:/\\[*._^/Z*.+\"=HK]-3\\?-(5.AO\\F)W8.A#:\"_1'E1+O>:G;]_?LFX\\\"6;O]*3?7VXO)B_\")9Z?L]?EK_Y0_3"
+    "JK@^4OZ;^4R/(S)&__@VM?PDOC[_\"4EDSC>\"*OV$,)*W/KH:_\"^.8[76:@K^0Q1:6*TA]OT;LPBULF'6_-%]7'3M-;+\\2%I(L2<Y;O\\%G\\I("
+    "_]FV\\\\P.=^@#.6C\\&@XGAXDQJ/ZA7&\"YR6',_P B?(CQ)>3_VW@*$H_A^/QS-*T!+,X(_[[DY4X[)A#]S01HD*S^'/W8O@NL]E(D_X5=VG>[(B"
+    "S^6$TB2<-V-/WD6+BT\"TH\\_3P120';3D#]SQUUX0:Z1/U[*Q&F1>9(_?F3MAYDUDS\\Z(BW=D>*3/U:GJMBV@)0_$(VC&TD0E3^VERM&C9&5/\\:"
+    "!>L/+!)8_0'G=E5!JEC_N/V$B:\\*6/UFN2?QM#9<_2!YKL*Y+ES\\W GJ0A7V7/VFF9'Y-HY<_<LK*MV.]ES_H;*:A)\\R7/^O&.)3ZSY<_+!1.IS"
+    "_)ES\\!7.I^6[B7/^8\"<1BTG9<_QGA8F+!YES](X'H8N4R7/TP.%'<V%Y<_5[Y\\)I+9EC_F4K+]-926/Q?MN0F,1Y8_%AGM7_[SE3^<N3WQ]IF5/"
+    "WE'?E[?.94_9^\"ZS2#4E#\\M!:_ (VF4/W]'8^Q/^9,_#HC]$0R%DS\\4P<W8O0R3/SJVH*G)D)(_?SIABY(1DC\\_%Q !>H^1/PWU&>G?\"I$_3O"
+    "\\17B*$D#\\_HJXQ._>//W,@5:A7XXX_B^-P8TK-C3]C=3I!O[6,/^A+R8I=G8L_AN,1Q\\>$BC_H8>:0FVR)/RBK_&]Q58@_5I/[M-P_AS^VCH]8:"
+    "RR&/[D'AMVE&X4_6$;M-0\\.A#^@H36K) 2#/S^#3\\E=_H$_&Z# 3\"S]@#^GH:D3_ \" /_7*:\"-F%'X_SL'#C6(R?#_)5UMRH5QZ/Q-B^.'*DW"
+    "@_\\ F/\\'K8=C]0Y/NX02MU/]N\\\"&:CC',_X)&;0!C]<3_6F/#\"#'UP/VWY?&'#&6X_40)%:-A9:S\\@A6'^Z[IH/[S$!N1Z/68_/51$BNOA8S"
+    "^7Y35PCJAA/[CWAQ ](U\\_B8%!2H,Z6S\\;H%;<$9=7/R@)Q+7B.%0__H45:L@?43^@(=N$WI9,/YHV&;6\\=D<_!M8\\DO'=0C]SN4A*^Y4]/^')"
+    " 9<\\>#8_UP.$AJ!>,#]![HX:28DF/QW( KL]E1P_CB1S>+79#S]&;$;/00C\\/L_,6DK<OML^#5>=4B^7$CEA8 *>GB;;/A)>NKSKU_H^3.N*!(W8"
+    "#3_)AE:2NS4:/X:]+0G>.\"0_%7HS0EJ_+#_2GI;?C$XS/^7C34= X#@_2.0=E\\T+/S]:#^*(\"N1\"/\\0L 5_KA48_BF48#-QF2C_XN&O9)()./"
+    "_JL_C\"#:5$_Z8$V)UZJ4S_8N7P\"0 %6/VV02Z;%:U@_YN,,<8WG6C\\]=CQ_.')=/^J>4/.U!& _KG>6]&A583_04(N/#:IB/S.>Y<M_ 60_92BJ"
+    "^)]:93_N]>TR4[1F/Z()?>>##6@_2E4_3R)E:3^P5SCF)+IJ/VGY -V(\"VP_]T^>A%)8;3\\-%INTC9]N/W^]3\"M.X&\\_9A 8]->,<#\\(>2; :"
+    "R5Q/\\P-239YN7$_YRH0J9M(<C]&H3TB<])R/RHMSH\"D5G,_UOORD]G4<S\\1VOLRP4QT/U\\8-%(/OG0_'YRU%'TH=3\\]^#;;R(MU/YK$VD^VYW"
+    "4_&L ';PX\\=C]2DU*-GXAV/^E.@UH]S78_G??!X< )=S^IHO:&\"#YW/Z;):@'X:7<_69>Z4WB-=S_\\_27!=ZAW/X]K4L#ING<_2^B.Z\\;$=S_N"
+    "5ZWN#,9W/X]UA'*^OG<_;O4N!N.N=S]-_AP&AY9W/T3E#8&[=7<_E,,(&Y9,=S_Y'&ON,!MW/ZQ>)6NJX78_O(,]-\"6@=C_ZH;#[QU9V/SF,S%R]!"
+    "78_VA$;M3.M=3^BLOC[7$UU/R;=\\)ANYG0_MP+Z.*%X=#]Z\\*NB, 1T/W'VBHE;B7,_:G\"\"8&,(<S^_0ZDKC(%R/SW5:E$<]7$_].$N:UQC<3\\"
+    "F>YH5E\\QP/X4UA, 8,7 _);1J_5XB;S\\L.2.K5=IM/P\\.?1FWBFP_MLG&^R8T:S^M(#3)2M=I/VD745W)=&@_DZ UF4H-9S\\8:*<%=Z%E/W1E5"
+    "G;W,60_])5?KG2_8C^G^S\\&ETIA/Z\\[P28,J%\\_0<[%HM\"X7#\\2A*::Q<A9/\\:GS*4QV58_8TG'-U?K4S^%T+T#= !1/Q#/?<F ,TP_X@)/E"
+    "MUP1C]/=K1>5KM /RZ>[R=J*C8_9^(SC](\")C_.'_7;,OA'/ "
+  }
+  DataRecord {
+    Tag			    DataTag1
+    Data		    "  %)30     .    P     8    (     0         %    \"     $    \"     0         .    2     8    (    !    "
+    "      %    \"     $    4     0         0    %    %)A:7-E9$-O<VEN949I;'1E<E1X      X   !     !@    @    $          "
+    "4    (     0    H    !         !     *    8V]M;61I86QO9P        "
+  }
+  DataRecord {
+    Tag			    DataTag0
+    Data		    "  %)30     .    <!H   8    (     @         %    \"     $    !     0         %  0 %@    $   !\"    :&%S2"
+    "6YH97)I=&5D3W!T:6]N     &9I;'1E<D-O;G-T<G5C=&]R      !F:6QT97)#;VYS=')U8W1O<D%R9W,         #@   #     &    \"     "
+    "D\"        !0    @    !     0    $          @ !  $    .    0     8    (    !          %    \"     $    +     0    "
+    "     0    \"P   &1F:6QT+F1F9FER       .    :!D   8    (     0         %    \"     $    !     0         .    .!D   "
+    "8    (    !@         %    \"     $    A P   0         )    \"!D  ,X?]=LR^$<\\9^(SC](\")C\\NGN\\G:BHV/T]VM%Y6NT _X@"
+    ")/EMUP1C\\0SWW)@#-,/X70O0-T %$_8TG'-U?K4S_&I\\RE,=E6/Q*$IIK%R%D_0<[%HM\"X7#^O.\\$F#*A?/Z?[/P:72F$_])5?KG2_8C]T959V"
+    "]S%D/QAHIP5WH64_DZ UF4H-9S]I%U%=R71H/ZT@-,E*UVD_MLG&^R8T:S\\/#GT9MXIL/RPY(ZM5VFT_);1J_5XB;S^%-83 &#%P/R9[FA67S' _]"
+    ".$N:UQC<3\\]U6I1'/5Q/[]#J2N,@7(_:G\"\"8&,(<S]Q]HJ)6XES/WKPJZ(P!'0_MP+Z.*%X=#\\FW?\"8;N9T/Z*R^/M<374_VA$;M3.M=3\\YC"
+    ",Q<O05V/_JAL/O'5G8_O(,]-\"6@=C^L7B5KJN%V/_D<:^XP&W<_E,,(&Y9,=S]$Y0V!NW5W/TW^' :'EG<_;O4N!N.N=S^/=81ROKYW/^Y7K>X,QG"
+    "<_2^B.Z\\;$=S^/:U+ Z;IW/_S])<%WJ'<_69>Z4WB-=S^FR6H!^&EW/ZFB]H8(/G<_G??!X< )=S_I3H-:/<UV/U*34HV?B'8_&L ';PX\\=C^:Q-"
+    "I/MN=U/SWX-MO(BW4_'YRU%'TH=3]?&#12#[YT/Q':^S+!3'0_UOORD]G4<S\\J+<Z I%9S/T:A/2)STG(_YRH0J9M(<C_,#4DV>;EQ/PAY)L!K)7$"
+    "_9A 8]->,<#]_O4PK3N!O/PT6F[2-GVX_]T^>A%)8;3]I^0#=B ML/[!7..8DNFH_2E4_3R)E:3^B\"7WG@PUH/^[U[3)3M&8_92BJ^)]:93\\SGN7"
+    "+?P%D/]!0BX\\-JF(_KG>6]&A583_JGE#SM01@/SUV/'\\X<ET_YN,,<8WG6C]MD$NFQ6M8/]BY? )  58_Z8$V)UZJ4S_ZK/XP@VE1/_BX:]DD@DX"
+    "_BF48#-QF2C_$+ %?ZX5&/UH/XH@*Y$(_2.0=E\\T+/S_EXTU'0. X/]*>EM^,3C,_%7HS0EJ_+#^&O2T)WC@D/\\F&5I*[-1H_3.N*!(W8#3\\27K"
+    "J\\Z]?Z/F%@ IZ>)ML^#5>=4B^7$CG/S%I*W+[;/D9L1L]!\"/P^CB1S>+79#S\\=R *[/94</T'NCAI)B28_UP.$AJ!>,#_AR0&7/'@V/W.Y2$K[E"
+    "3T_!M8\\DO'=0C^:-AFUO'9'/Z AVX3>EDP__H45:L@?43\\H\"<2UXCA4/QN@5MP1EU<_B8%!2H,Z6S^X]X<0/2-?/Y?E-7\".J&$_/51$BNOA8S^"
+    "\\Q ;D>CUF/R\"%8?[KNF@_40)%:-A9:S]M^7QAPQEN/]:8\\,(,?7 _X)&;0!C]<3_;O AFHXQS/U#D^[A!*W4_\\ F/\\'K8=C\\38OCARI-X/\\"
+    "E76W*A7'H_SL'#C6(R?#_URF@C9A1^/Z>AJ1/\\ ( _&Z# 3\"S]@#\\_@T_)7?Z!/Z\"A-:LD!(,_6$;M-0\\.A#^Y!X;=I1N%/[:.CUAK+(8_5I/"
+    "[M-P_AS\\HJ_QO<56(/^AAYI\";;(D_AN,1Q\\>$BC_H2\\F*79V+/V-U.D&_M8P_B^-P8TK-C3]S(%6H5^../S^BKC$[]X\\_3O\\17B*$D#\\-]1"
+    "GIWPJ1/S\\7$ %ZCY$_?SIABY(1DC\\ZMJ\"IR9\"2/Q3!S=B]#),_#HC]$0R%DS]_1V/L3_F3/RT%K\\ C:90_9^\"ZS2#4E#]Y1WY>WSF5/YRY/?"
+    "'VF94_%AGM7_[SE3\\7[;D)C$>6/^92LOTUE)8_5[Y\\)I+9EC],#A1W-A>7/TC@>ABY3)<_QGA8F+!YES_F G$8M)V7/P%<ZGY;N)<_+!1.IS_)ES"
+    "_KQCB4^L^7/^ALIJ$GS)<_<LK*MV.]ES]IIF1^3:.7/S<\">I\"%?9<_2!YKL*Y+ES]9KDG\\;0V7/^X_82)KPI8_0'G=E5!JEC_&@7K#RP26/[:7*"
+    "T:-D94_$(VC&TD0E3]6IZK8MH\"4/SHB+=V1XI,_?F3MAYDUDS]>RL1ID7F2/W/'77A!KI$_3P120';3D#]Y%BXM M*//Y832))PW8T_X5=VG>[(BS"
+    "]V+X+K/92)/W-!&B0K/X<_[[DY4X[)A#\\<S2M 2S.\"/_;> H2C^'X_P B?(CQ)>3^H5Q@N<EAS/P:#B>'B3&H_\\P.=^@#.6C_!9_*2/_9MO!(6D"
+    "BQ)SEN_-%]7'3M-;+]&[,(M;)AUOY#%%I8K2'V_\"^.8[76:@K]A#\"2MSZZ&O\\)263.-X(J__@VM?PDOC[^F_E,CR,R1O_E#].JN#Y2_\")9Z?L]"
+    "?EK_2DWU]N+R8OW]^R;CP)9N_1'E1+O>:G;_)B=V#H0V@OTU/Q\\TA4Z&_^/Z*.+\"=HK]-97FC_.RCOU;B.0ZS0*6_RU78GGN8IK\\66#FI^O.GOR"
+    "1B][?04JF_*P^KEIJTJK\\=**!=\\1BLOP\"M^'YJ?ZV_IY$^U9?GKK\\5,K+9@RBPOQE)&GNBW;\"_ D\"7B^N2L;][$&@@(4BROS4>);(#_;*_\\"
+    "().*%*QL[^3%(WER62TOQ5SI-0F%[6_K\"@4=B/(M;]\\I&7N>'>VOX\"4)!7?)+>_BN%^A S0M[^538FIMGBXO]ER)=61'KF_9Z&%35'!N;^1UTI@"
+    "IV\"ZOSO2.'5%_+J_N?)[(=R3N[_0>7P[&R>\\OTQ:.N^QM;R_@*DLTTX_O;]3>9_]G\\.]O_&MBAI30KZ_JRC<@16[OK_':R].E\"V_O_\"D['-\\"
+    "F;^_/]G(V'K^O[_^7= U'B[ OX#$4QXW6<\"_1(?QREZ P+^C\\O8);*/ OW=6?-\\UPL\"_.'T!DI/<P+]70\"*W7/+ OV!L7T!I \\&_'!?XAY$/"
+    "P;^>>L]=KA;!OUE:6Q29&,&_F^J6C2L5P;]F)_9'0 S!OV1]56NR_<\"_>9_AU5WIP+^+6_,H'\\_ OYX[V]73KL\"_1KN8*EJ(P+\\GUWA>D5O OZ"
+    "ZYEYY9*,\"_$Y&\"-\"C=O[_:KE@>1ER_OUJ.&*O3S;Z_,+KIUYDQOK]?1A@&9(>]OVU3#!( S[R_(Q;-:3X(O+\\F.0<C\\C*[OXJ&CA#Q3KJ_;=]"
+    "2UQ-<N;\\ I\\ \"-EJXOP#DA!@V2;>_C8\"MJ_4HMK\\1-!YO6?FTOQ_-4D=)NK._2+IG6[!KLK_MX6$E?0VQO^8*7@-#/Z^_CDBP>R5$K+_^\"+]"
+    ",DRFIOS\"&B\">%[Z6_4@I+[?J5HK_\"COZ+]SF>OV^A]VDL\"9>_':_=KH SC[_8@ /5N*]_OP=<%#,FIH$\\+$Q^+&)3@#^/E\"*0O)\"0/WK%8)"
+    ".J-)D_O8B>[7D*H3\\&F9O7@)BE/R&7_.X61*H__=1&7N$,KS\\4U7G*/OFQ/XDRL*5 >K0_Z,!V1#T)MS\\EO\"?6]Z6Y/\\!G\";LO4+P_OC2JBJ"
+    " 'OS^NE*L- >; /^@H5D6$3L(_'E:?(S*]PS]^4:\\-X3'%/X?I>)QEK,8_:3XQHY(LR#]05%$V.;+)/Q14(+,H/<L_=B7%QR[-S#_AW=U[%V+./UI"
+    "5FSFM^\\\\_0(*O:]S,T#^JDNS0 )[1/[QQ4K,F<=(_0!^P/S!&TS_KBY[N_AS4/S)=A(IS]=0_MH'3-6[/U3\\R%7]QSJK6/R, J\"-SA]<_$:M^G"
+    "CIEV#\\^#%BG D39/[5\"]'VH(]H_F^'TXP@$VS_D^X D .7;/_'Q%!QJQMP_F/![0\"*HW3^! _&H XK>/P6-91;I:]\\_\"W3U?=8FX#^W=9[#E)"
+    "?@/S-\\M50<\".$_\\9G.#UIXX3^,OOF].NCA/V#5/1>K5^(_&D<>QY?&XC]LF2EQ[33C/Q+DC[68HN,_P<Z_-88/Y#]:R B9HGOD/^,D09':YN0_A"
+    "\\UNWQI1Y3_9*W%84+KE/Q;XJNEG(N8_*Y&JG4Z)YC];A,^@\\>[F/ZCJZT4^4^<_ST'@\"B*VYS_<9S\"=BA?H/QMAD-YE=^@_\"Y)GZ:'5Z#^Q&$"
+    "D5+3+I/UOS7_OUC.D_IJ7->NOEZ3_F#_J\\_#SJ/_0PTSD9DNH_9([[NS#EZC_= ^9D,S;K/T\"_W; 1A>L_SC3Y>KS1ZS\\*W/8 )1SL/^F, N<\\"
+    "9.P_=EIB._:I[#]+T EZ0^WL/Y!^$I 7+NT_7<@8WV5L[3^8\\'M (JCM/U]I@ A!X>T_)7-3\";<7[C^5(>^5>4ON/\\#EW81^?.X_A,;<,KRJ[C^"
+    "1>EN%*=;N/Q*AV>R]_NX_XF @9W$D[S_$P%>!/$?O/P,6]UD89^\\_&_*/HOZ#[S]Q W.AZ9WO/W]H+C/4M.\\_NP#ER[G([S]=4GYXEMGO/P^HKM]"
+    "FY^\\_SQ770BCR[S^\"(+U^V/GO/P;0&0QV_N\\_        \\#\\&T!D,=O[O/X(@O7[8^>\\_SQ770BCR[S\\/J*[?9N?O/UU2?GB6V>\\_NP#ER"
+    "[G([S]_:\"XSU+3O/W$#<Z'IG>\\_&_*/HOZ#[S\\#%O=9&&?O/\\3 5X$\\1^\\_XF @9W$D[S\\2H=GLO?[N/Y%Z6X4IUNX_A,;<,KRJ[C_ Y=V$"
+    "?GSN/Y4A[Y5Y2^X_)7-3\";<7[C]?:8 (0>'M/YCP>T BJ.T_7<@8WV5L[3^0?A*0%R[M/TO0\"7I#[>P_=EIB._:I[#_IC +G/&3L/PK<]@ E'.P_"
+    "SC3Y>KS1ZS] O]VP$87K/]T#YF0S-NL_9([[NS#EZC_T,-,Y&9+J/^8/^KS\\/.H_IJ7->NOEZ3];\\U_[]8SI/[$8214M,ND_\"Y)GZ:'5Z#\\;89"
+    "#>97?H/]QG,)V*%^@_ST'@\"B*VYS^HZNM%/E/G/UN$SZ#Q[N8_*Y&JG4Z)YC\\6^*KI9R+F/]DK<5A0NN4_A\\UNWQI1Y3_C)$&1VN;D/UK(\")FB"
+    ">^0_P<Z_-88/Y#\\2Y(^UF*+C/VR9*7'M-.,_&D<>QY?&XC]@U3T7JU?B/XR^^;TZZ.$_\\9G.#UIXX3\\S?+54' CA/[=UGL.4E^ _\"W3U?=8FX#"
+    "\\%C646Z6O?/X$#\\:@#BMX_F/![0\"*HW3_Q\\10<:L;</^3[@\"0 Y=L_F^'TXP@$VS^U0O1]J\"/:/SX,6*<\"1-D_$:M^GCIEV#\\C *@C<X?7"
+    "/S(5?W'.JM8_MH'3-6[/U3\\R782*<_74/^N+GN[^'-0_0!^P/S!&TS^\\<5*S)G'2/ZJ2[-  GM$_0(*O:]S,T#]:59LYK?O//^'=W7L78LX_=B7%"
+    "QR[-S#\\45\"\"S*#W+/U!4438YLLD_:3XQHY(LR#^'Z7B<9:S&/WY1KPWA,<4_'E:?(S*]PS_H*%9%A$[\"/ZZ4JPT!YL _OC2JBJ 'OS_ 9PF[+U"
+    "\"\\/R6\\)];WI;D_Z,!V1#T)MS^),K\"E0'JT/Q35><H^^;$__=1&7N$,KS\\AE_SN%D2J/P:9F]> F*4_O8B>[7D*H3]ZQ6\"3JC29/X^4(I\"\\"
+    "D) _+$Q^+&)3@#\\'7!0S)J:!/-B  ]6XKW^_':_=KH SC[]OH?=I+ F7O\\*._HOW.9Z_4@I+[?J5HK\\PAH@GA>^EO_X(OTR3*:F_CDBP>R5$K+_"
+    "F\"EX#0S^OO^WA825]#;&_2+IG6[!KLK\\?S5)'2;JSOQ$T'F]9^;2_C8\"MJ_4HMK\\ Y(08-DFWOP\"GP (V6KB_;=]2UQ-<N;^*AHX0\\4ZZOR8"
+    "Y!R/R,KN_(Q;-:3X(O+]M4PP2 ,^\\OU]&& 9DA[V_,+KIUYDQOK]:CABKT\\V^O]JN6!Y&7+^_$Y&\"-\"C=O[^NN9>>62C OR?7>%Z16\\\"_1KN"
+    "8*EJ(P+^>.]O5TZ[ OXM;\\R@?S\\\"_>9_AU5WIP+]D?55KLOW OV8G]D= #,&_F^J6C2L5P;]96EL4F1C!OYYZSUVN%L&_'!?XAY$/P;]@;%] :0"
+    "/!OU= (K=<\\L\"_.'T!DI/<P+]W5GS?-<+ OZ/R]@ELH\\\"_1(?QREZ P+^ Q%,>-UG O_Y=T#4>+L\"_/]G(V'K^O[_PI.QS?)F_O\\=K+TZ4+;"
+    "^_JRC<@16[OK_QK8H:4T*^OU-YG_V?P[V_@*DLTTX_O;],6CKOL;6\\O]!Y?#L;)[R_N?)[(=R3N[\\[TCAU1?RZOY'72F\"G8+J_9Z&%35'!N;_9<"
+    "B75D1ZYOY5-B:FV>+B_BN%^A S0M[^ E\"05WR2WOWRD9>YX=[:_K\"@4=B/(M;\\5<Z34)A>UOY,4C>7)9+2_\\().*%*QL[\\U'B6R _VROWL0:\""
+    " A2+*_ D\"7B^N2L;\\921I[HMVPOQ4RLMF#*+\"_IY$^U9?GKK\\ K?A^:G^MOQTHH%WQ&*R_*P^KEIJTJK\\D8O>WT%*IOQ98.:GZ\\Z>_RU78GG"
+    "N8IK]6XCD.LT\"EOTUE>:/\\[*._^/Z*.+\"=HK]-3\\?-(5.AO\\F)W8.A#:\"_1'E1+O>:G;]_?LFX\\\"6;O]*3?7VXO)B_\")9Z?L]?EK_Y0_3"
+    "JK@^4OZ;^4R/(S)&__@VM?PDOC[_\"4EDSC>\"*OV$,)*W/KH:_\"^.8[76:@K^0Q1:6*TA]OT;LPBULF'6_-%]7'3M-;+\\2%I(L2<Y;O\\%G\\I("
+    "_]FV\\\\P.=^@#.6C\\&@XGAXDQJ/ZA7&\"YR6',_P B?(CQ)>3_VW@*$H_A^/QS-*T!+,X(_[[DY4X[)A#]S01HD*S^'/W8O@NL]E(D_X5=VG>[(B"
+    "S^6$TB2<-V-/WD6+BT\"TH\\_3P120';3D#]SQUUX0:Z1/U[*Q&F1>9(_?F3MAYDUDS\\Z(BW=D>*3/U:GJMBV@)0_$(VC&TD0E3^VERM&C9&5/\\:"
+    "!>L/+!)8_0'G=E5!JEC_N/V$B:\\*6/UFN2?QM#9<_2!YKL*Y+ES\\W GJ0A7V7/VFF9'Y-HY<_<LK*MV.]ES_H;*:A)\\R7/^O&.)3ZSY<_+!1.IS"
+    "_)ES\\!7.I^6[B7/^8\"<1BTG9<_QGA8F+!YES](X'H8N4R7/TP.%'<V%Y<_5[Y\\)I+9EC_F4K+]-926/Q?MN0F,1Y8_%AGM7_[SE3^<N3WQ]IF5/"
+    "WE'?E[?.94_9^\"ZS2#4E#\\M!:_ (VF4/W]'8^Q/^9,_#HC]$0R%DS\\4P<W8O0R3/SJVH*G)D)(_?SIABY(1DC\\_%Q !>H^1/PWU&>G?\"I$_3O"
+    "\\17B*$D#\\_HJXQ._>//W,@5:A7XXX_B^-P8TK-C3]C=3I!O[6,/^A+R8I=G8L_AN,1Q\\>$BC_H8>:0FVR)/RBK_&]Q58@_5I/[M-P_AS^VCH]8:"
+    "RR&/[D'AMVE&X4_6$;M-0\\.A#^@H36K) 2#/S^#3\\E=_H$_&Z# 3\"S]@#^GH:D3_ \" /_7*:\"-F%'X_SL'#C6(R?#_)5UMRH5QZ/Q-B^.'*DW"
+    "@_\\ F/\\'K8=C]0Y/NX02MU/]N\\\"&:CC',_X)&;0!C]<3_6F/#\"#'UP/VWY?&'#&6X_40)%:-A9:S\\@A6'^Z[IH/[S$!N1Z/68_/51$BNOA8S"
+    "^7Y35PCJAA/[CWAQ ](U\\_B8%!2H,Z6S\\;H%;<$9=7/R@)Q+7B.%0__H45:L@?43^@(=N$WI9,/YHV&;6\\=D<_!M8\\DO'=0C]SN4A*^Y4]/^')"
+    " 9<\\>#8_UP.$AJ!>,#]![HX:28DF/QW( KL]E1P_CB1S>+79#S]&;$;/00C\\/L_,6DK<OML^#5>=4B^7$CEA8 *>GB;;/A)>NKSKU_H^3.N*!(W8"
+    "#3_)AE:2NS4:/X:]+0G>.\"0_%7HS0EJ_+#_2GI;?C$XS/^7C34= X#@_2.0=E\\T+/S]:#^*(\"N1\"/\\0L 5_KA48_BF48#-QF2C_XN&O9)()./"
+    "_JL_C\"#:5$_Z8$V)UZJ4S_8N7P\"0 %6/VV02Z;%:U@_YN,,<8WG6C\\]=CQ_.')=/^J>4/.U!& _KG>6]&A583_04(N/#:IB/S.>Y<M_ 60_92BJ"
+    "^)]:93_N]>TR4[1F/Z()?>>##6@_2E4_3R)E:3^P5SCF)+IJ/VGY -V(\"VP_]T^>A%)8;3\\-%INTC9]N/W^]3\"M.X&\\_9A 8]->,<#\\(>2; :"
+    "R5Q/\\P-239YN7$_YRH0J9M(<C]&H3TB<])R/RHMSH\"D5G,_UOORD]G4<S\\1VOLRP4QT/U\\8-%(/OG0_'YRU%'TH=3\\]^#;;R(MU/YK$VD^VYW"
+    "4_&L ';PX\\=C]2DU*-GXAV/^E.@UH]S78_G??!X< )=S^IHO:&\"#YW/Z;):@'X:7<_69>Z4WB-=S_\\_27!=ZAW/X]K4L#ING<_2^B.Z\\;$=S_N"
+    "5ZWN#,9W/X]UA'*^OG<_;O4N!N.N=S]-_AP&AY9W/T3E#8&[=7<_E,,(&Y9,=S_Y'&ON,!MW/ZQ>)6NJX78_O(,]-\"6@=C_ZH;#[QU9V/SF,S%R]!"
+    "78_VA$;M3.M=3^BLOC[7$UU/R;=\\)ANYG0_MP+Z.*%X=#]Z\\*NB, 1T/W'VBHE;B7,_:G\"\"8&,(<S^_0ZDKC(%R/SW5:E$<]7$_].$N:UQC<3\\"
+    "F>YH5E\\QP/X4UA, 8,7 _);1J_5XB;S\\L.2.K5=IM/P\\.?1FWBFP_MLG&^R8T:S^M(#3)2M=I/VD745W)=&@_DZ UF4H-9S\\8:*<%=Z%E/W1E5"
+    "G;W,60_])5?KG2_8C^G^S\\&ETIA/Z\\[P28,J%\\_0<[%HM\"X7#\\2A*::Q<A9/\\:GS*4QV58_8TG'-U?K4S^%T+T#= !1/Q#/?<F ,TP_X@)/E"
+    "MUP1C]/=K1>5KM /RZ>[R=J*C8_9^(SC](\")C_.'_7;,OA'/ "
+  }
+}
