@@ -1,0 +1,33 @@
+* MPSK
+** 2
+| Código binário | Gray |
+|----------------+------|
+|              0 |    0 |
+|              6 |    5 |
+|              5 |    7 |
+|              1 |    1 |
+|              7 |    4 |
+|              7 |    4 |
+|              6 |    5 |
+|              0 |    0 |
+|              1 |    1 |
+|              5 |    7 |
+
+** 4
+- O diagrama de olho é apenas referente à componente em fase do sinal
+- No 8PSK, os pontos têm 5 fases possíveis para a componente em fase e 5 para a componente em quadratura
+  - Ver interseções dos pontos com os eixos verticalmente e horizontalmente
+
+- Sem filtro de cosseno elevado, temos transições quase instantâneas nos instantes de transição de uma
+  fase para a outra
+  - Tanto em fase como em quadratura temos gráficos com "escadas"
+
+- Com o filtro, temos as transições "arredondadas"
+- No entanto, nos instantes de amostragem, a fase corresponde precisamente à pretendida, daí haver
+  instantes no diagrama de olho em que todas as linhas se intersetam em 5 pontos, uma vez que há 5 fases
+  possíveis para a componente em fase.
+
+** 5
+Com raiz de cosseno elevado deixa de haver passagens por 0 em \pm{}T_s, logo passa a haver interferência nos
+momentos de amostragem. No entanto, este filtro costuma ser usado em pares na emissão e receção, e nesse
+caso já haveria passagens por 0.
