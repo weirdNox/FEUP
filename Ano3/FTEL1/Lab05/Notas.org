@@ -1,0 +1,60 @@
+* MPSK Banda do Canal
+** 1
+- Com E/N_0 = 25dB :: 0 erros
+- Com E/N_0 = 10dB :: 15 erros
+
+** 2
+- O sinal recebido é multiplicado pelas funções-base. O módulo integrate-and-dump integra esse resultado,
+  fazendo  numa estimativa  do valor  de ambas  as componentes  nesse instante  de tempo.  Uma vez  que o
+  integrador  está a  exportar os  valores intermédios,  precisamos de  um ZOH  para ficar  apenas com  o
+  resultado no instante T.
+
+- De seguida,  fazemos uma conversão  para coordenadas polares,  o que nos dá  uma estimativa da  fase do
+  sinal. Uma vez que essa  conversão resulta num valor em [-\pi, \pi], somamos  2\pi aos valores negativos para
+  mudar o intervalo para [0, 2\pi].
+
+- Para obtermos  o índice do  sinal multiplicamos  por M/2\pi e  arredondamos. Ainda temos  uma verificação
+  extra para convertermos o índice M no 0.
+
+- Finalmente, fazemos a conversão de Gray inversa.
+
+** 3
+É de notar que esta desmodulação é uma coerente, pelo que precisamos de saber tanto a frequência como a
+fase!
+
+- Quando introduzimos um erro de  fase de \pi/5 em ambas as sinusóides, vemos que  os sinais no diagrama de
+  espaço  de sinal  são rodados  de \pi/5.  Não sendo  \pi/5  um múltiplo  de \pi/8,  deixamos de  ter 2  eixos
+  independentes!  Por isso,  no  diagrama  de olho  da  componente  em fase,  passamos  a  ter 8  valores
+  diferentes!
+
+- Quando introduzimos um erro de fase de \pi/10 apenas na componente em fase, representação polar fica
+  distorcida no eixo em fase, pois estamos a adicionar um erro de fase apenas a essa componente. Tal como
+  na versão anterior, no diagrama de olhos temos 8 resultados diferentes.
+
+** 4
+Não é recomendado o uso de 2 filtros de cosseno elevado normais (opção 2), uma vez que a função de
+transferência deixa de ter a forma necessária para cumprir o critério de Nyquist. A maneira correta de
+implementar isso é com os filtros de raiz de cosseno elevado.
+
+* MPSK Banda Base
+** 5
+| E/N0 (dB) | Eb/N0 (dB) | Pe (teórica) | Pe (estimada) | Pb (estimada) |
+|-----------+------------+--------------+---------------+---------------|
+|         8 |          2 |      0.48829 |        0.4964 |        0.1362 |
+|        12 |          6 |      0.27204 |        0.2688 |       0.06765 |
+|        16 |         10 |      0.08172 |       0.08168 |       0.02042 |
+|        20 |         14 |      0.00580 |       0.00663 |      0.001658 |
+#+TBLFM: $3=2*utpn(sqrt(2*10^($1/10))*sin(180/16), 0, 1);%.5f
+
+** 7
+#+begin_src matlab
+EbNo = -2:0.01:15;
+Err2 = qfunc(sqrt(2.*10.^(EbNo./10)));
+Err16 = 2*qfunc(sqrt(2.*10.^(EbNo./10)*log2(16)).*sin(pi/16))/log2(16);
+semilogy(EbNo, Err2); hold; grid;
+semilogy(EbNo, Err16);
+xlim([-2 15]);
+ylim([10^-3 10^0]);
+#+end_src
+
+* QAM Banda do Canal
