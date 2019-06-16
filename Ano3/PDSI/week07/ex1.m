@@ -22,6 +22,6 @@ while(C <= 2.0)
   figure(4);
   plot(FreqW/pi, angle(FreqResp));
 
-  C = C + 0.05;
-  pause;
+  C = C + 1/50;
+  pause(0.25);
 end
