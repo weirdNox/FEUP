@@ -1,4 +1,3 @@
-
 %% Example usage:
 %%   bode(sym2tf(subs(Wn^2 / (s^2 + s*2*Zeta*Wn + Wn^2), {Wn, Zeta}, {2*pi*10e3, 1/sqrt(2)})))
 
