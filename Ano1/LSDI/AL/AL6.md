@@ -15,7 +15,7 @@ h) O armazenamento de dados começa no endereço `0x00002000`
 i) O vetor V começa no endereço `0x00002004`
 j) O vetor V ocupa $4\times7 = 28$ bytes em memória
 k) O valor `0xfffffff6` é -10 em complemento para 2, que é o quinto elemento do vetor
-l) Ocupa os endereços de `0x0000201c` (inclusivé) a `0x00002020` (exclusivé)
+l) Ocupa os endereços de `0x0000201c` (inclusive) a `0x00002020` (exclusive)
 m) Fica na posição `0x0000201c`
 n) `$0` fica a conter o valor do endereço do primeiro elemento de V
 o) O endereço correspondente a `escreve` é `0x0000002c`, e o seu conteúdo correponde a uma instrução do programa
