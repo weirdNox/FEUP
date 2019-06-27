@@ -1,0 +1,32 @@
+Tow-Thomas with Notch - Low-pass
+
+.subckt ideal_op NonInv Inv Output Gain=100k
+eE1 Output 0 NonInv Inv {Gain}
+.ends
+
+.param W0=2*pi*25
+.param Wn=2*pi*50
+.param Q =1/sqrt(2)
+.param C =100n
+.param R =1/(W0*C)
+.param R2=Q*R
+.param R3=R*(W0/Wn)**2
+.param RPrime=10k
+
+* R1 is ∞
+c1     In     Inv1   {C}
+xO1    0      Inv1   Out1   ideal_op
+r2     Inv1   Out1   {R2}
+cC1    Inv1   Out1   {C}
+r12    Out1   Inv2   {R}
+r3     Inv2   In     {R3}
+xO2    0      Inv2   Out2   ideal_op
+cC2    Inv2   Out2   {C}
+rP1    Out2   Inv3   {RPrime}
+* R4 is ∞
+xO3    0      Inv3   Out3   ideal_op
+rP2    Inv3   Out3   {RPrime}
+rFB    Out3   Inv1   {R}
+
+vIn    In     0      AC
+.ac    dec    1000    1      300

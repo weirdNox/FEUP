@@ -1,6 +1,6 @@
-* Switched Capacitor Filter
+Switched Capacitor Filter
 
-.subckt ideal_op NonInv Inv V+ V- Output Gain=100k
+.subckt ideal_op NonInv Inv Output Gain=100k
 eE1 Output 0 NonInv Inv {Gain}
 .ends
 
@@ -11,7 +11,7 @@ rS L R R=table(V(Phi), 0.5, 1000Meg, 0.8, 1)
 vPhi1 Phi1 0 DC 0 PULSE(0 3 0                   2n 2n {DutyCycle*SamplingPeriod} {SamplingPeriod})
 vPhi2 Phi2 0 DC 0 PULSE(0 3 {SamplingPeriod/2}  2n 2n {DutyCycle*SamplingPeriod} {SamplingPeriod})
 
-* EXAMPLE
+* EXAMPLE - Delay with gain
 .param SamplingFreq=1Meg
 .param SamplingPeriod={1/SamplingFreq}
 .param DutyCycle=.4
@@ -29,7 +29,7 @@ c3  6    7    0.5p
 xS8 7    0    Phi2 ideal_switch
 xS9 7    Out  Phi1 ideal_switch
 xSA Out  5    Phi2 ideal_switch
-xOp 0    4    0   0   Out ideal_op
+xOp 0    4    Out ideal_op
 
 xSB Out  OutS Phi1 ideal_switch
 rO  OutS 0    5Meg

@@ -1,3 +1,6 @@
+%% Returns a list of coefficients [Lambda1 Gamma2 Lambda3 ...]
+%% This means the first element in the series is always an inductor (while normalized)!
+
 function NormCoefs = longDivisionSynthesis(TransfDen)
   Len = length(TransfDen);
   DEven = TransfDen;
