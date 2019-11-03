@@ -1,3 +1,4 @@
+package trial1_ex2;
 import static org.junit.Assert.*;
 
 import java.lang.reflect.Field;
