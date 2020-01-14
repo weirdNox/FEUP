@@ -71,12 +71,6 @@
   \item Virtual bit stream
   \end{itemize}
 
-  \begin{gather*}
-    t _\text{prop} = \frac{d}{v} \qquad
-    t _\text{trans} = \frac{L}{R} \\
-    a = \frac{t _\text{prop}}{t _\text{trans}} = \frac{t _\text{prop} R}{L}
-  \end{gather*}
-
   \subsection{Channel capacity}
   $R$ is \si{\bit/\second}, $M$ is number of levels, $B$ is bandwidth:
   \begin{description}
@@ -92,14 +86,22 @@
   \end{itemize}
 
   \subsection{Error probabilities}
-  $p$ is BER, $n$ is frame length:
+  $p$ is BER, $\ell$ is frame length in \si{\bit}:
   \begin{align*}
-    P(\text{has errors}) &= 1 - (1-p)^n = \text{FER} \\
-    P(\text{has } i \text{ errors}) &= {n\choose i} p^i(1-p)^{n-i}
+    P(\text{has errors}) &= 1 - (1-p)^\ell = \text{FER} \\
+    P(\text{has } i \text{ errors}) &= {\ell\choose i} p^i(1-p)^{\ell-i}
   \end{align*}
 
   \subsection{ARQ}
   Automatic retransmission of missing packets or packets with errors.
+  $p_e \equiv \text{FER}$
+
+  \begin{gather*}
+    t _\text{prop} = \frac{d}{v} \qquad
+    t _\text{trans} = \frac{L}{R} \\
+    a = \frac{t _\text{prop}}{t _\text{trans}} = \frac{t _\text{prop} R}{L} \quad
+    \max_\text{throughput} = R S
+  \end{gather*}
 
   \subsubsection{Stop-and-Wait}
   \[ W = 1 \Rightarrow S = \frac{1 - p_e}{1 + 2a} \]
@@ -164,7 +166,8 @@
     S &= 1 - p_e,\, W \ge 1+2a
   \end{align*}
 
-  After \texttt{REJ(k)}, only resend $k$.
+  Like GBN, but stores out of order, and also sends \texttt{REJ(k)} when damaged.
+  After receiving \texttt{REJ(k)}, only resend $k$.
 
   \subsection{End to end capacity}
   $R$ is link capacity, $k$ is number of links:
@@ -188,21 +191,31 @@
 
   \subsection{M/M/1 queue}
   Poisson arrival, exponential service time, based on Markov chains, 1 server, infinite queue length.
-  \begin{itemize}
-  \item \(N = \frac{\rho}{1 - \rho} = \frac{\lambda}{\mu - \lambda}\); as \(\rho \to 1 \Rightarrow N \to \infty\)
-  \item \(T = \frac{1}{\mu - \lambda} \Rightarrow T_w = T - T_s = \frac{1}{\mu - \lambda} - \frac{1}{\mu} = \frac{\rho}{\mu (1 - \rho)}\)
-  \item \(N_w = \lambda T_w = N - \rho\)
-  \end{itemize}
+  \begin{align*}
+    N &= \frac{\rho}{1 - \rho} = \frac{\lambda}{\mu - \lambda} \qquad \text{as } \rho \to 1 \Rightarrow N \to \infty \\
+    T &= \frac{1}{\mu - \lambda} \\
+    \Rightarrow T_w &= T - T_s = \frac{1}{\mu - \lambda} - \frac{1}{\mu} = \frac{\rho}{\mu (1 - \rho)} \\
+    N_w &= \lambda T_w = N - \rho
+  \end{align*}
+
+  When averaging things between queues, use an \emph{weighted average}!
 
   \subsubsection{M/M/1/B queue}
   Queue length is $B \Rightarrow$ packets are lost when queue is full, with probability $P(B)$.
   \[
-    P(n) = \frac{\rho^n(1 - \rho)}{1 - \rho^{B + 1}} \Rightarrow
+    P(n) = \frac{\rho^n(1 - \rho)}{1 - \rho^{B + 1}} \Rightarrow P(B) =
     \begin{cases*}
       \frac{1}{B+1}, &$\rho = 1$  \\
       \sim\frac{\rho - 1}{\rho}, &$\rho \gg 1$
     \end{cases*}
   \]
+
+  \subsection{M/D/1 queue}
+  Constant packet length!
+  \begin{align*}
+    N &= \rho + \frac{\rho^2}{2 (1 - \rho)} & N_w &= \frac{\rho^2}{2 (1 - \rho)} \\
+    T &= \frac{1}{\mu} + \frac{\rho}{2\mu (1 - \rho)} & T_w &= \frac{\rho}{2 \mu (1 - \rho)}
+  \end{align*}
 
   \section{Medium Access Control}
   \emph{Ideal}: Coordinate stations to share medium.
@@ -255,14 +268,15 @@
   \end{description}
 
   Only thing remaining from the original is the \emph{frame format} \& \emph{MAC addresses}.
+  Now, it is point-to-point and uses mostly Unshielded Twisted Pair (UTP) \textemdash{} cheaper, easier to install, full-duplex.
 
   \subsection{VLANs}
   Separate \emph{broadcast} domains, like routers.
 
   \section{Network layer}
   \begin{description}
-  \item[Forwarding] Where to send packet? Uses table lookups
-  \item[Routing] Determination of routes, fills table
+  \item[Forwarding] Data plane, take packets from input ports to output ports
+  \item[Routing] Control plane, compute forwarding table entries, distributed
   \end{description}
 
   \subsection{Virtual circuit network}
@@ -287,12 +301,186 @@
   May go through \emph{different paths}!
   Resilient to router crashes.
 
-  \section{Maybe?}
+  \subsection{Routers}
+  \subsubsection{Input port}
   \begin{itemize}
-  \item Porque é que statistical mult. é melhor?
-  \item M/D/1
-  \item D/M/1
-  \item Aloha
+  \item Look up output port
+  \item Send to switching fabric
+  \item Queuing if needed
+    \begin{itemize}
+    \item Line rate > forwarding rate
+    \item \emph{Head of line blocking}
+    \end{itemize}
   \end{itemize}
+
+  \subsubsection{Switching fabric}
+  \begin{description}
+  \item[Memory switch] Switching controlled by CPU, packets go through bus twice
+  \item[Shared bus] CPU not involved, bus contention
+  \item[Crossbar switch] Simultaneous forwarding, $N^2$ interconnections.
+  \end{description}
+
+  \subsubsection{Output port}
+  Scheduling and queuing (arrival rate > line rate)
+
+  \subsection{Internet Protocol}
+  \subsubsection{Fragmentation \& reassembly}
+  \begin{description}
+  \item[{MTU}] Maximum Transfer Unit, may be different at each link
+    \begin{itemize}
+    \item Large IP datagrams may be fragmented
+    \item Reassembled at the \emph{final destination}
+    \end{itemize}
+  \end{description}
+
+  \subsubsection{Addressing}
+  \SI{32}{\bit} addresses, each network interface has 1
+
+  \subsubsection{Subnets}
+  Same broadcast domain $\Rightarrow$ can reach directly
+
+  Forwarding table contains pairs of (Network address+mask $\to$ output port).
+  Use \emph{longest prefix match} to know where to send.
+
+  There are $2^{32 - \text{mask size}} - 2$ usable addresses.
+
+  \paragraph{Special IP addresses}
+  \begin{description}
+  \item[{All zeros}] This host
+  \item[{Zeros + Host}] Host on this network
+  \item[{All ones}] Broadcast (on local?)
+  \item[{Network + ones}] Broadcast on specific network
+  \item[{Network + zeros}] Network address
+  \end{description}
+
+  \subsubsection{Address Resolution Protocol (ARP)}
+  Resolves IP addresses into MAC addresses.
+
+  \subsection{ICANN}
+  Allocates addresses and manages DNS.
+
+  \subsection{Network Address Translation (NAT)}
+  All packets \textbf{leaving} a NAT have the same IP address.
+  Communications identified by \emph{port numbers}.
+
+  \subsubsection{NAT traversal}
+  An external client can't directly contact an internal host!
+  $\Rightarrow$ port forwarding is \textbf{one} solution
+
+  \subsection{Internet Control Message Protocol (ICMP)}
+  Used for \emph{Layer 3 error or control messages}.
+  Carried in IP packets.
+
+  May be used for pings (echo request \& reply), traceroute (TTL expired), or ICMP redirects (which is sent by the routers in order to indicate a more efficient route).
+
+  \subsection{IPv6}
+  IPv4 addresses are depleting!
+  We may use NATs, reclamation of unused space, ISP-level NATs, IPv4 buying/selling to mitigate.
+  Or switch.
+
+  \section{Routing}
+  A tree is a \emph{connected} graph with \emph{no cycles}.
+  Cost: $C_\text{total}(T) = \sum w(e_i')$
+
+  A \emph{spanning} tree is built from a graph and goes to all its nodes.
+  In a \emph{minimum} spanning tree (there is only one for each graph) \[C_\text{total}(T^*) = \min_T(C_\text{total}(T))\]
+
+  \subsection{Link-state routing}
+  Every router have \emph{full view} of the entire state of the network, all of them broadcast their local states.
+  $\Rightarrow$ not scalable!
+
+  Periodic beacons are used to detect \emph{topology changes}.
+  When changed, they \emph{flood} their state (also periodically).
+
+  \subsection{Distance vector algorithms}
+  Each router has:
+  \begin{itemize}
+  \item Has cost of direct links $c(x, v)$
+  \item Estimate of total cost to all other nodes $D_{x}(y)$
+  \item Estimate of \emph{their neighbors} to all other nodes!
+  \end{itemize}
+  The estimate is $D_{x}(y) = \min(c(x, v) + D_{v}(y))$
+
+  Each node recomputes estimation and \emph{notifies} when new changes arrive.
+
+  \subsection{Spanning Tree Protocol}
+  Used by \emph{switches} to build a \emph{loop-free} topology.
+  Root is the switch with \emph{smallest ID}.
+  Messages are \texttt{(RootNode, DistanceFromRoot, ThisNode)}.
+
+  \subsection{Flow network model}
+  Comm. networks are \emph{queue} networks!
+  This is used to estimate limits.
+
+  \emph{Maximum capacity} Maximum amount of flow between source and sink, with the minimum amount of cuts to separate them.
+
+  \section{Transport layer}
+  Provides end-to-end service.
+
+  \subsection{Why are there separate network and transport layers?}
+  Users have \emph{no real control over the network}.
+  They can improve the situation by using \emph{another layer} that improves the quality of the service.
+  Transport primitives can be implemented as calls to library procedures.
+
+  \subsection{Multiplexing}
+  Communications identified by \texttt{(Source IP, Port - Destination IP, Port)} and transport type.
+
+  \subsection{User Datagram Protocol - UDP}
+  Connectionless, no reordering, no ARQ.
+
+  $\Rightarrow$ Small protocol overhead.
+
+  \subsection{Transmission Control Protocol - TCP}
+  Connection oriented, has \emph{flow control}, has \emph{congestion control}.
+
+  \subsubsection{Sequence number}
+  Bytes are numbered sequentially, sequence number is the first byte of the packet.
+  Stream is divided in segments, at most of \emph{Maximum Segment Size} (\texttt{MSS}).
+
+  \subsubsection{ARQ}
+  Variation of Go-Back-N, retransmits of a \emph{single packet} at a time.
+
+  May have selective ACK for out-of-order, retransmits on timeout or 3 out of order packets.
+
+  \subsubsection{Adaptive retransmission}
+  Measures $\mathrm{RTT}$ for each segment/ACK (except in retransmissions!).
+  Rolling average for the $\mathrm{RTT}$.
+  Timeout is $2\mathrm{RTT}$.
+
+  \subsubsection{Flow control}
+  Doesn't overflow receiver with data!
+  Uses sliding windows for that.
+
+  \subsubsection{Congestion control}
+  Regulates traffic based on ACKs, \texttt{Congestion\-Window} is continuously adapted.
+
+  \paragraph{Congestion control methods}
+  \begin{enumerate}
+  \item Slow start
+    \begin{itemize}
+    \item \emph{Double} \texttt{CongestionWindow} for \textbf{each RTT} (+1 for each ACK)
+    \item On timeout
+      \begin{itemize}
+      \item Set \texttt{threshold} to half the \texttt{CongestionWindow}
+      \item Restart slow start
+      \item Go to congestion avoidance phase when \texttt{threshold} is hit
+      \end{itemize}
+    \end{itemize}
+
+  \item Additive increase and multiplicative decrease
+    \begin{itemize}
+    \item \emph{Increment} \texttt{CongestionWindow} for \textbf{each RTT}
+    \item When packet is lost (3 repeated ACKs):
+      \begin{itemize}
+      \item \texttt{CongestionWindow} is divided by 2
+      \item Retransmit packet
+      \end{itemize}
+    \end{itemize}
+
+  \item Fast retransmission
+    \begin{itemize}
+    \item 3 repeated ACKs? Retransmit!
+    \end{itemize}
+  \end{enumerate}
 \end{multicols*}
 \end{document}
