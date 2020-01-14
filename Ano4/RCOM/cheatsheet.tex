@@ -1,0 +1,298 @@
+\documentclass[10pt,landscape,a4paper]{article}
+
+\usepackage[top=6.35mm,bottom=6.35mm,left=6.35mm,right=6.35mm]{geometry}
+
+\usepackage{etoolbox}
+
+\usepackage{amsmath, mathtools}
+
+\usepackage[english]{babel}
+\usepackage{microtype}
+\usepackage{unicode-math}
+\setmainfont{TeX Gyre Pagella}
+\setmathfont{TeX Gyre Pagella Math}
+
+\usepackage{xcolor}
+
+\usepackage{multicol}
+
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=*}
+
+\usepackage{nth}
+\usepackage[binary-units]{siunitx}
+
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}{.2ex plus 1pt}{.2ex}{\bfseries\color{section}}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}{.2ex}{.2ex}{\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}{.2ex}{.2ex}{\footnotesize\bfseries}}
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{0mm}{.2ex}{.1ex}{\footnotesize\bfseries}}
+
+\g@addto@macro \small {%
+  \setlength\abovedisplayskip{0pt plus 0pt minus 0pt}%
+  \setlength\belowdisplayskip{0pt plus 0pt minus 0pt}%
+  \setlength{\abovedisplayshortskip}{0pt plus 0pt minus 0pt}%
+  \setlength{\belowdisplayshortskip}{0pt plus 0pt minus 0pt}%
+}
+
+\flushbottom
+\setlength{\maxdepth}{0pt}
+\setlength{\parindent}{0pt}
+\renewcommand{\baselinestretch}{.8}
+\pagestyle{empty}
+\AtBeginDocument{\small}
+
+% NOTE(nox): Math color
+\everymath{\color{math}}
+\apptocmd{\NCC@startdisplay}{\color{math}}{}{
+  % NOTE(nox): This is the error section -> if nccmath is not included
+  \apptocmd{\mathdisplay}{\color{math}}{}{}
+
+  % NOTE(nox): Remove space between section & math
+  \pretocmd{\mathdisplay}{\noindent}{}{}
+  \pretocmd{\start@gather}{\noindent}{}{}
+  \pretocmd{\start@align}{\noindent}{}{}
+  \pretocmd{\start@multline}{\noindent}{}{}
+}
+\makeatother
+
+% ==========================================================================================
+\definecolor{section}{cmyk}{1,.72,0,.38}
+\definecolor{math}{cmyk}{1,.72,0,.38}
+\definecolor{highlight}{cmyk}{0,0.3,0.5,0.41}
+
+\renewcommand\emph[1]{\textcolor{highlight}{#1}}
+
+\begin{document}
+\begin{multicols*}{4}
+  \section{Physical layer}
+  \begin{itemize}
+  \item Unreliable transmission and reception of digital data
+  \item Virtual bit stream
+  \end{itemize}
+
+  \begin{gather*}
+    t _\text{prop} = \frac{d}{v} \qquad
+    t _\text{trans} = \frac{L}{R} \\
+    a = \frac{t _\text{prop}}{t _\text{trans}} = \frac{t _\text{prop} R}{L}
+  \end{gather*}
+
+  \subsection{Channel capacity}
+  $R$ is \si{\bit/\second}, $M$ is number of levels, $B$ is bandwidth:
+  \begin{description}
+  \item[Hartley] $R = 2B \log_2 M$
+  \item[Shannon] $R = B \log_2 (1 + \text{SNR})$
+  \end{description}
+
+  \section{Data link layer}
+  \begin{itemize}
+  \item Framing
+  \item Deals with errors (eg. discards)
+  \item Regulates data flow
+  \end{itemize}
+
+  \subsection{Error probabilities}
+  $p$ is BER, $n$ is frame length:
+  \begin{align*}
+    P(\text{has errors}) &= 1 - (1-p)^n = \text{FER} \\
+    P(\text{has } i \text{ errors}) &= {n\choose i} p^i(1-p)^{n-i}
+  \end{align*}
+
+  \subsection{ARQ}
+  Automatic retransmission of missing packets or packets with errors.
+
+  \subsubsection{Stop-and-Wait}
+  \[ W = 1 \Rightarrow S = \frac{1 - p_e}{1 + 2a} \]
+
+  Sender:
+  \begin{enumerate}
+  \item Sends frame
+  \item Waits for acknowledgement
+    \begin{itemize}
+    \item If ACK received, send new frame
+    \item If NACK received or timeout, resend this frame
+    \end{itemize}
+  \end{enumerate}
+
+  Receiver:
+  \begin{enumerate}
+  \item Receives frame
+    \begin{itemize}
+    \item No errors $\Rightarrow$ send ACK
+    \item Has errors $\Rightarrow$ send NACK
+    \end{itemize}
+  \end{enumerate}
+
+  \subsubsection{Sliding window}
+  \begin{itemize}
+  \item Using $n$ bits in each packet, we can use $M = 2^n$ sequence numbers.
+  \item There may be $W (< M)$ unacknowledged packets in traffic
+
+  \item The efficiency values are upper bounds, as:
+    \begin{itemize}
+    \item The acknowledgement packet is considered having zero length ($\Rightarrow$ zero transmission delay)
+    \item Ignores processing and queuing delays
+    \end{itemize}
+  \end{itemize}
+
+  \paragraph{Go-Back-N}
+  \begin{align*}
+    W &\le M - 1 = 2^n - 1 \\
+    S &= \frac{W}{1 + 2a},\, W < 1+2a \\
+    S &= \frac{W (1 - p_e)}{(1 + 2a)(1 - p_e + Wp_e)},\, W < 1+2a \\
+    S &= \frac{1 - p_e}{1 + 2ap_e},\, W \ge 1+2a
+  \end{align*}
+
+  \begin{itemize}
+  \item Send packets acknowledging correctly received ones, informing we are waiting for sequence number $k$ (next frame!); so, it is cumulative
+
+  \item Receiver
+    \begin{itemize}
+    \item \emph{Discards} frames with \emph{errors}
+    \item When \emph{out of sequence}, send \texttt{REJ(k)} (still expecting k) for the \nth{1} time, simply discard the following times
+    \end{itemize}
+
+  \item When transmitter receives \texttt{REJ(k)}, retransmits $k, k+1, \dotsc$
+  \end{itemize}
+
+  Possible extensions are piggy-backing (waiting \& joining several ACKs into a single cumulative one), and sending the ACKs in packets going in the reverse direction.
+
+  \paragraph{Selective Reject}
+  \begin{align*}
+    W &\le \frac{M}{2} = 2 ^{n-1} \\
+    S &= \frac{W (1 - p_e)}{1 + 2a},\, W < 1+2a \\
+    S &= 1 - p_e,\, W \ge 1+2a
+  \end{align*}
+
+  After \texttt{REJ(k)}, only resend $k$.
+
+  \subsection{End to end capacity}
+  $R$ is link capacity, $k$ is number of links:
+  \begin{description}
+  \item[LL ARQ] $C = R (1 - \text{FER}) \to$ more complex
+  \item[E2E ARQ] $C = R (1 - \text{FER})^k$
+  \end{description}
+
+  \section{Delay models}
+  Queue analysis is always done in \emph{steady state}, not instantaneously!
+
+  \begin{description}
+  \item[{\(C\)}] Channel capacity \emph{after} the queue
+  \item[{\(N\)}] Average number of packets in the \emph{system}
+  \item[{\(T\)}] Average delay experienced by packets (\(T_w\) is queue time, \(T_s = \frac{1}{\mu}\) is service time)
+  \item[{\(\lambda = \frac{R}{L}\)}] Arrival rate of packets
+  \item[{\(\mu = \frac{C}{L}\)}] Service rate of packets
+  \item[{\(\rho = \frac{\lambda}{\mu}\)}] Traffic intensity (occupation)
+  \item[{Little's Theorem}] \(N = \lambda T \Rightarrow N_w = \lambda T_w\)
+  \end{description}
+
+  \subsection{M/M/1 queue}
+  Poisson arrival, exponential service time, based on Markov chains, 1 server, infinite queue length.
+  \begin{itemize}
+  \item \(N = \frac{\rho}{1 - \rho} = \frac{\lambda}{\mu - \lambda}\); as \(\rho \to 1 \Rightarrow N \to \infty\)
+  \item \(T = \frac{1}{\mu - \lambda} \Rightarrow T_w = T - T_s = \frac{1}{\mu - \lambda} - \frac{1}{\mu} = \frac{\rho}{\mu (1 - \rho)}\)
+  \item \(N_w = \lambda T_w = N - \rho\)
+  \end{itemize}
+
+  \subsubsection{M/M/1/B queue}
+  Queue length is $B \Rightarrow$ packets are lost when queue is full, with probability $P(B)$.
+  \[
+    P(n) = \frac{\rho^n(1 - \rho)}{1 - \rho^{B + 1}} \Rightarrow
+    \begin{cases*}
+      \frac{1}{B+1}, &$\rho = 1$  \\
+      \sim\frac{\rho - 1}{\rho}, &$\rho \gg 1$
+    \end{cases*}
+  \]
+
+  \section{Medium Access Control}
+  \emph{Ideal}: Coordinate stations to share medium.
+  Decentralized, without coordination, simple.
+
+  \subsection{Aloha}
+  Transmits; if no ACK is received, delays retransmission randomly.
+  In slotted, only may send at the beginning of slots (less collisions!).
+
+  \subsection{Carrier Sense Multiple Access - CSMA}
+  Listen before transmitting, defer if busy.
+  Vulnerable time is $t_\text{prop}$.
+  A station can only be sure there is no collision after $2 t_\text{prop}$.
+  Slots have $2 t_\text{prop}$.
+
+  \begin{description}
+  \item[non-persistent] wait random interval and retry
+  \item[persistent] transmit as soon medium is free
+  \item[p-persistent] transmit with probability $p$ on next \emph{free} slot, else defer
+  \end{description}
+
+  \subsubsection{CSMA/CD - Collision Detection}
+  Listen while transmitting.
+  If collision detected, stop and retransmit after delay, following \emph{binary exponential backoff}.
+  After $i$th consecutive collision, attempt to transmit after a random number of slots, uniformly distributed between $0$ and $2^i - 1$.
+  Minimum frame size \emph{required}.
+  No ACKs needed.
+
+  \subsubsection{CSMA/CA - Collision Avoidance}
+  When there is a packet to transmit, transmit after DIFS idle, if free.
+  If busy, wait random backoff interval; decrease after idle > DIFS.
+  Stop timer when busy.
+  Consecutive packets are delayed to prevent channel capture.
+
+  \emph{ACKs are required}, because collision may not be visible.
+
+  \subsection{Ethernet MAC}
+  $\SI{48}{\bit} = \SI{6}{\byte}$ address.
+  \begin{description}
+  \item[Single coaxial] Fragile, single collision domain
+  \item[Repeater hubs] Repeat bits to all \emph{other} ports, single collision domain
+  \item[Bridge]
+    \begin{itemize}
+    \item Forward only to single port (based on MAC address)
+    \item Separates collision domains
+    \item Transparent to hosts
+    \item Self-learning: records address $\to$ port of received packet, looks up destination MAC, if found, send to destination (if \emph{another} port);
+      Else, floods to all other ports
+    \end{itemize}
+  \end{description}
+
+  Only thing remaining from the original is the \emph{frame format} \& \emph{MAC addresses}.
+
+  \subsection{VLANs}
+  Separate \emph{broadcast} domains, like routers.
+
+  \section{Network layer}
+  \begin{description}
+  \item[Forwarding] Where to send packet? Uses table lookups
+  \item[Routing] Determination of routes, fills table
+  \end{description}
+
+  \subsection{Virtual circuit network}
+  Connection-oriented service.
+  All data goes through same pre-defined path.
+  \begin{enumerate}
+  \item Establishment
+  \item Data transfer
+  \item Circuit termination
+  \end{enumerate}
+
+  Packets only need a VC identifier, that \emph{changes with each} link.
+  Each router maintains state for each VC, allocating resources for it.
+  One router fails, all circuits through that are \emph{terminated}.
+
+  May have \emph{unused bandwidth}.
+  Guaranteed QoS.
+
+  \subsection{Datagram networks}
+  No connection.
+  Each router decides, each time, where a packet should go based on destination address.
+  May go through \emph{different paths}!
+  Resilient to router crashes.
+
+  \section{Maybe?}
+  \begin{itemize}
+  \item Porque é que statistical mult. é melhor?
+  \item M/D/1
+  \item D/M/1
+  \item Aloha
+  \end{itemize}
+\end{multicols*}
+\end{document}
